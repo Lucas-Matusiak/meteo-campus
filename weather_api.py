@@ -33,11 +33,15 @@ def get_current_weather(lat, lon, api_key):
         visibility_value = root.find('visibility').attrib['value']
         last_update_value = root.find('lastupdate').attrib['value']
 
-        print(wind_speed)
+        print(type(last_update_value))
         # return {city_name, temperature_value, temperature_unit, humidity_value, humidity_unit, pressure_value, pressure_unit,
         #     wind_speed, }
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
+
+def get_hourly_forecast(lat, lon, api_key):
+    
+    return
 
 # Printing values
 get_current_weather(lat, lon, api_key)
