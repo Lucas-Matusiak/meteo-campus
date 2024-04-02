@@ -1,12 +1,27 @@
 <template>
-  <input type="text" v-model="input" placeholder="Search fruits..." />
-  <div class="item fruit" v-for="fruit in filteredList()" :key="fruit">
-    <p>{{ fruit }}</p>
-  </div>
-  <div class="item error" v-if="input && !filteredList().length">
-    <p>No results found!</p>
+  <div>
+    <input
+      type="text"
+      v-model="input"
+      placeholder="Recherchez un campus..."
+      class="block w-64 mt-6 px-4 py-2 rounded bg-white bg-no-repeat bg-right border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+    />
+    <div v-if="filteredList().length > 0" class="grid grid-cols-1 gap-4 mt-4">
+      <div
+        v-for="campus in filteredList()"
+        :key="campus"
+        class="bg-blue-500 text-white rounded p-4"
+      >
+        <p @click="updateInput(campus)">{{ campus }}</p>
+        <!-- Ajout du gestionnaire d'événements @click -->
+      </div>
+    </div>
+    <div v-else class="bg-red-500 text-white rounded p-4 mt-4">
+      <p>No results found!</p>
+    </div>
   </div>
 </template>
+
 <script setup>
 import { ref } from "vue";
 let input = ref("");
@@ -16,53 +31,10 @@ function filteredList() {
     fruit.toLowerCase().includes(input.value.toLowerCase())
   );
 }
+
+function updateInput(value) {
+  input.value = value; // Met à jour la valeur de l'input avec celle du campus
+}
 </script>
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-}
-
-body {
-  padding: 20px;
-  min-height: 100vh;
-  background-color: rgb(234, 242, 255);
-}
-
-input {
-  display: block;
-  width: 350px;
-  margin: 20px auto;
-  padding: 10px 45px;
-  background: white url("assets/search-icon.svg") no-repeat 15px center;
-  background-size: 15px 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-
-.item {
-  width: 350px;
-  margin: 0 auto 10px auto;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-}
-
-.fruit {
-  background-color: rgb(97, 62, 252);
-  cursor: pointer;
-}
-
-.error {
-  background-color: tomato;
-}
-</style>
+<style scoped></style>
