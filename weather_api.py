@@ -13,9 +13,11 @@ def get_current_weather(lat, lon, api_key):
 
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
         root = ET.fromstring(str(xml_content))
+        # print(xml_content)
 
-        # Accessing elements
         city_name = root.find('city').attrib['name']
+        sun_rise = root.find('city').find('sun').attrib['rise']
+        print(sun_rise)
         temperature_value = round(float(root.find('temperature').attrib['value']))
         temperature_unit = root.find('temperature').attrib['unit']
         humidity_value = root.find('humidity').attrib['value']
@@ -33,15 +35,13 @@ def get_current_weather(lat, lon, api_key):
         visibility_value = root.find('visibility').attrib['value']
         last_update_value = root.find('lastupdate').attrib['value']
 
-        print(type(last_update_value))
         # return {city_name, temperature_value, temperature_unit, humidity_value, humidity_unit, pressure_value, pressure_unit,
         #     wind_speed, }
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
 
 def get_hourly_forecast(lat, lon, api_key):
-    
+    response = requests.get("https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={API key}")
     return
 
-# Printing values
 get_current_weather(lat, lon, api_key)
