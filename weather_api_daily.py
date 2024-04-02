@@ -6,7 +6,7 @@ lat = '44.34'
 lon = '10.99'
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
 def get_daily_weather(lat,lon,api_key):
-    api_call = f"https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={7}&appid={api_key}&mode=xml&units=metric"
+    api_call = f"https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={7}&appid={api_key}&mode=xml&units=metric&lang=fr"
     response = requests.get(api_call)
     if response:
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
