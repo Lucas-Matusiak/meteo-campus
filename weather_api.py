@@ -7,7 +7,7 @@ lat = '44.34'
 lon = '10.99'
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
 def get_current_weather(lat, lon, api_key):
-    response = requests.get("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + api_key + "&units=metric&mode=xml&lang=fr")
+    response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric&mode=xml&lang=fr")
     if response:
         # print(response.text)
 
