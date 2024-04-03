@@ -6,25 +6,26 @@
       class="image-top-left"
     />
     <NuxtPage />
-  </div>
+  </div> 
 
-  <footer class="footer">
-    <div class="container">
+  
+    <div class="flex items-center justify-center">
       <div class="footer-buttons">
         <button class="button">Nous contacter</button>
         <button class="button">Mentions légales</button>
         <button class="button">Nos réseaux</button>
       </div>
     </div>
-  </footer>
+  
 
 </template>
 
 <style scoped>
 .container {
   position: relative;
+  /*display: flex;*/
+  display: inline-block;
 }
-
 .image-top-left {
   position: relative;
   top: 10px; /* Ajustez selon votre besoin */
@@ -33,15 +34,17 @@
   height: auto; /* Ajustez selon la taille de votre image */
 }
 .footer {
-  background-color: #ffffff; /* Couleur blanche */
+  flex: 1; /* Occupe l'espace restant */
+  background-color: #ffffff; /* Couleur du fond */
   padding: 20px 0; /* Espacement intérieur */
   text-align: center;
 }
 
 .footer-buttons {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto; /* Alignement horizontal au centre */
+  display: inline-block;
+  /*border: 1px solid #000000; /* Bordure du conteneur */
+  padding: 10px;
+  margin: 0 auto; /* Centre le conteneur horizontalement */
   
 }
 
@@ -55,4 +58,5 @@
   border-radius: 5px;
   outline: none;
 }
+
 </style>
