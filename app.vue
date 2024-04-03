@@ -1,7 +1,10 @@
-
 <template>
   <div>
-    <img src="assets\images\logo.png" alt="Description de l'image" class="image-top-left">
+    <img
+      src="~/../assets/images/logo.png"
+      alt="Description de l'image"
+      class="image-top-left"
+    />
     <NuxtPage />
   </div>
 </template>
@@ -12,7 +15,7 @@
 }
 
 .image-top-left {
-  position: absolute;
+  position: relative;
   top: 10px; /* Ajustez selon votre besoin */
   left: 10px; /* Ajustez selon votre besoin */
   width: 100px; /* Ajustez selon la taille de votre image */
