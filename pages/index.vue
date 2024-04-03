@@ -1,13 +1,14 @@
 <template>
     <div>
-      <h1 class="text-3xl font-bold underline">Hello world !</h1>
       <BarreDeRecherche />
+
       <NuxtLink to="/meteo" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-full hover:bg-blue-700 transition duration-300 ease-in-out">
-        Voir les infos météo
+        Go
       </NuxtLink>
     </div>
   </template>
   <script>
+
   import BarreDeRecherche from '~/components/BarreDeRecherche.vue'
   
   export default {
@@ -17,3 +18,4 @@
     // Autres options du composant parent
   }
   </script>
+  
