@@ -41,6 +41,8 @@
 .footer-buttons {
   display: flex;
   justify-content: center;
+  margin: 0 auto; /* Alignement horizontal au centre */
+  
 }
 
 .button {
