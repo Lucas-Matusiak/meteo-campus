@@ -5,6 +5,17 @@
         Voir les infos météo
       </NuxtLink>
     </div>
+
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-buttons">
+        <button class="button">Nous contacter</button>
+        <button class="button">Mentions légales</button>
+        <button class="button">Nos réseaux</button>
+      </div>
+    </div>
+  </footer>
+  
   </template>
   <script>
   import BarreDeRecherche from '~/components/BarreDeRecherche.vue'
