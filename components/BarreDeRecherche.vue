@@ -4,18 +4,25 @@
     <div class="m-5">
       <input
         type="text"
-        v-model="input"
-        placeholder="Recherchez un campus..."
-        @click="displayCampus=false"
+        v-model="selectedUniversity"
+        placeholder="Recherchez une université..."
+        @click="handleClickInputUniversity"
+        @change="handleChangeInputUniversity"
         class="block w-64 mt-6 px-4 py-2 rounded bg-white bg-no-repeat bg-right border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
       />
-      <div v-if="input && !displayCampus">
-        <div v-if="filteredList().length" class="grid grid-cols-1 gap-4 mt-4">
+      <div v-if="selectedUniversity && displayListUniversity">
+        <div
+          v-if="filteredList(listUniversities, selectedUniversity).length"
+          class="grid grid-cols-1 gap-4 mt-4"
+        >
           <div
-            v-for="university in filteredList()"
+            v-for="university in filteredList(
+              listUniversities,
+              selectedUniversity
+            )"
             :key="university"
             class="bg-blue-500 text-white rounded p-4"
-            @click="updateInput(university)"
+            @click="updateUniversity(university)"
           >
             <p>{{ university }}</p>
             <!-- Ajout du gestionnaire d'événements @click -->
@@ -29,32 +36,90 @@
   </div>
   <div id="chooseCampus" v-if="displayCampus">
     <h1 class="m-5 text-2xl font-bold">Choisis ton campus</h1>
+    <div class="m-5">
+      <input
+        type="text"
+        placeholder="Recherchez un campus..."
+        v-model="selectedCampus"
+        @change="displayListCampus = true"
+        class="block w-64 mt-6 px-4 py-2 rounded bg-white bg-no-repeat bg-right border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+      />
+      <div v-if="selectedCampus && displayListCampus">
+        <div
+          v-if="filteredList(listCampus, selectedCampus).length && displayListCampus"
+          class="grid grid-cols-1 gap-4 mt-4"
+        >
+          <div
+            v-for="campus in filteredList(listCampus, selectedCampus)"
+            :key="campus"
+            class="bg-blue-500 text-white rounded p-4"
+            @click="updateCampus(campus)"
+          >
+            <p>{{ campus }}</p>
+            <!-- Ajout du gestionnaire d'événements @click -->
+          </div>
+        </div>
+
+        <div v-else class="bg-red-500 text-white rounded p-4 mt-4">
+          <p>Aucun résultat trouvé</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-let input = ref("");
-let displayCampus = false;
+let selectedUniversity = ref("");
+let selectedCampus = ref("");
+let displayCampus = ref(false);
+let displayListUniversity = ref(false);
+let displayListCampus = ref(false); // Déclaration de la variable avec ref
 const listUniversities = [
-  "apple",
-  "banana",
-  "orange",
-  "orange",
-  "orange",
-  "orange",
-  "orange",
-  "orange",
+  "paris",
+  "lyon",
+  "bordeaux",
+  "bordeaux",
+  "bordeaux",
+  "bordeaux",
+  "bordeaux",
+  "bordeaux",
 ];
-function filteredList() {
-  return listUniversities
-    .filter((university) => university.toLowerCase().includes(input.value.toLowerCase()))
+const listCampus = [
+  "victoire",
+  "montaigne",
+  "st",
+  "st",
+  "st",
+  "st",
+  "st",
+  "st",
+];
+
+function filteredList(list, input) {
+  console.log("list", list);
+  return list
+    .filter((element) => element.toLowerCase().includes(input.toLowerCase()))
     .slice(0, 5);
 }
 
-function updateInput(value) {
-  input.value = value; // Met à jour la valeur de l'input avec celle du campus
-  this.displayCampus = true;
+function updateUniversity(value) {
+  selectedUniversity.value = value;
+  displayListUniversity.value = false;
+  displayCampus.value = true;
+  displayListCampus.value = true;
+}
+function updateCampus(value) {
+  selectedCampus.value = value;
+  displayListCampus.value = false;
+}
+function handleClickInputUniversity() {
+ 
+  displayListUniversity.value = true;
+}
+function handleChangeInputUniversity() {
+  displayListUniversity.value = true;
+  displayCampus.value = false;
 }
 </script>
 
