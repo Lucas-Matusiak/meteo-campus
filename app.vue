@@ -1,24 +1,12 @@
 <template>
-  <div>
+  <div class="">
     <img
       src="~/../assets/images/logo.png"
       alt="Description de l'image"
-      class="image-top-left"
+      class="flex justify-center w-20 h-auto mx-auto mt-8"
     />
     <NuxtPage />
   </div>
 </template>
 
-<style scoped>
-.container {
-  position: relative;
-}
-
-.image-top-left {
-  position: relative;
-  top: 10px; /* Ajustez selon votre besoin */
-  left: 10px; /* Ajustez selon votre besoin */
-  width: 100px; /* Ajustez selon la taille de votre image */
-  height: auto; /* Ajustez selon la taille de votre image */
-}
-</style>
+<!-- Pas besoin de définir des styles séparés avec Tailwind CSS -->
