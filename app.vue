@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-t from-indigo-400 to-sky-50">
+  <div class="h-screen bg-gradient-to-t from-indigo-400 to-sky-50">
   <div class="flex justify-center items-center flex-col m-10 ">
     <img
       src="~/../assets/images/logo.png"
