@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen bg-gradient-to-t from-indigo-400 to-sky-50">
-  <div class="flex justify-center items-center flex-col m-10 ">
+  <div class="flex justify-center items-center flex-col m-10 mt-0">
     <img
       src="~/../assets/images/logo.png"
       alt="Description de l'image"
