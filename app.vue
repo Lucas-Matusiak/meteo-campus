@@ -1,5 +1,6 @@
 <template>
-  <div class="flex justify-center items-center flex-col m-10">
+  <div class="bg-gradient-to-t from-indigo-400 to-sky-50">
+  <div class="flex justify-center items-center flex-col m-10 ">
     <img
       src="~/../assets/images/logo.png"
       alt="Description de l'image"
@@ -7,7 +8,7 @@
     />
     <NuxtPage />
 
-    <div class="flex items-center justify-center bg-white py-4 mt-10">
+    <div class="flex items-center justify-center py-4 mt-10 ">
       <div class="flex space-x-4">
         <button class="button">Nous contacter</button>
         <button class="button">Mentions légales</button>
@@ -15,4 +16,5 @@
       </div>
     </div>
   </div>
+</div>
 </template>
