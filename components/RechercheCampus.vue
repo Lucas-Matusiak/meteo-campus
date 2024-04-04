@@ -1,6 +1,6 @@
 <template>
   <div id="chooseUniversity">
-    <h1 class="m-5 text-2xl font-bold">Choisis ton université</h1>
+    <h1 class="m-5 text-2xl font-bold text-center">Choisis ton université</h1>
     <div class="m-5">
       <input
         type="text"
@@ -35,7 +35,7 @@
     </div>
   </div>
   <div id="chooseCampus" v-if="displayCampus">
-    <h1 class="m-5 text-2xl font-bold">Choisis ton campus</h1>
+    <h1 class="m-5 text-2xl font-bold text-center">Choisis ton campus</h1>
     <div class="m-5">
       <input
         type="text"

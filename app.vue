@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center flex-col mt-10">
+  <div class="flex justify-center items-center flex-col m-10">
     <img
       src="~/../assets/images/logo.png"
       alt="Description de l'image"
