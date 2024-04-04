@@ -16,12 +16,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-// Ajoutez ici vos variables réactives le cas échéant
-</script>
-
-<style scoped>
-/* Aucun style spécifique nécessaire, car Tailwind est utilisé directement dans les classes HTML */
-</style>

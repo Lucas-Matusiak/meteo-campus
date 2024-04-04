@@ -16,6 +16,5 @@ export default {
   components: {
     BarreDeRecherche
   },
-  // Autres options du composant parent
 };
 </script>
