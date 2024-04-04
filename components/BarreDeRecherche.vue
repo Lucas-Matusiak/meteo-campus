@@ -10,7 +10,7 @@
         @change="handleChangeInputUniversity"
         class="block w-64 mt-6 px-4 py-2 rounded bg-white bg-no-repeat bg-right border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
       />
-      <div v-if="selectedUniversity && displayListUniversity">
+      <div v-if="displayListUniversity">
         <div
           v-if="filteredList(listUniversities, selectedUniversity).length"
           class="grid grid-cols-1 gap-4 mt-4"
@@ -44,7 +44,7 @@
         @change="displayListCampus = true"
         class="block w-64 mt-6 px-4 py-2 rounded bg-white bg-no-repeat bg-right border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
       />
-      <div v-if="selectedCampus && displayListCampus">
+      <div v-if="displayListCampus">
         <div
           v-if="filteredList(listCampus, selectedCampus).length && displayListCampus"
           class="grid grid-cols-1 gap-4 mt-4"
