@@ -1,8 +1,8 @@
 <template>
-  <div class=" items-center justify-center h-screen ">
+  <div class=" items-center justify-center pb-20">
       <div >
-          <p class=" space-x-20 text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-black to-white-200"> {{ temperature }}°C </p>
-           <p class=" space-x-20 text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-black to-white-200">Ressenti {{ feelsLike }}°C</p>
+          <p class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-black to-white-200"> {{ temperature }}°C </p>
+           <p class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-black to-white-200">Ressenti {{ feelsLike }}°C</p>
       </div>   
   </div>
 </template>
