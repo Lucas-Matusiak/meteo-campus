@@ -1,12 +1,14 @@
 <template>
-  <div id="weather">
-    <img
-      :src="weatherImage"
+<div id="weather">
+    <img 
+      src="~/../assets/images/ensoleille.png"
       alt="weather"
-      class="w-20 h-auto m-4"
+      class="w-64 h-auto"
     />
   </div>
 </template>
+
+<!-- 
 <script>
 // Importation des images en haut du fichier
 import ensoleilleImg from '~/../assets/images/logo.png';
@@ -41,3 +43,4 @@ export default {
   justify-content: center;
 }
 </style>
+-->
