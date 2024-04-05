@@ -25,7 +25,6 @@
             @click="updateUniversity(university)"
           >
             <p>{{ university }}</p>
-            <!-- Ajout du gestionnaire d'événements @click -->
           </div>
         </div>
         <div v-else class="bg-red-500 text-white rounded p-4 mt-4">
@@ -57,7 +56,6 @@
             @click="updateCampus(campus)"
           >
             <p>{{ campus }}</p>
-            <!-- Ajout du gestionnaire d'événements @click -->
           </div>
         </div>
 
@@ -71,6 +69,7 @@
 
 <script setup>
 import { ref } from "vue";
+
 let selectedUniversity = ref("");
 let selectedCampus = ref("");
 let displayCampus = ref(false);
@@ -98,7 +97,6 @@ const listCampus = [
 ];
 
 function filteredList(list, input) {
-  console.log("list", list);
   return list
     .filter((element) => element.toLowerCase().includes(input.toLowerCase()))
     .slice(0, 5);
@@ -118,7 +116,7 @@ function handleClickInputUniversity() {
   displayListUniversity.value = true;
 }
 function handleClickInputCampus() {
- displayListCampus.value = true;
+  displayListCampus.value = true;
 }
 function handleChangeInputUniversity() {
   displayListUniversity.value = true;
