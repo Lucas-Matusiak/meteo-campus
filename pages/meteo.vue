@@ -1,9 +1,16 @@
+
 <template>
   <div class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-4xl font-bold text-center mb-4">Prévisions météo</h1>
-    <div class="flex justify-center mt-4">
-      <Temperature/>
-      <ConditionMeteo :condition="currentCondition"/>
+    <div class=" "> <!-- Météo  -->
+
+      <div class="flex justify-center mt-4">
+        <Temperature/>
+      </div>
+      <div> 
+        <HumuditeVitesseDuVent/>
+      </div>
+     
     </div>
   
     <!-- Bouton pour revenir à l'accueil -->
@@ -12,25 +19,3 @@
     </nuxt-link>
   </div>
 </template>
-
-<script>
-import Temperature from '../components/Temperature.vue';
-import ConditionMeteo from '../components/ConditionMeteo.vue';
-
-export default {
-  components: {
-    Temperature,
-    ConditionMeteo
-  },
-  data() {
-    return {
-      // Exemple de condition météo, vous pouvez la définir en fonction de votre logique d'application
-      currentCondition: 'ensoleille'
-    };
-  }
-};
-</script>
-
-<style>
-/* Ajoutez ici votre CSS personnalisé */
-</style>
