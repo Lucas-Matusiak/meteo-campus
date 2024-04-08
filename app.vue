@@ -8,12 +8,14 @@
     />
     <NuxtPage />
 
-    <div class="flex items-center justify-center py-4 mt-10 ">
+    <div class="flex items-center justify-center py-4 mt-0 ">
+      
       <div class="flex space-x-4">
         <button class="button">Nous contacter</button>
         <button class="button">Mentions légales</button>
         <button class="button">Nos réseaux</button>
       </div>
+      
     </div>
   </div>
 </div>
