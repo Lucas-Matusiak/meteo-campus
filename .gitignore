@@ -1,0 +1,23 @@
+# Fichiers de sauvegarde
+*~
+
+# Dossiers de cache
+__pycache__/
+
+# Fichiers de compilation
+*.pyc
+*.pyo
+*.pyd
+
+# Dossiers virtuels Python
+venv/
+env/
+*.env
+
+# Dossiers de logs
+logs/
+*.log
+
+# Fichiers de configuration spécifiques à l'utilisateur
+*.swp
+.DS_Store
