@@ -13,8 +13,9 @@
         <h1 class="text-1xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-black to-white-000">Vitesse du vent</h1>
       </div>
     </div>
-      </div>
     </div>
+    </div>
+  
   </template>
   
   <script>
