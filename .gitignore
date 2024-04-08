@@ -8,6 +8,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.nuxt/
+node_modules/
 
 # Dossiers virtuels Python
 venv/
