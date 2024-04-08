@@ -68,13 +68,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 
+// Déclarez les variables réactives
 let selectedUniversity = ref("");
 let selectedCampus = ref("");
 let displayCampus = ref(false);
 let displayListUniversity = ref(false);
-let displayListCampus = ref(false); // Déclaration de la variable avec ref
+let displayListCampus = ref(false);
+
+const emit = defineEmits(['selectedCampus'])
+// Déclarez les constantes pour les listes d'universités et de campus
 const listUniversities = [
   "paris",
   "lyon",
@@ -96,12 +100,14 @@ const listCampus = [
   "st",
 ];
 
+// Définissez la fonction pour filtrer les listes
 function filteredList(list, input) {
   return list
     .filter((element) => element.toLowerCase().includes(input.toLowerCase()))
     .slice(0, 5);
 }
 
+// Définissez les fonctions pour gérer les interactions utilisateur
 function updateUniversity(value) {
   selectedUniversity.value = value;
   displayListUniversity.value = false;
@@ -111,6 +117,7 @@ function updateUniversity(value) {
 function updateCampus(value) {
   selectedCampus.value = value;
   displayListCampus.value = false;
+  emit('selectedCampus', value); // Émettre un événement avec la valeur sélectionnée du campus
 }
 function handleClickInputUniversity() {
   displayListUniversity.value = true;
@@ -124,4 +131,8 @@ function handleChangeInputUniversity() {
 }
 </script>
 
-<style scoped></style>
+
+
+<style scoped>
+/* Vos styles CSS ici */
+</style>
