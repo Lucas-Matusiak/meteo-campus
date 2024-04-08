@@ -19,3 +19,37 @@
     </nuxt-link>
   </div>
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      weatherData: null
+    };
+  },
+  mounted() {
+    this.getWeatherData();
+  },
+  methods: {
+    async getWeatherData() {
+      const lat = 48.8566;
+      const lon = 2.3522;
+      const apiUrl = 'http://127.0.0.1:5000/weather_data';
+
+      try {
+        const response = await axios.get(apiUrl, {
+          params: {
+            lat: lat,
+            lon: lon
+          }
+        });
+
+        this.weatherData = response.data; // Stocke les données météorologiques dans weatherData
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données météorologiques :', error);
+      }
+    }
+  }
+}
+</script>
