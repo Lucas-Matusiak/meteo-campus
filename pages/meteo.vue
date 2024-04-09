@@ -8,10 +8,7 @@
         <weather/>
       </div>
       <div>
-          
-      </div>
-      <div>
-        <HumuditeVitesseDuVent/>
+        <HumiditeVitesseDuVent/>
       </div>
       <div>
         <Soleil/>
