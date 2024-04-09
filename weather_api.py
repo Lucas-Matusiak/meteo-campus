@@ -3,7 +3,6 @@ import requests
 from lxml import etree as ET
 from datetime import datetime
 
-response_hourly = ''
 
 def get_current_weather(lat, lon, api_key):
     api_call = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric&mode=xml&lang=fr"
@@ -41,7 +40,6 @@ def get_current_weather(lat, lon, api_key):
         # visibility_value = root.find('visibility').attrib['value']
         # clouds_unit = "%"
 
-
         return {
             "temperature": temperature_value,
             "feels_like_value": feels_like_value,
@@ -55,14 +53,12 @@ def get_current_weather(lat, lon, api_key):
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
 
-
 def get_hourly_forecast(lat, lon, api_key):
-    global response_hourly
-    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&mode=xml&cnt={24}&lang=fr"
-    response_hourly = requests.get(api_call)
-    
-    if response_hourly:
-        xml_content = response_hourly.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
+    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&cnt={24}&lang=fr"
+    response = requests.get(api_call)
+    print (response.text)
+    if response:
+        xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
         root = ET.fromstring(xml_content)
         
         # Extract elements
@@ -133,58 +129,40 @@ def get_daily_forecast(lat,lon,api_key):
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
 
-
-import requests
-import xml.etree.ElementTree as ET
-from datetime import datetime
-
-
-def get_model_data():
-    global response_hourly
-
-    if response_hourly:
-        xml_content = response_hourly.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
-        root = ET.fromstring(xml_content)
-
-        forecast_times = root.findall('.//forecast/time')
-        formatted_data = {
-            'main': [],
-            'description': [],
-            'temp': [],
-            'feels_like': [],
-            'temp_min': [],
-            'temp_max': [],
-            'pressure': [],
-            'humidity': [],
-            'visibility': [],
-            'speed': [],
-            'clouds': []
-        }
-
-        for hour in forecast_times:
-            weather_description = hour.find('.//symbol').get('name')
-            temperature = round(float(hour.find('.//temperature').get('value')))
-            feels_like = round(float(hour.find('.//feels_like').get('value')))
-            temp_min = None  # This data is not available in the provided function
-            temp_max = None  # This data is not available in the provided function
-            pressure = float(hour.find('.//pressure').get('value'))
-            humidity = round(float(hour.find('.//humidity').get('value'))) 
-            visibility = None  # This data is not available in the provided function
-            wind_speed_mps = float(hour.find('.//windSpeed').get('mps'))
-            wind_speed_kph = round(wind_speed_mps * 3.6)
-            clouds = None  # This data is not available in the provided function
-
-            formatted_data['main'].append(weather_description)
-            formatted_data['description'].append(weather_description)
-            formatted_data['temp'].append(temperature)
-            formatted_data['feels_like'].append(feels_like)
-            formatted_data['temp_min'].append(temp_min)
-            formatted_data['temp_max'].append(temp_max)
-            formatted_data['pressure'].append(pressure)
-            formatted_data['humidity'].append(humidity)
-            formatted_data['visibility'].append(visibility)
-            formatted_data['speed'].append(wind_speed_kph)
-            formatted_data['clouds'].append(clouds)
-
-        return formatted_data
-
+def extract_weather_data(lat, lon, api_key):
+    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&cnt={24}"
+    response = requests.get(api_call)
+    
+    if response.status_code != 200:
+        print("Erreur lors de la récupération des données météorologiques.")
+        return None
+    
+    data = response.json()
+    formatted_data = {
+        'main': [],
+        'description': [],
+        'temp': [],
+        'feels_like': [],
+        'temp_min': [],
+        'temp_max': [],
+        'pressure': [],
+        'humidity': [],
+        'visibility': [],
+        'speed': [],
+        'clouds': []
+    }
+    
+    for item in data['list']:
+        formatted_data['main'].append(item['weather'][0]['main'])
+        formatted_data['description'].append(item['weather'][0]['description'])
+        formatted_data['temp'].append(item['main']['temp'])
+        formatted_data['feels_like'].append(item['main']['feels_like'])
+        formatted_data['temp_min'].append(item['main']['temp_min'])
+        formatted_data['temp_max'].append(item['main']['temp_max'])
+        formatted_data['pressure'].append(item['main']['pressure'])
+        formatted_data['humidity'].append(item['main']['humidity'])
+        formatted_data['visibility'].append(item['visibility'])
+        formatted_data['speed'].append(item['wind']['speed'])
+        formatted_data['clouds'].append(item['clouds']['all'])
+    
+    return formatted_data
