@@ -4,7 +4,7 @@
       <img
         src="~/../assets/images/logo.png"
         alt="Description de l'image"
-        class="w-20 h-auto m-4"
+        class="w-40 sm:w-1/6 lg:w-1/5 m-4"
       />
       <NuxtPage />
 
