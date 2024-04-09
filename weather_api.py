@@ -129,7 +129,7 @@ def get_daily_forecast(lat,lon,api_key):
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
 
-def extract_weather_data(lat, lon, api_key):
+def weather_data_model(lat, lon, api_key):
     api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&cnt={24}"
     response = requests.get(api_call)
     
