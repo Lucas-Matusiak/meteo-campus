@@ -19,6 +19,7 @@
     </nuxt-link>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 
@@ -35,7 +36,7 @@ export default {
     async getWeatherData() {
       const lat = 48.8566;
       const lon = 2.3522;
-      const apiUrl = 'http://127.0.0.1:5000/weather_data';
+      const apiUrl = 'http://127.0.0.1:5000/complete_weather';
 
       try {
         const response = await axios.get(apiUrl, {
@@ -45,7 +46,9 @@ export default {
           }
         });
 
+        console.log('Contenu de la requête:', response); // Affiche le contenu de la requête dans la console
         this.weatherData = response.data; // Stocke les données météorologiques dans weatherData
+
       } catch (error) {
         console.error('Erreur lors de la récupération des données météorologiques :', error);
       }
