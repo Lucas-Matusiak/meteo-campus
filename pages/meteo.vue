@@ -3,11 +3,18 @@
   <div class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-4xl font-bold text-center mb-4">Prévisions météo</h1>
     <div class=" "> <!-- Météo  -->
-      <div >
+      <div>
         <Temperature/>
+        <weather/>
+      </div>
+      <div>
+          
       </div>
       <div>
         <HumuditeVitesseDuVent/>
+      </div>
+      <div>
+        <Soleil/>
       </div>
 
     <!-- Bouton pour revenir à l'accueil -->
