@@ -78,7 +78,7 @@
         </div>
       </Combobox>
     </div>
-    <div id="chooseCampus" class=" w-72" v-if="selectedUniversity">
+    <div id="chooseCampus" class=" w-72" v-if="selectedCampus">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton campus</h1>
       <Combobox v-model="selectedCampus">
         <div class="relative mt-1">
@@ -107,7 +107,7 @@
             @after-leave="queryCampus = selectedCampus"
           >
             <ComboboxOptions
-              class=" mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+              class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
             >
               <div
                 v-if="
@@ -143,7 +143,7 @@
                   </span>
                   <span
                     v-if="selected"
-                    class=" inset-y-0 left-0 flex items-center pl-3"
+                    class="absolute inset-y-0 left-0 flex items-center pl-3"
                     :class="{ 'text-white': active, 'text-teal-600': !active }"
                   >
                     <CheckIcon class="h-5 w-5" aria-hidden="true" />
