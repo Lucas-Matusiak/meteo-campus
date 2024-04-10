@@ -106,7 +106,7 @@ async function updateUniversity(university) {
 const updateCampus = (campus) => {
   selectedCampus.value = campus;
   displayListCampus.value = false;
-  emit("selectedCampus", value); // Émettre un événement avec la valeur sélectionnée du campus
+  emit("selectedCampus", campus); // Émettre un événement avec la valeur sélectionnée du campus
 };
 function handleClickInputUniversity() {
   displayListUniversity.value = true;

@@ -3,6 +3,7 @@
   <div class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-4xl font-bold text-center mb-4">Prévisions météo</h1>
     <div class=" "> <!-- Météo  -->
+      <p> {{ route.params.campus }}</p>
       <div>
         <Temperature/>
         <weather/>
@@ -22,6 +23,12 @@
         Retour à l'accueil
       </nuxt-link>
     </div>
-
   </div>
 </template>
+
+<script setup>
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+</script>
