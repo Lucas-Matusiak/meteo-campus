@@ -15,18 +15,26 @@
         <Soleil />
       </div>
     </div>
-    <div class="overflow-x-auto max-w-full">
+    <div class="bg-gradient-to-r from-blue-300 to-indigo-500 rounded-3xl mb-4">
+      <h1
+        class="text-center text-white font-bold border-b border-white px-4 m-4"
+        style="margin-top: 4px; margin-bottom: 4px"
+      >
+        Prévisions Heure par Heure
+      </h1>
       <div class="flex">
         <AffichageHeure
           v-for="(heure, index) in affichageheure"
           :key="index"
           :heure="heure.heure"
+          :imgMeteo="heure.imgMeteo"
           :temperature="heure.temperature"
           :pourcentagePluie="heure.pourcentagePluie"
           :vitesseVent="heure.vitesseVent"
         />
       </div>
     </div>
+
     <!-- Bouton pour revenir à l'accueil -->
     <nuxt-link
       to="/"
@@ -49,19 +57,67 @@ export default {
     return {
       affichageheure: [
         {
+          heure: "5",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
           heure: "6",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
         },
         {
+          heure: "7",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "8",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
           heure: "9",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "10",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "11",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
         },
         {
           heure: "12",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "13",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "14",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
@@ -73,7 +129,34 @@ export default {
           vitesseVent: "12",
         },
         {
+          heure: "16",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "17",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
           heure: "18",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "19",
+          temperature: "20",
+          pourcentagePluie: "76",
+          vitesseVent: "12",
+        },
+        {
+          heure: "20",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
@@ -85,19 +168,21 @@ export default {
           vitesseVent: "12",
         },
         {
-          heure: "0",
+          heure: "22",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
         },
         {
-          heure: "12",
+          heure: "23",
+          imgMeteo: "~/../assets/images/lever-soleil.png",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
         },
         {
-          heure: "12",
+          heure: "00",
           temperature: "20",
           pourcentagePluie: "76",
           vitesseVent: "12",
