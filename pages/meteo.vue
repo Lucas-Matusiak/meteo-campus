@@ -2,7 +2,7 @@
   <div class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-4xl font-bold text-center mb-4">Prévisions météo</h1>
     <div class="flex flex-wrap justify-center">
-      <!-- Météo  -->
+      <!-- Météo -->
       <div>
         <Temperature />
         <weather />
@@ -22,7 +22,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex ">
+      <div class="flex">
         <AffichageHeure
           v-for="indice in fenetreAffichage"
           :key="indice"
@@ -34,11 +34,12 @@
         />
       </div>
     </div>
-    
-    <div class="flex justify-between m-4">
-  <button @click="precedent()" class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2">Précédent </button>
-  <button @click="suivant()" class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2 "> Suivant</button>
+
+    <div v-if="!isMobile" class="flex justify-between m-4">
+  <button @click="precedent()" class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2">Précédent</button>
+  <button @click="suivant()" class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2">Suivant</button>
 </div>
+
 
     <!-- Bouton pour revenir à l'accueil -->
     <nuxt-link
@@ -61,7 +62,8 @@ export default {
   data() {
     return {
       affichageheure: [
-        {
+        
+{
           heure: "5",
           temperature: "20",
           pourcentagePluie: "76",
@@ -192,25 +194,39 @@ export default {
           pourcentagePluie: "76",
           vitesseVent: "12",
         },
+
       ],
-      fenetreAffichage: [0, 1, 2, 3, 4, 5, 6, 7],
+      fenetreAffichage: [],
     };
   },
+
   methods: {
+    initialiserFenetreAffichage() {
+      const isMobile = window.innerWidth < 768;
+      const nbHeuresAffichees = isMobile ? 4 : 8; // 4 pour mobile, 8 pour PC
+      this.fenetreAffichage = Array.from({ length: nbHeuresAffichees }, (_, i) => i);
+    },
+    ajusterFenetreAffichage() {
+      this.initialiserFenetreAffichage();
+    },
     precedent() {
       if (this.fenetreAffichage[0] > 0) {
-        this.fenetreAffichage = this.fenetreAffichage.map(
-          (indice) => indice - 1
-        );
+        this.fenetreAffichage = this.fenetreAffichage.map(indice => indice - 1);
       }
     },
     suivant() {
-      if (this.fenetreAffichage[7] < this.affichageheure.length - 1) {
-        this.fenetreAffichage = this.fenetreAffichage.map(
-          (indice) => indice + 1
-        );
+      if (this.fenetreAffichage[this.fenetreAffichage.length - 1] < this.affichageheure.length - 1) {
+        this.fenetreAffichage = this.fenetreAffichage.map(indice => indice + 1);
       }
     },
+  },
+
+  mounted() {
+    this.initialiserFenetreAffichage();
+    window.addEventListener('resize', this.ajusterFenetreAffichage);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.ajusterFenetreAffichage);
   },
 };
 </script>
