@@ -2,12 +2,12 @@
   <div class="items-center justify-center">
 
     <!-- Utilisation de v-if pour afficher le contenu lorsque weatherData est disponible -->
-    <div v-if="weatherData">
+    <div v-if="temperature !== null && feelsLike !== null">
       
-      <p class="text-center text-2xl bg-clip-text text-transparent bg-gradient-to-l from-black to-black">{{ weatherData.temperature_value }}°C</p>
+      <p class="text-center text-2xl bg-clip-text text-transparent bg-gradient-to-l from-black to-black">{{ temperature }}°C</p>
       <!-- Affiche la température provenant de weatherData -->
 
-      <p class="text-center text-1xl bg-clip-text text-transparent bg-gradient-to-b from-black to-black">Ressenti {{ weatherData.feels_like_value }}°C</p>
+      <p class="text-center text-1xl bg-clip-text text-transparent bg-gradient-to-b from-black to-black">Ressenti {{ feelsLike }}°C</p>
       <!-- Affiche le ressenti provenant de weatherData -->
     </div>
    
@@ -27,7 +27,8 @@
 export default {
   // Déclaration des propriétés du composant
   props: {
-    weatherData: { type: Object, default: null } // Propriété weatherData de type Object avec une valeur par défaut null
+    temperature: { type: Number, default: null },
+    feelsLike: { type: Number, default: null }
   }
 };
 </script>

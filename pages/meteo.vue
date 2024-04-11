@@ -8,7 +8,7 @@
     <!-- Début de la zone du composant Temperature.vue -->
     <div class="items-center justify-center pb-5">
       <!-- Utilisation de v-bind pour passer weatherData à Temperature.vue -->
-      <Temperature v-bind:weather-data="weatherData" />
+      <Temperature :temperature="weatherData.current_weather.temperature" :feelsLike="weatherData.current_weather.feels_like_value" />
     </div>
    
 
