@@ -26,13 +26,13 @@
         <div
           class="text-black text_xs text-center flex flex-col items-center justify-center"
         >
-          <h1 class="text_xs mt-2">{{ heure }}:00</h1>
+          <h1 class="text_xs text-white mt-2">{{ heure }}:00</h1>
           <img
             src="~/../assets/images/ensoleille.png"
             alt=""
             class="w-10 h-10 mt-2"
           />
-          <p class="text-xs m-2">{{ temperature }}°</p>
+          <p class="text-xs text-white m-2">{{ temperature }}°</p>
 
           <!-- Affichage conditionnel pour les écrans larges -->
           <div class="hidden md:flex flex-row items-center justify-center m-1">
