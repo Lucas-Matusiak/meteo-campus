@@ -1,7 +1,6 @@
 <template>
-  <div class="m-5 flex justify-center items-center flex-col">
-   <!--  <RechercheCampus @selected-campus="setCampus($event)"/> -->
-    <Combobox  class="m-8" @selected-campus="setCampus($event)"/>
+  <div class="m-3 flex justify-center items-center flex-col">
+   <RechercheCampus x  class="m-8" @selected-campus="setCampus($event)"/>
     <NuxtLink
       v-if="selectedCampus"
       :to="`/meteo/${selectedCampus}`"
@@ -9,14 +8,12 @@
     >
       Voir les infos météo
     </NuxtLink>
-    {{ selectedCampus }}
   </div>
 </template>
 
 <script setup>
 
-import RechercheCampus from "~/components/RechercheCampus.vue";
-import Combobox  from "~/components/Combobox.vue";
+import RechercheCampus from "~/components/Recherche-campus.vue";
 const selectedCampus = ref(null);
 
 const setCampus = (value) => {
