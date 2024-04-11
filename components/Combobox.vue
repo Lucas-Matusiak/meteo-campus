@@ -26,15 +26,14 @@
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            @after-leave="queryUniversity =selectedUniversity"
+            @after-leave="queryUniversity.value = ''"
           >
             <ComboboxOptions
-              class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
-            >
+              class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-50"
+              >
               <div
                 v-if="
-                  filteredList(listUniversities, queryUniversity).length === 0 &&
-                  queryUniversity !== ''
+                  !filteredList(listUniversities, queryUniversity).length
                 "
                 class="relative cursor-default select-none px-4 py-2 text-gray-700"
               >
@@ -78,7 +77,7 @@
         </div>
       </Combobox>
     </div>
-    <div id="chooseCampus" class=" w-72" v-if="selectedCampus">
+    <div id="chooseCampus" class=" w-72" v-if="selectedUniversity">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton campus</h1>
       <Combobox v-model="selectedCampus">
         <div class="relative mt-1">
@@ -104,15 +103,14 @@
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            @after-leave="queryCampus = selectedCampus"
+            @after-leave="queryCampus.value = ''"
           >
             <ComboboxOptions
               class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
             >
               <div
                 v-if="
-                  filteredList(listCampus, queryCampus).length === 0 &&
-                  queryCampus !== ''
+                  !filteredList(listCampus, queryCampus).length
                 "
                 class="relative cursor-default select-none px-4 py-2 text-gray-700"
               >
@@ -124,6 +122,7 @@
                 :key="campus"
                 :value="campus"
                 v-slot="{ selected, active }"
+                @click="updateCampus(campus)"
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -192,11 +191,12 @@ function filteredList(list, input) {
 }
 
 function handleChangeInputUniversity(event) {
-  queryUniversity = event.target.value
+  queryUniversity.value = event.target.value
   displayCampus.value = true;
 }
 
 async function updateUniversity(university) {
+  selectedCampus.value = "";
   await fetchCampuses(university);
 }
 const fetchUniversities = async () => {
@@ -221,6 +221,9 @@ const fetchCampuses = async (university) => {
   } catch (error) {
     console.error("Error fetching campuses:", error);
   }
+};
+const updateCampus = (campus) => {
+  emit("selectedCampus", campus); // Émettre un événement avec la valeur sélectionnée du campus
 };
 
 fetchUniversities()
