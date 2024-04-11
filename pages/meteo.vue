@@ -22,18 +22,23 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex">
+      <div class="flex ">
         <AffichageHeure
-          v-for="(heure, index) in affichageheure"
-          :key="index"
-          :heure="heure.heure"
-          :imgMeteo="heure.imgMeteo"
-          :temperature="heure.temperature"
-          :pourcentagePluie="heure.pourcentagePluie"
-          :vitesseVent="heure.vitesseVent"
+          v-for="indice in fenetreAffichage"
+          :key="indice"
+          :heure="affichageheure[indice].heure"
+          :imgMeteo="affichageheure[indice].imgMeteo"
+          :temperature="affichageheure[indice].temperature"
+          :pourcentagePluie="affichageheure[indice].pourcentagePluie"
+          :vitesseVent="affichageheure[indice].vitesseVent"
         />
       </div>
     </div>
+    
+    <div class="flex justify-between m-4">
+  <button @click="precedent()" class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2">Précédent </button>
+  <button @click="suivant()" class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2 "> Suivant</button>
+</div>
 
     <!-- Bouton pour revenir à l'accueil -->
     <nuxt-link
@@ -188,7 +193,24 @@ export default {
           vitesseVent: "12",
         },
       ],
+      fenetreAffichage: [0, 1, 2, 3, 4, 5, 6, 7],
     };
+  },
+  methods: {
+    precedent() {
+      if (this.fenetreAffichage[0] > 0) {
+        this.fenetreAffichage = this.fenetreAffichage.map(
+          (indice) => indice - 1
+        );
+      }
+    },
+    suivant() {
+      if (this.fenetreAffichage[7] < this.affichageheure.length - 1) {
+        this.fenetreAffichage = this.fenetreAffichage.map(
+          (indice) => indice + 1
+        );
+      }
+    },
   },
 };
 </script>
