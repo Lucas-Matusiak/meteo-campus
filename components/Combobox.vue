@@ -87,8 +87,9 @@
             <ComboboxInput
               class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               :displayValue="(selectedCampus) => selectedCampus"
-              @change="queryCampus = $event.target.value"
+              @change="handleChangeInputCampus($event)"
               placeholder="Recherchez une université..."
+              
             />
             <ComboboxButton
               class="absolute inset-y-0 right-0 flex items-center pr-2"
@@ -175,7 +176,6 @@ let selectedUniversity = ref("");
 let selectedCampus = ref("");
 
 const emit = defineEmits(["selectedCampus"]);
-let displayCampus = ref(false);
 let listUniversities = ref([]);
 let listCampus = ref([]);
 let queryUniversity = ref("");
@@ -192,11 +192,14 @@ function filteredList(list, input) {
 
 function handleChangeInputUniversity(event) {
   queryUniversity.value = event.target.value
-  displayCampus.value = true;
+ 
 }
-
+function handleChangeInputCampus(event) {
+  queryCampus.value = event.target.value
+}
 async function updateUniversity(university) {
   selectedCampus.value = "";
+  updateCampus("");
   await fetchCampuses(university);
 }
 const fetchUniversities = async () => {
