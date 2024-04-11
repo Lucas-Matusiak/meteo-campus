@@ -47,6 +47,10 @@ def complete_weather():
     hourly_forecast_data = get_hourly_forecast(lat, lon, api_key)
     daily_forecast_data = get_daily_forecast(lat, lon, api_key)
     model_data = weather_data_model(lat, lon, api_key)
+    # Avoir le dictionnaire complet avec les données de classification dynamic_classification()
+    # Traduire les données du model à l'aide du dictionnaire classify_main_description()
+    # Utiliser les données sur les models (V & A) model_train()
+    # Renvoyer le type de vetement et l'accessoire conseillé pour les heures
     return jsonify({
         "current_weather": current_weather_data,
         "hourly_forecast": hourly_forecast_data,
