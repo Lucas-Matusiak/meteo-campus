@@ -1,24 +1,29 @@
 <template>
+ 
   <div class="h-auto flex flex-col justify-center items-center">
+    <!-- Div principale avec des classes Tailwind CSS pour la mise en page -->
     <h1 class="text-3xl font-bold text-center mb-4">Météo Campus</h1>
     
-    <!-- Composant Temperature -->
+
+    <!-- Début de la zone du composant Temperature.vue -->
     <div class="items-center justify-center pb-5">
-      <div>
-        <p class="text-center text-2xl f bg-clip-text text-transparent bg-gradient-to-l from-black to-black">{{ temperature }}°C</p>
-        <p class="text-center text-1xl bg-clip-text text-transparent bg-gradient-to-b from-black to-black">Ressenti {{ feelsLike }}°C</p>
-      </div>
+      <!-- Utilisation de v-bind pour passer weatherData à Temperature.vue -->
+      <Temperature v-bind:weather-data="weatherData" />
     </div>
-    
-    <div class=" "> <!-- Météo  -->
+   
+
+    <!-- Section météo -->
+    <div class=" ">
       <div>
-        <weather/>
+        <weather />
       </div>
+      
       <div>
-        <HumiditeVitesseDuVent/>
+        <HumiditeVitesseDuVent />
       </div>
+  
       <div>
-        <Soleil/>
+        <Soleil />
       </div>
 
       <!-- Bouton pour revenir à l'accueil -->
@@ -26,50 +31,52 @@
         Retour à l'accueil
       </nuxt-link>
     </div>
-
+  
   </div>
+  
 </template>
 
 <script>
-// Importation de la bibliothèque Axios pour effectuer des requêtes HTTP
+// Import des modules nécessaires
 import axios from 'axios';
+import Temperature from '~/components/Temperature.vue'; // Import du composant Temperature.vue
 
 export default {
-  name: 'Meteo', // Nom du composant Meteo
+  components: {
+    Temperature, // Utilisation du composant Temperature.vue
+  },
   data() {
+    // Initialisation des données
     return {
-      temperature: null, // Initialisation de la température à null
-      feelsLike: null, // Initialisation de la température ressentie à null
+      weatherData: null, // Données météorologiques
     };
   },
   mounted() {
-    this.getWeatherData(); // Appel de la méthode getWeatherData() lors du montage du composant
+    // Appel de la méthode pour récupérer les données météorologiques
+    this.getWeatherData();
   },
   methods: {
-    getWeatherData() {
-      const apiUrl = 'http://localhost:5000/current_weather'; // URL de votre API
-      const lat = 'your_lat'; // Remplacez par votre latitude
-      const lon = 'your_lon'; // Remplacez par votre longitude
-      axios.get(apiUrl, {
-          params: {
-            lat: lat,
-            lon: lon
-          }
-        })
-        .then(response => {
-          // Récupération des données de température et température ressentie depuis la réponse de l'API
-          this.temperature = response.data.temperature;
-          this.feelsLike = response.data.feels_like_value;
-        })
-        .catch(error => {
-          // Gestion des erreurs lors de la récupération des données météorologiques
-          console.error('Erreur lors de la récupération des données météorologiques:', error);
-        });
+    async getWeatherData() {
+      // Paramètres de latitude et longitude
+      const lat = 48.8566;
+      const lon = 2.3522;
+      // URL de l'API pour les données météorologiques
+      const apiUrl = 'http://127.0.0.1:5000/complete_weather';
+
+      try {
+        // Appel à l'API pour obtenir les données
+        const response = await axios.get(apiUrl, { params: { lat, lon } });
+        console.log('Contenu de la requête:', response.data); // Affichage du contenu de la requête dans la console
+        this.weatherData = response.data; // Stockage des données météorologiques dans weatherData
+
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données météorologiques :', error); // Gestion des erreurs
+      }
     }
   }
-};
+}
 </script>
 
 <style scoped>
-/* Vos styles CSS personnalisés ici */
+/* Styles CSS spécifiques au composant ici */
 </style>
