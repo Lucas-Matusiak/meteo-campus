@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import RechercheCampus from "~/components/RechercheCampus.vue";
+import RechercheCampus from "~/components/Recherche-campus.vue";
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
