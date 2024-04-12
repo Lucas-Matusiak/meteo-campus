@@ -19,7 +19,7 @@
       </div>
 
     <!-- Bouton pour revenir à l'accueil -->
-      <nuxt-link to="/" class="pl-20 pr-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
+      <nuxt-link :to="`/universities/${selectedCampus}`" class="pl-20 pr-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
         Retour à l'accueil
       </nuxt-link>
     </div>
@@ -29,6 +29,8 @@
 <script setup>
 import { useRoute } from 'vue-router';
 
+
 const route = useRoute();
+const selectedCampus = route.params.campus;
 
 </script>

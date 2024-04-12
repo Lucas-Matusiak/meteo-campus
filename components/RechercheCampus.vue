@@ -75,6 +75,7 @@
 import { ref, defineProps, defineEmits } from "vue";
 import axios from "axios";
 
+const old_campus = defineProps(["data"]);
 // Déclarez les variables réactives
 let selectedUniversity = ref("");
 let selectedCampus = ref("");
