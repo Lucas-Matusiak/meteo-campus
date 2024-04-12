@@ -1,19 +1,29 @@
 <template>
-  <div id="weather">
-    <!-- Utilisez v-bind (ou :) pour lier l'attribut src dynamiquement -->
-    <img 
-      :src= "weather"
-      alt="weather"
-      class="w-64 h-auto"/>
+  <div class="mb-10">
+      <div>
+        <img 
+          src= '../assets/images/ensoleille.png'
+          alt="weather"
+          class="content-center object-scale-down h-48 w-96"/>
+      </div>
+      <div >
+          <h1 class="text-1xl text-center mb-4"> {{ temps }}</h1>
+      </div>
+      <div >
+          <h1 class="text-2xl  text-center mb-4"> {{ lieu }}</h1>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'weather', // Renommé pour plus de clarté
+  name: 'weather',
+   // Renommé pour plus de clarté
   data() {
     return {
-      weather :'../assets/images/ensoleille.png'
+      image :2,
+      lieu : "Talence Peixotto",
+      temps : "Ensoleillé"
   }
 }
 }

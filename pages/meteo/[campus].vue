@@ -1,7 +1,7 @@
 
 <template>
   <div class="h-auto flex flex-col justify-center items-center">
-    <h1 class="text-4xl font-bold text-center mb-4">Prévisions météo</h1>
+    <h1 class="text-3xl font-bold text-center mb-4">Météo Campus</h1>
     <div class=" "> <!-- Météo  -->
       <p> {{ route.params.campus }}</p>
       <div>
@@ -12,7 +12,7 @@
           
       </div>
       <div>
-        <HumuditeVitesseDuVent/>
+        <HumiditeVitesseDuVent/>
       </div>
       <div>
         <Soleil/>
