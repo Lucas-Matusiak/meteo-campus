@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from weather_api import get_current_weather, get_hourly_forecast, get_daily_forecast, weather_data_model
 
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/current_weather')
 def current_weather():
@@ -44,7 +46,11 @@ def complete_weather():
     current_weather_data = get_current_weather(lat, lon, api_key)
     hourly_forecast_data = get_hourly_forecast(lat, lon, api_key)
     daily_forecast_data = get_daily_forecast(lat, lon, api_key)
-    model_data = weather_data_model()
+    model_data = weather_data_model(lat, lon, api_key)
+    # Avoir le dictionnaire complet avec les données de classification dynamic_classification()
+    # Traduire les données du model à l'aide du dictionnaire classify_main_description()
+    # Utiliser les données sur les models (V & A) model_train()
+    # Renvoyer le type de vetement et l'accessoire conseillé pour les heures
     return jsonify({
         "current_weather": current_weather_data,
         "hourly_forecast": hourly_forecast_data,

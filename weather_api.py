@@ -1,4 +1,3 @@
-
 import requests
 from lxml import etree as ET
 from datetime import datetime
@@ -40,6 +39,7 @@ def get_current_weather(lat, lon, api_key):
         # visibility_value = root.find('visibility').attrib['value']
         # clouds_unit = "%"
 
+        print("get_current_weather passed")
         return {
             "temperature": temperature_value,
             "feels_like_value": feels_like_value,
@@ -54,9 +54,8 @@ def get_current_weather(lat, lon, api_key):
         raise Exception(f"Non-success status code: {response.status_code}")
 
 def get_hourly_forecast(lat, lon, api_key):
-    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&cnt={24}&lang=fr"
+    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&mode=xml&cnt={24}&lang=fr"
     response = requests.get(api_call)
-    print (response.text)
     if response:
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
         root = ET.fromstring(xml_content)
@@ -90,13 +89,13 @@ def get_hourly_forecast(lat, lon, api_key):
                 'temperature': temperature,
             }
             forecast_data.append(data)
-
+        print("get_hourly_forecast passed")
         return forecast_data
     else:
-        raise Exception(f"Non-success status code: {response_hourly.status_code}")
+        raise Exception(f"Non-success status code: {response.status_code}")
 
-def get_daily_forecast(lat,lon,api_key):
-    api_call = f"https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={7}&appid={api_key}&mode=xml&units=metric&lang=fr"
+def get_daily_forecast(lat, lon, api_key):
+    api_call = f"https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&appid={api_key}&mode=xml&units=metric&lang=fr&cnt={7}"
     response = requests.get(api_call)
     if response:
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
@@ -124,7 +123,8 @@ def get_daily_forecast(lat,lon,api_key):
                 "wind_speed_kmh": wind_speed_kmh
             }
             forecast_data.append(day_data)
-
+        
+        print("get_daily_forecast passed")
         return forecast_data
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
@@ -164,5 +164,5 @@ def weather_data_model(lat, lon, api_key):
         formatted_data['visibility'].append(item['visibility'])
         formatted_data['speed'].append(item['wind']['speed'])
         formatted_data['clouds'].append(item['clouds']['all'])
-    
+    print("weather_data_model passed")
     return formatted_data
