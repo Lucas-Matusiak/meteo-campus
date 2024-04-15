@@ -18,24 +18,25 @@
       <div
         class="bg-gradient-to-r from-blue-300 to-indigo-500 rounded-3xl mb-4"
       >
-        <h1
-          class="text-center text-white font-bold border-b border-white px-4 m-4"
-          style="margin-top: 4px; margin-bottom: 4px"
-        >
-          Prévisions Heure par Heure
-        </h1>
-        <div class="flex">
-          <AffichageHeure
-            v-for="indice in fenetreAffichage"
-            :key="indice"
-            :heure="affichageheure[indice].heure"
-            :imgMeteo="affichageheure[indice].imgMeteo"
-            :temperature="affichageheure[indice].temperature"
-            :pourcentagePluie="affichageheure[indice].pourcentagePluie"
-            :vitesseVent="affichageheure[indice].vitesseVent"
-          />
-        </div>
+      <h1
+        class="text-center text-white font-bold border-b border-white px-4 m-4"
+        style="margin-top: 4px; margin-bottom: 4px"
+      >
+        Prévisions Heure par Heure
+      </h1>
+      <div class="flex">
+        <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
+        <AffichageHeure
+          v-for="(data, index) in hourlyForecastData"
+          :key="index"
+          :heure="data.time"
+          :imgMeteo="data.weather_description"
+          :temperature="data.temperature"
+          :pourcentagePluie="data.precipitation_proba"
+          :vitesseVent="data.wind_speed"
+        />
       </div>
+    </div>
 
       <div class="flex justify-between m-4">
         <button
@@ -66,101 +67,26 @@
 <script setup>
 import { useRoute } from "vue-router";
 import AffichageHeure from "~/components/AffichageHeure.vue";
+import { get_hourly_forecast } from "@/api/weatherApi"; // Importez la fonction pour récupérer les données
 
 const route = useRoute();
 const selectedCampus = route.params.campus;
 
-const isMobile = ref(true);
-let fenetreAffichage = ref([]);
+let hourlyForecastData = []; // Variable pour stocker les données de prévisions horaires
 
-const affichageheure = [
-  { heure: "5", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  { heure: "6", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  { heure: "7", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "8",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "9",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "10",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "11",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "12", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "13",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "14",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "15", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "16",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "17",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "18", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  { heure: "19", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "20",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "21", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "22",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "23",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "00", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-];
+// Fonction pour récupérer les données de l'API
+const fetchDataFromApi = async () => {
+  try {
+    // Récupérez les données de prévisions horaires
+    hourlyForecastData = await get_hourly_forecast(lat, lon, api_key);
+    console.log("Data fetched successfully");
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+// Appelez la fonction pour récupérer les données lors de l'initialisation du composant
+onMounted(fetchDataFromApi);
 
 
 const initialiserFenetreAffichage = () => {
