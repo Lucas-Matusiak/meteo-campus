@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="chooseUniversity" class=" w-72">
+    <div id="chooseUniversity" class="w-72">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton université</h1>
-      <Combobox v-model="selectedUniversity">
+      <Combobox v-model="selectedUniversity" @change="updateUniversity(selectedUniversity)">
         <div class="relative mt-1">
           <div
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
@@ -26,22 +26,23 @@
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            @after-leave="queryUniversity.value = ''"
+            @after-leave="queryUniversity = ''"
           >
             <ComboboxOptions
               class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-50"
-              @change="updateUniversity(selectedUniversity)"
-              >
+
+            >
               <div
-                v-if="
-                  !filteredList(listUniversities, queryUniversity).length
-                "
+                v-if="!filteredList(listUniversities, queryUniversity).length"
                 class="relative cursor-default select-none px-4 py-2 text-gray-700"
               >
                 Nothing found.
               </div>
               <ComboboxOption
-                v-for="university in filteredList(listUniversities, queryUniversity)"
+                v-for="university in filteredList(
+                  listUniversities,
+                  queryUniversity
+                )"
                 as="template"
                 :key="university"
                 :value="university"
@@ -77,9 +78,9 @@
         </div>
       </Combobox>
     </div>
-    <div id="chooseCampus" class=" w-72" v-if="selectedUniversity">
+    <div id="chooseCampus" class="w-72" v-if="selectedUniversity">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton campus</h1>
-      <Combobox v-model="selectedCampus">
+      <Combobox v-model="selectedCampus" @change="updateCampus(selectedCampus)">
         <div class="relative mt-1">
           <div
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
@@ -89,7 +90,6 @@
               :displayValue="(selectedCampus) => selectedCampus"
               @change="handleChangeInputCampus($event)"
               placeholder="Recherchez une université..."
-              
             />
             <ComboboxButton
               class="absolute inset-y-0 right-0 flex items-center pr-2"
@@ -104,15 +104,13 @@
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            @after-leave="queryCampus= ''"
+            @after-leave="queryCampus = ''"
           >
             <ComboboxOptions
               class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
             >
               <div
-                v-if="
-                  !filteredList(listCampus, queryCampus).length
-                "
+                v-if="!filteredList(listCampus, queryCampus).length"
                 class="relative cursor-default select-none px-4 py-2 text-gray-700"
               >
                 Nothing found.
@@ -123,7 +121,6 @@
                 :key="campus"
                 :value="campus"
                 v-slot="{ selected, active }"
-                @click="updateCampus(campus)"
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -133,7 +130,7 @@
                   }"
                 >
                   <span
-                    class="block "
+                    class="block"
                     :class="{
                       'font-medium': selectedCampus,
                       'font-normal': !selectedCampus,
@@ -193,11 +190,10 @@ function filteredList(list, input) {
 }
 
 function handleChangeInputUniversity(event) {
-  queryUniversity.value = event.target.value
- 
+  queryUniversity.value = event.target.value;
 }
 function handleChangeInputCampus(event) {
-  queryCampus.value = event.target.value
+  queryCampus.value = event.target.value;
 }
 async function updateUniversity() {
   selectedCampus.value = "";
@@ -231,5 +227,5 @@ const updateCampus = (campus) => {
   emit("selectedCampus", campus); // Émettre un événement avec la valeur sélectionnée du campus
 };
 
-fetchUniversities()
+fetchUniversities();
 </script>
