@@ -2,7 +2,7 @@
   <div>
     <div id="chooseUniversity" class="w-72">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton université</h1>
-      <Combobox v-model="selectedUniversity">
+      <Combobox v-model="selectedUniversity" @change="updateCampus()">
         <div class="relative mt-1">
           <div
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
@@ -26,7 +26,7 @@
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            @after-leave="queryUniversity.value = ''"
+            @after-leave="queryUniversity = ''"
           >
             <ComboboxOptions
               class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-50"
@@ -46,7 +46,7 @@
                 :key="university"
                 :value="university"
                 v-slot="{ selected, active }"
-                @click="updateUniversity(university)"
+                @click="updateUniversity()"
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -80,7 +80,7 @@
     </div>
     <div id="chooseCampus" class="w-72" v-if="selectedUniversity">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton campus</h1>
-      <Combobox v-model="selectedCampus">
+      <Combobox v-model="selectedCampus" @update="updateCampus()">
         <div class="relative mt-1">
           <div
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
@@ -121,7 +121,7 @@
                 :key="campus"
                 :value="campus"
                 v-slot="{ selected, active }"
-                @click="updateCampus(campus)"
+                @click="updateCampus()"
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -196,10 +196,10 @@ function handleChangeInputUniversity(event) {
 function handleChangeInputCampus(event) {
   queryCampus.value = event.target.value;
 }
-async function updateUniversity(university) {
+async function updateUniversity() {
   selectedCampus.value = "";
-  updateCampus("");
-  await fetchCampuses(university);
+  updateCampus();
+  await fetchCampuses(selectedUniversity.value);
 }
 const fetchUniversities = async () => {
   try {
@@ -244,8 +244,8 @@ const fetchCampuses = async (university) => {
     console.error("Error fetching campuses:", error);
   }
 };
-const updateCampus = (campus) => {
-  emit("selectedCampus", campus); // Émettre un événement avec la valeur sélectionnée du campus
+const updateCampus = () => {
+  emit("selectedCampus", selectedCampus.value); // Émettre un événement avec la valeur sélectionnée du campus
 };
 
 fetchUniversities();
