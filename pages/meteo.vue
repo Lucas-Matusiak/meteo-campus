@@ -6,12 +6,11 @@
     
 
     <!-- Début de la zone du composant Temperature.vue -->
-    <div class="items-center justify-center pb-5">
-      <!-- Utilisation de v-bind pour passer weatherData à Temperature.vue -->
-      <Temperature v-if="weatherData" :temperature="weatherData.current_weather.temperature" :feelsLike="weatherData.current_weather.feels_like_value" />
-    </div>
-   
-
+    <div v-if="weatherData && weatherData.current_weather" class="items-center justify-center pb-5">
+    <Temperature
+      :temperature="weatherData.current_weather.temperature"
+      :feelsLike="weatherData.current_weather.feels_like_value"/>
+  </div>
     <!-- Section météo -->
     <div class=" ">
       <div>
@@ -22,8 +21,10 @@
         <HumiditeVitesseDuVent />
       </div>
   
-      <div>
-        <Soleil />
+      <div v-if="weatherData && weatherData.current_weather">
+        <Soleil
+        :heureLever="weatherData.current_weather.sun_rise"
+        :heureCoucher="weatherData.current_weather.sun_set"/>
       </div>
 
       <!-- Bouton pour revenir à l'accueil -->
@@ -58,8 +59,8 @@ export default {
   methods: {
     async getWeatherData() {
       // Paramètres de latitude et longitude
-      const lat = 48.8566;
-      const lon = 2.3522;
+      const lat = "14.499454";
+      const lon ="-17.4440600" ;
       // URL de l'API pour les données météorologiques
       const apiUrl = 'http://127.0.0.1:5000/complete_weather';
 
