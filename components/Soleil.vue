@@ -22,8 +22,8 @@
 export default {
   // Déclaration des propriétés du composant
   props: {
-    heureLever: { type: Number, default: null },
-    heureCoucher: { type: Number, default: null }
+    heureLever: { type: String, default: null },
+    heureCoucher: { type: String, default: null }
   }
 };
 </script>

@@ -36,7 +36,7 @@
 export default {
   // Déclaration des propriétés du composant
   props: {
-    humidite: { type: Number, default: null },
+    humidite: { type: String, default: null },
     vitesseVent: { type: Number, default: null },
   },
 };
