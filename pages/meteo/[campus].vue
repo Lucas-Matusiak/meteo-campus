@@ -1,4 +1,3 @@
-
 <template>
   <div class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-3xl font-bold text-center mb-4">Météo Campus</h1>
@@ -28,6 +27,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
+import WeatherComponent from '@/components/WeatherComponent.vue';
 
 const route = useRoute();
 
