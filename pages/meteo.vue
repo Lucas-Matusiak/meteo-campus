@@ -19,7 +19,7 @@
       </div>
       
       <div>
-        <HumiditeVitesseDuVent />
+        <HumiditeVitesseDuVent v-if="weatherData" :humidite="weatherData.current_weather.humidity" :vitesseVent="weatherData.current_weather.wind_speed" />
       </div>
   
       <div>
@@ -40,10 +40,12 @@
 // Import des modules nécessaires
 import axios from 'axios';
 import Temperature from '~/components/Temperature.vue'; // Import du composant Temperature.vue
+import HumiditeVitesseDuVent from '~/components/HumiditeVitesseDuVent.vue';
 
 export default {
   components: {
-    Temperature, // Utilisation du composant Temperature.vue
+    Temperature,
+    HumiditeVitesseDuVent,   // Utilisation du composant Temperature.vue
   },
   data() {
     // Initialisation des données
