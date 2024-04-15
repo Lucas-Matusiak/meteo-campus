@@ -172,6 +172,8 @@ import {
 } from "@headlessui/vue";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
+const old_campus = defineProps(["data"]);
+
 let selectedUniversity = ref("");
 let selectedCampus = ref("");
 
