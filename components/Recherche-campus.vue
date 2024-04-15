@@ -30,6 +30,7 @@
           >
             <ComboboxOptions
               class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-50"
+              @change="updateUniversity(selectedUniversity)"
               >
               <div
                 v-if="
@@ -45,7 +46,6 @@
                 :key="university"
                 :value="university"
                 v-slot="{ selected, active }"
-                @click="updateUniversity(university)"
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -197,10 +197,10 @@ function handleChangeInputUniversity(event) {
 function handleChangeInputCampus(event) {
   queryCampus.value = event.target.value
 }
-async function updateUniversity(university) {
+async function updateUniversity() {
   selectedCampus.value = "";
   updateCampus("");
-  await fetchCampuses(university);
+  await fetchCampuses(selectedUniversity.value);
 }
 const fetchUniversities = async () => {
   try {
