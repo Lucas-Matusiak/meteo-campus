@@ -10,12 +10,11 @@
     <Temperature
       :temperature="weatherData.current_weather.temperature"
       :feelsLike="weatherData.current_weather.feels_like_value"/>
-  </div>
+    </div>
     <!-- Section météo -->
-    <div class=" ">
-      <div>
-        <weather />
-      </div>
+    <div>
+      <weather :lieu = "Dakar" />
+    </div>
       
       <div>
         <HumiditeVitesseDuVent v-if="weatherData" :humidite="weatherData.current_weather.humidity" :vitesseVent="weatherData.current_weather.wind_speed" />
@@ -32,8 +31,7 @@
         Retour à l'accueil
       </nuxt-link>
     </div>
-  
-  </div>
+
   
 </template>
 

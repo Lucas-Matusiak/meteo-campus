@@ -16,6 +16,7 @@ def get_current_weather(lat, lon, api_key):
         humidity_value = root.find('humidity').attrib['value']
         
         weather_description = root.find('weather').attrib['value']
+        weather_code = root.find('weather').attrib['number']
         wind_speed = round(3.6 * float(root.find('wind/speed').attrib['value']))
         sun_rise_datetime = datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S')
         sun_set_datetime = datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S')
@@ -43,6 +44,7 @@ def get_current_weather(lat, lon, api_key):
         return {
             "temperature": temperature_value,
             "feels_like_value": feels_like_value,
+            "code": weather_code,
             "humidity": humidity_value,
             "weather_description": weather_description,
             "wind_speed": wind_speed,
@@ -82,6 +84,7 @@ def get_hourly_forecast(lat, lon, api_key):
             # humidity = round(float(hour.find('.//humidity').get('value')))            
 
             data = {
+                
                 'time': time,
                 'weather_description': weather_description,
                 'precipitation_proba': precipitation_proba,
