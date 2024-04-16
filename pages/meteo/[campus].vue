@@ -12,8 +12,8 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
-      <div>
-        <weather />
+      <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.code">
+        <weather :code="weatherData.current_weather.code"/>
       </div>
       <div
         v-if="
@@ -92,8 +92,8 @@ import HumiditeVitesseDuVent from "~/components/HumiditeVitesseDuVent.vue";
 //meteo aujourd'hui
 let weatherData = ref(""); // Données météorologiques
 
-const lat = "14.499454";
-const lon = "-17.4440600";
+const lat = "70.9623280";
+const lon ="-37.23116682" ;
 const apiUrl = "http://127.0.0.1:5000/complete_weather";
 
 // Appel de la méthode pour récupérer les données météorologiques
