@@ -2,28 +2,28 @@
     <div class="mb-10" v-if="weatherData && weatherData.current_weather">
           <!-- Affichage conditionnel des images et descriptions basé sur le code météo -->
             <div v-if="weatherData.current_weather.code.toString().startsWith('2')">
-                <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
-                <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
+                <img src="../assets/images/orage.png" alt="orage" class="content-center object-scale-down h-48 w-96">
+                <h1 class="text-1xl text-center mb-4">Orageux</h1>
             </div>          
             <div v-else-if="weatherData.current_weather.code.toString().startsWith('3')">
-                <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
-                <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
+                <img src="../assets/images/bruineux.png" alt="bruineux" class="content-center object-scale-down h-48 w-96">
+                <h1 class="text-1xl text-center mb-4">Bruineux</h1>
             </div> 
             <div v-else-if="weatherData.current_weather.code.toString().startsWith('5')">
-                <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
-                <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
+                <img src="../assets/images/pluie.png" alt="pluie" class="content-center object-scale-down h-48 w-96">
+                <h1 class="text-1xl text-center mb-4">Pluvieux</h1>
             </div> 
             <div v-else-if="weatherData.current_weather.code.toString().startsWith('6')">
-                <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
-                <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
+                <img src="../assets/images/neige.png" alt="neige" class="content-center object-scale-down h-48 w-96">
+                <h1 class="text-1xl text-center mb-4">Neigeux</h1>
             </div> 
             <div v-else-if="weatherData.current_weather.code.toString().startsWith('7')">
-                <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
-                <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
+                <img src="../assets/images/evente.png" alt="evente" class="content-center object-scale-down h-48 w-96">
+                <h1 class="text-1xl text-center mb-4">Eventé</h1>
             </div> 
             <div v-if="weatherData.current_weather.code.toString().startsWith('8') && weatherData.current_weather.code !== 800">
-                <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
-                <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
+                <img src="../assets/images/nuage.png" alt="nuage" class="content-center object-scale-down h-48 w-96">
+                <h1 class="text-1xl text-center mb-4">Nuageux</h1>
             </div>
             <div v-else-if="weatherData.current_weather.code == 800">
                 <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
@@ -54,8 +54,8 @@ export default {
   methods: {
     async getWeatherData() {
       // Paramètres de latitude et longitude
-      const lat = "14.499454";
-      const lon ="-17.4440600" ;
+      const lat = "44.802614";
+      const lon ="-0.588054" ;
       // URL de l'API pour les données météorologiques
       const apiUrl = 'http://127.0.0.1:5000/complete_weather';
 

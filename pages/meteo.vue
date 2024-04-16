@@ -59,8 +59,8 @@ export default {
   methods: {
     async getWeatherData() {
       // Paramètres de latitude et longitude
-      const lat = "14.499454";
-      const lon ="-17.4440600" ;
+      const lat = "44.802614";
+      const lon ="-0.588054" ;
       // URL de l'API pour les données météorologiques
       const apiUrl = 'http://127.0.0.1:5000/complete_weather';
 
