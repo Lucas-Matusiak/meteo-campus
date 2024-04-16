@@ -21,7 +21,6 @@
             heure >= 17 && heure < 20, // Soirée
           'bg-gradient-to-b from-indigo-500 to-blue-900':
             heure >= 20 && heure < 24, // Nuit
-
         }"
         class="w-20 h-40 rounded-3xl flex flex-col items-center justify-center mt-4 mb-4 ml-2 mr-2 shadow-lg"
       >
@@ -29,9 +28,9 @@
           class="text-black text_xs text-center flex flex-col items-center justify-center"
         >
           <!-- Utilisez les nouvelles props pour afficher les données -->
-          <h1 class="text_xs text-white mt-2">{{ heure }}:00</h1>
+          <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
           <img
-            :src="'~/../assets/images/' + imgMeteo + '.png'"
+            src="~/../assets/images/neige.png/"
             alt=""
             class="w-10 h-10 mt-2"
           />
@@ -61,7 +60,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
 const isMobile = computed(() => {
   // Vérifie si la largeur de l'écran est inférieure à 768 pixels
@@ -72,9 +71,8 @@ const isMobile = computed(() => {
 const props = defineProps({
   heure: String,
   imgMeteo: String,
-  temperature: String,
-  pourcentagePluie: String,
-  vitesseVent: String,
+  temperature: Number,
+  pourcentagePluie: Number,
+  vitesseVent: Number,
 });
 </script>
-
