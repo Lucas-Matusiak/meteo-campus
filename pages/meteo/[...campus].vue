@@ -75,7 +75,7 @@
 
       <!-- Bouton pour revenir à l'accueil -->
       <nuxt-link
-        :to="`/universities/${selectedCampus}`"
+        :to="`/universities/${selectedUniversity}/${selectedCampus}`"
         class="pl-20 pr-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
       >
         Retour à l'accueil
@@ -90,6 +90,8 @@ import axios from "axios";
 import AffichageHeure from "~/components/AffichageHeure.vue";
 import Temperature from "~/components/Temperature.vue"; // Import du composant Temperature.vue
 import HumiditeVitesseDuVent from "~/components/HumiditeVitesseDuVent.vue";
+
+
 
 //meteo aujourd'hui
 let weatherData = ref(""); // Données météorologiques
@@ -115,7 +117,8 @@ onMounted(async () => {
 
 //meteo heure par heure
 const route = useRoute();
-const selectedCampus = route.params.campus;
+const selectedUniversity = route.params.campus[0]
+const selectedCampus = route.params.campus[1];
 
 const isMobile = ref(true);
 let fenetreAffichage = ref([]);

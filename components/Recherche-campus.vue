@@ -170,12 +170,14 @@ import {
 } from "@headlessui/vue";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
-const old_campus = defineProps(["data"]);
+const props = defineProps(["campus", "university"]);
+const old_campus = props.campus;
+const old_university = props.university;
 
 let selectedUniversity = ref("");
 let selectedCampus = ref("");
 
-const emit = defineEmits(["selectedCampus"]);
+const emit = defineEmits(["selectedCampus"], ["selectedUniversity"]);
 let listUniversities = ref([]);
 let listCampus = ref([]);
 let queryUniversity = ref("");
@@ -197,39 +199,25 @@ function handleChangeInputCampus(event) {
   queryCampus.value = event.target.value;
 }
 async function updateUniversity() {
-  selectedCampus.value = "";
-  updateCampus();
+  //selectedCampus.value = "";
   await fetchCampuses(selectedUniversity.value);
+  updateCampus();
 }
+const updateCampus = () => {
+  emit("selectedCampus", selectedCampus.value);
+  emit("selectedUniversity", selectedUniversity.value);
+};
+
 const fetchUniversities = async () => {
   try {
-    if (old_campus.data) {
-      fetchUniversitiesFromCampus(old_campus);
-    } else {
-      const response = await axios.get(
-        "http://localhost:8080/api/universities"
-      );
-      listUniversities.value = response.data.map(
-        (university) => university.etablissement_siege
-      );
-    }
+    const response = await axios.get("http://localhost:8080/api/universities");
+    listUniversities.value = response.data.map(
+      (university) => university.etablissement_siege
+    );
   } catch (error) {
     console.error("Error fetching universities:", error);
   }
 };
-
-const fetchUniversitiesFromCampus = async (campus) => {
-  try{
-    const response = await axios.get(
-        `http://localhost:8080/api/campus?etablissement_siege=\"${campus}\"`
-      );
-      console.log(response);
-  }catch(error){
-    console.error("Error fetching universities from campus:", error);
-  }
-}
-
-
 
 const fetchCampuses = async (university) => {
   try {
@@ -244,9 +232,15 @@ const fetchCampuses = async (university) => {
     console.error("Error fetching campuses:", error);
   }
 };
-const updateCampus = () => {
-  emit("selectedCampus", selectedCampus.value); // Émettre un événement avec la valeur sélectionnée du campus
-};
 
-fetchUniversities();
+if (old_campus && old_university) {
+  console.log(old_campus);
+  selectedCampus.value = old_campus;
+  selectedUniversity.value = old_university;
+  fetchUniversities();
+  fetchCampuses(selectedUniversity.value);
+  updateCampus();
+} else {
+  fetchUniversities();
+}
 </script>

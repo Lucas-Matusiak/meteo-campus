@@ -1,6 +1,6 @@
 <template>
   <div class="m-3 flex justify-center items-center flex-col">
-    <RechercheCampus class="m-8" @selected-campus="setCampus($event)" @selected-university="setUniversity($event)"/>
+    <RechercheCampus class="m-8" @selected-campus="setCampus($event)" @selected-university="setUniversity($event)" :campus="selectedCampus" :university="selectedUniversity"/>
     <NuxtLink
       v-if="selectedCampus"
       :to="`/meteo/${selectedUniversity}/${selectedCampus}`"
@@ -13,8 +13,11 @@
 
 <script setup>
 import RechercheCampus from "~/components/Recherche-campus.vue";
-const selectedCampus = ref(null);
-const selectedUniversity = ref(null);
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const selectedCampus = route.params.university[1];
+const selectedUniversity = route.params.university[0];
 
 const setCampus = (value) => {
   selectedCampus.value = value;
@@ -22,4 +25,5 @@ const setCampus = (value) => {
 const setUniversity = (value) =>{
   selectedUniversity.value = value;
 }
+
 </script>
