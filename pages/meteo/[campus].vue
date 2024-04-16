@@ -85,9 +85,9 @@
 <script setup>
 import { useRoute } from "vue-router";
 import axios from "axios";
-import AffichageHeure from "~/components/AffichageHeure.vue";
-import Temperature from "~/components/Temperature.vue"; // Import du composant Temperature.vue
-import HumiditeVitesseDuVent from "~/components/HumiditeVitesseDuVent.vue";
+import AffichageHeure from "~/components/affichage-heure.vue";
+import Temperature from "~/components/temperature.vue"; // Import du composant Temperature.vue
+import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 
 //meteo aujourd'hui
 let weatherData = ref(""); // Données météorologiques
@@ -107,7 +107,7 @@ onMounted(async () => {
     console.error(
       "Erreur lors de la récupération des données météorologiques :",
       error
-    ); // Gestion des erreurs
+    );
   }
 });
 

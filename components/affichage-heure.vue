@@ -57,21 +57,21 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "AffichageHeure",
-  props: [
-    "heure",
-    "imgMeteo",
-    "temperature",
-    "pourcentagePluie",
-    "vitesseVent",
-  ],
-  computed: {
-    isMobile() {
-      // Vérifie si la largeur de l'écran est inférieure à 768 pixels
-      return window.innerWidth < 768;
-    },
-  },
-};
+<script setup>
+import { ref, computed } from 'vue';
+
+const isMobile = computed(() => {
+  // Vérifie si la largeur de l'écran est inférieure à 768 pixels
+  return window.innerWidth < 768;
+});
+
+// Props
+const props = defineProps({
+  heure: String,
+  imgMeteo: String,
+  temperature: String,
+  pourcentagePluie: String,
+  vitesseVent: String,
+});
 </script>
+
