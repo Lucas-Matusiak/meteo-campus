@@ -23,10 +23,15 @@
           weatherData.current_weather.wind_speed
         "
       >
-        <HumiditeVitesseDuVent
+        <humidite
           :humidite="weatherData.current_weather.humidity"
           :vitesseVent="weatherData.current_weather.wind_speed"
         />
+
+        <VitesseVent
+          :vitesseVent="weatherData.current_weather.wind_speed"
+        />
+
       </div>
       <div v-if="weatherData && weatherData.current_weather">
         <Soleil
@@ -87,7 +92,8 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
 import Temperature from "~/components/temperature.vue"; // Import du composant Temperature.vue
-import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
+import vitesszVent from "~/components/vitesse-vent.vue";
+import humidite from "~/components/humidite.vue";
 
 //meteo aujourd'hui
 let weatherData = ref(""); // Données météorologiques
