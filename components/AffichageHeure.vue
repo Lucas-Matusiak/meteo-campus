@@ -29,7 +29,7 @@
           class="text-black text_xs text-center flex flex-col items-center justify-center"
         >
           <!-- Utilisez les nouvelles props pour afficher les données -->
-          <h1 class="text_xs text-white mt-2">{{ heure }}:00</h1>
+          <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
           <img
             :src="'~/../assets/images/' + imgMeteo + '.png'"
             alt=""
