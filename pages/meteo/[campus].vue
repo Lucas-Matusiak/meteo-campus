@@ -12,7 +12,6 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
-    <div class="">
       <div>
         <weather />
       </div>
@@ -58,16 +57,16 @@
         </div>
       </div>
 
-      <div class="flex justify-between m-4">
+      <div class="flex justify-between m-4 py-3">
         <button
           @click="precedent()"
-          class="pl-5 pr-5 py-3 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
+          class="pl-5 pr-5  bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
         >
           Précédent
         </button>
         <button
           @click="suivant()"
-          class="pl-5 pr-5 py-3 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2"
+          class="pl-5 pr-5  bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2"
         >
           Suivant
         </button>
@@ -80,7 +79,6 @@
       >
         Retour à l'accueil
       </nuxt-link>
-    </div>
   </div>
 </template>
 
