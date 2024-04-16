@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
+import os
 from weather_api import get_current_weather, get_hourly_forecast, get_daily_forecast, weather_data_model
 
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
@@ -60,19 +61,38 @@ def complete_weather():
         "model_data": model_data
     })
 
-@app.route('/api/universities', methods=['GET'])
-def get_users():
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
+@app.route('/api/universities')
+def get_universities():
+    db = os.getcwd() + '\\back_api\\campus.sqlite'
+    print(db)
+    if os.path.exists(db):
+        conn = sqlite3.connect(db)
+        cursor = conn.cursor()
 
-    # Retrieve data from SQLite database
-    cursor.execute("SELECT * FROM Universite")
-    users = cursor.fetchall()
+        try:
+            # Retrieve data from SQLite database
+            cursor.execute("SELECT * FROM Universite")
+            universities = cursor.fetchall()
 
-    conn.close()
-    print(users)
+            conn.close()
 
-    return jsonify(users)
+            # Convert data to JSON format
+            university_list = []
+            for university in universities:
+                university_dict = {
+                    'id': university[0],
+                    'name': university[1],
+                    # Add other fields as needed
+                }
+                university_list.append(university_dict)
+
+            return jsonify(university_list)
+
+        except sqlite3.Error as e:
+            return jsonify({'error': str(e)}), 500
+        
+    else:
+        return jsonify({'error': "nul"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
