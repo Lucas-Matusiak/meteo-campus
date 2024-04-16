@@ -12,9 +12,14 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
-    <div class=" ">
-      <div class="text-center text-lg">
-        <weather />
+      <div
+        v-if="
+          weatherData &&
+          weatherData.current_weather &&
+          weatherData.current_weather.code
+        "
+      >
+        <weather :code="weatherData.current_weather.code" />
       </div>
       <div
         v-if="
@@ -37,13 +42,9 @@
       </div>
 
       <div
-        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg" 
+        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg"
       >
-        <h1
-          class="p-2 text-center text-white"
-        >
-          Prévisions Heure par Heure
-        </h1>
+        <h1 class="p-2 text-center text-white">Prévisions Heure par Heure</h1>
         <div class="m-2 flex">
           <AffichageHeure
             v-for="indice in fenetreAffichage"
@@ -57,7 +58,7 @@
         </div>
       </div>
 
-      <div class="flex justify-between m-4">
+      <div class="flex justify-between m-4 py-3">
         <button
           @click="precedent()"
           class="pl-5 pr-5 py-3 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
@@ -79,7 +80,6 @@
       >
         Retour à l'accueil
       </nuxt-link>
-    </div>
   </div>
 </template>
 
@@ -93,8 +93,8 @@ import HumiditeVitesseDuVent from "~/components/HumiditeVitesseDuVent.vue";
 //meteo aujourd'hui
 let weatherData = ref(""); // Données météorologiques
 
-const lat = "14.499454";
-const lon = "-17.4440600";
+const lat = "70.9623280";
+const lon ="-37.23116682" ;
 const apiUrl = "http://127.0.0.1:5000/complete_weather";
 
 // Appel de la méthode pour récupérer les données météorologiques
