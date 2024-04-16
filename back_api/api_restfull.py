@@ -64,7 +64,6 @@ def complete_weather():
 @app.route('/api/universities')
 def get_universities():
     db = os.getcwd() + '\\back_api\\campus.sqlite'
-    print(db)
     if os.path.exists(db):
         conn = sqlite3.connect(db)
         cursor = conn.cursor()
@@ -93,6 +92,83 @@ def get_universities():
         
     else:
         return jsonify({'error': "nul"}), 500
+
+@app.route('/api/implantations', methods=['GET'])
+def get_implantations():
+    db = os.getcwd() + '\\back_api\\campus.sqlite'
+    if os.path.exists(db):
+        try:
+            # Extract the etablissement_siege from the request query
+            etablissement_siege = request.args.get('etablissement_siege')
+
+            # Check if the etablissement_siege parameter is provided
+            if not etablissement_siege:
+                return jsonify({'error': 'Etablissement_siege parameter is missing'}), 400
+
+            
+            # Connect to SQLite database
+            conn = sqlite3.connect(db)
+            cursor = conn.cursor()
+
+            # Construct the SQL query to fetch the code_universite based on the provided etablissement_siege
+            query_get_code_universite = f"""
+                SELECT code_universite
+                FROM Universite
+                WHERE etablissement_siege = \'{etablissement_siege}\'
+            """
+
+            cursor.execute(query_get_code_universite)
+            universities = cursor.fetchall()
+
+            # Close database connection
+            conn.close()
+
+            code_universite = universities[0][0] if universities else None
+
+            # If code_universite is not found, return an empty array
+            if not code_universite:
+                return jsonify([])
+
+            # Connect to SQLite database again
+            conn = sqlite3.connect(db)
+            cursor = conn.cursor()
+
+            # Construct the SQL query to fetch implantations based on the code_universite
+            query_get_implantations = f"""
+                SELECT *
+                FROM Implantations
+                WHERE code_universite = '{code_universite}'
+            """
+
+            cursor.execute(query_get_implantations)
+            implantations = cursor.fetchall()
+            print(implantations)
+
+            campus_list = []
+            for campus in implantations:
+                campus_dict = {
+                    'nom': campus[0],
+                    'latitude': campus[1],
+                    'longitude': campus[2],
+                    'id_campus': campus[3],
+                    'id_universite': campus[4],
+                    # Add other fields as needed
+                }
+                campus_list.append(campus_dict)
+            
+
+            # Close database connection
+            conn.close()
+
+            return jsonify(campus_list)
+
+        except Exception as e:
+            # Handle any errors
+            print(f"Error fetching implantations: {e}")
+            return jsonify({'error': 'Internal server error'}), 500
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
