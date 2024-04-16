@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import RechercheCampus from "~/components/recherche-campus.vue";
+import RechercheCampus from "~/components/Recherche-campus.vue";
 import { useRoute } from 'vue-router';
 
 const route = useRoute();

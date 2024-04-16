@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
+from urllib.parse import unquote
 from weather_api import get_current_weather, get_hourly_forecast, get_daily_forecast, weather_data_model
 
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
@@ -142,8 +143,7 @@ def get_implantations():
 
             cursor.execute(query_get_implantations)
             implantations = cursor.fetchall()
-            print(implantations)
-
+            
             campus_list = []
             for campus in implantations:
                 campus_dict = {
@@ -169,7 +169,46 @@ def get_implantations():
     else:
         return jsonify()
 
+@app.route('/api/campus_localisation', methods=['GET'])
+def get_campus_localisation():
+    db = os.getcwd() + '\\back_api\\campus.sqlite'
+    if os.path.exists(db):
+        try:
+            # Extract the etablissement_siege from the request query
+            campus = request.args.get("campus")
+            campus = unquote(campus)
 
+            # Check if the etablissement_siege parameter is provided
+            if not campus:
+                return jsonify({'error': 'Campus parameter is missing'}), 400
+
+            
+            # Connect to SQLite database
+            conn = sqlite3.connect(db)
+            cursor = conn.cursor()
+
+            query_get_localisation = f"SELECT latitude,longitude FROM Implantations WHERE nom_implantation=\"{campus}\""
+
+            cursor.execute(query_get_localisation)
+            localisation_campus = cursor.fetchall()
+
+            campus_list = []
+            for campus in localisation_campus:
+                campus_dict = {
+                    'latitude': campus[0],
+                    'longitude': campus[1],
+                }
+                campus_list.append(campus_dict)
+
+            # Close database connection
+            conn.close()
+
+            return jsonify(campus_list)
+
+        except Exception as e:
+            # Handle any errors
+            print(f"Error fetching implantations: {e}")
+            return jsonify({'error': 'Internal server error'}), 500
 
 
 if __name__ == '__main__':

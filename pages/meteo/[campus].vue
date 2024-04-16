@@ -86,22 +86,25 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
-import Temperature from "~/components/temperature.vue"; // Import du composant Temperature.vue
+import Temperature from "~/components/Temperature.vue"; 
 import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 
-//meteo aujourd'hui
-let weatherData = ref(""); // Données météorologiques
+const route = useRoute();
+const selectedCampus = route.params.campus;
 
-const lat = "70.9623280";
-const lon ="-37.23116682" ;
-const apiUrl = "http://127.0.0.1:5000/complete_weather";
+const isMobile = ref(true);
+let fenetreAffichage = ref([]);
+let weatherData = ref("");
+let lat = ref("");
+let lon = ref("");
 
 // Appel de la méthode pour récupérer les données météorologiques
-onMounted(async () => {
+const api_call_weather = async () => {
+  const request = `http://127.0.0.1:5000/api/complete_weather?lat=${lat.value}&lon=${lon.value}`;
+  console.log(request)
   try {
-    // Appel à l'API pour obtenir les données
-    const response = await axios.get(apiUrl, { params: { lat, lon } });
-    console.log("Contenu de la requête:", response.data); // Affichage du contenu de la requête dans la console
+    const response = await axios.get(request);
+    console.log("Contenu de la requête WEATHER:", response.data); // Affichage du contenu de la requête dans la console
     weatherData.value = response.data; // Stockage des données météorologiques dans weatherData
   } catch (error) {
     console.error(
@@ -109,14 +112,36 @@ onMounted(async () => {
       error
     );
   }
-});
+};
 
-//meteo heure par heure
-const route = useRoute();
-const selectedCampus = route.params.campus;
+const api_call_localisation = async () => {
+  try {
+    const request = `http://127.0.0.1:5000/api/campus_localisation?campus=${selectedCampus}`
+    
+    const encoded = encodeURI(`http://127.0.0.1:5000/api/campus_localisation?campus=${encodeURI(selectedCampus)}`);;
+    const response = await axios.get(encoded);
 
-const isMobile = ref(true);
-let fenetreAffichage = ref([]);
+    lat.value = response.data[0].latitude
+    lon.value = response.data[0].longitude
+    console.log(lat.value)
+    console.log(lon.value)
+
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des localisations du campus :",
+      error
+    );
+  }
+}
+
+
+await api_call_localisation();
+
+if(lat.value && lon.value){
+  console.log("CA PASSE ?")
+  api_call_weather();
+}
+
 
 const affichageheure = [
   { heure: "5", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
