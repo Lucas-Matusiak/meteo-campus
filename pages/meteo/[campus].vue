@@ -12,7 +12,7 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
-    <div class=" ">
+    <div class="">
       <div>
         <weather />
       </div>

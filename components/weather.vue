@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-10">
+  <div class="flex justify-center">
       <div>
         <img 
           src= '../assets/images/ensoleille.png'
