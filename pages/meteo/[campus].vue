@@ -38,24 +38,25 @@
       <div
         class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg" 
       >
-        <h1
-          class="text-center text-white font-bold border-b border-white px-4 m-4"
-          style="margin-top: 4px; margin-bottom: 4px"
-        >
-          Prévisions Heure par Heure
-        </h1>
-        <div class="flex">
-          <AffichageHeure
-            v-for="indice in fenetreAffichage"
-            :key="indice"
-            :heure="affichageheure[indice].heure"
-            :imgMeteo="affichageheure[indice].imgMeteo"
-            :temperature="affichageheure[indice].temperature"
-            :pourcentagePluie="affichageheure[indice].pourcentagePluie"
-            :vitesseVent="affichageheure[indice].vitesseVent"
-          />
-        </div>
+      <h1
+        class="text-center text-white font-bold border-b border-white px-4 m-4"
+        style="margin-top: 4px; margin-bottom: 4px"
+      >
+        Prévisions Heure par Heure
+      </h1>
+      <div class="flex">
+        <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
+        <AffichageHeure
+          v-for="(data, index) in hourlyForecastData"
+          :key="index"
+          :heure="data.time"
+          :imgMeteo="data.weather_description"
+          :temperature="data.temperature"
+          :pourcentagePluie="data.precipitation_proba"
+          :vitesseVent="data.wind_speed"
+        />
       </div>
+    </div>
 
       <div class="flex justify-between m-4 py-3">
         <button
