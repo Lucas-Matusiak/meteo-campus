@@ -7,6 +7,9 @@
       <div>
         <Temperature />
         <weather />
+        <!-- <h1 v-if="weatherdata">
+          BONJOUR
+        </h1> -->
       </div>
       <div></div>
       <div>
@@ -65,8 +68,10 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import WeatherComponent from '@/components/WeatherComponent.vue';
+import {getWeatherData} from '~/middleware/weather_fetch.js';
 import AffichageHeure from "~/components/AffichageHeure.vue";
+
+getWeatherData()
 
 const route = useRoute();
 const selectedCampus = route.params.campus;
