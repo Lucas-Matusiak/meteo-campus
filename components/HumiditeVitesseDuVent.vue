@@ -1,5 +1,5 @@
 <template>
-  <div class="flex pb-20 ml-5">
+  <div class="flex justify-center">
     <div class="pr-10 pt-4">
       <div v-if="humidite !== null">
         <img

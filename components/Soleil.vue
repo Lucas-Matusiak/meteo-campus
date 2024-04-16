@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row items-center justify-between pb-20">
+    <div class="flex flex-row items-center justify-around">
       <div class="flex items-center">
         <img src="~/../assets/images/lever-soleil.png" alt="Logo Lever du soleil" class="logo w-10" />
         <div class="ml-2">
