@@ -16,7 +16,7 @@
         <Soleil />
       </div>
       <div
-        class="bg-gradient-to-r from-blue-300 to-indigo-500 rounded-3xl mb-4"
+        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg" 
       >
         <h1
           class="text-center text-white font-bold border-b border-white px-4 m-4"
@@ -40,13 +40,13 @@
       <div class="flex justify-between m-4">
         <button
           @click="precedent()"
-          class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
+          class="pl-5 pr-5 py-3 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
         >
           Précédent
         </button>
         <button
           @click="suivant()"
-          class="pl-5 pr-5 py-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2"
+          class="pl-5 pr-5 py-3 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2"
         >
           Suivant
         </button>
@@ -55,7 +55,7 @@
       <!-- Bouton pour revenir à l'accueil -->
       <nuxt-link
         :to="`/universities/${selectedCampus}`"
-        class="pl-20 pr-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
+        class="pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
       >
         Retour à l'accueil
       </nuxt-link>
