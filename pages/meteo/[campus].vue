@@ -1,5 +1,5 @@
 <template>
-  <div class="h-auto flex flex-col justify-center items-center">
+  <div class="h-auto flex flex-col justify-center items-center w-full">
     <h1 class="text-1xl font-bold text-center mb-2">
       {{ route.params.campus }}
     </h1>
@@ -42,7 +42,7 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]"
     >
       <h1
         class="text-center text-white font-bold border-b border-white px-4 m-4"
@@ -50,7 +50,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex" v-if="weatherData && weatherData.hourly_forecast">
+      <div class="flex  overflow-x-scroll" v-if="weatherData && weatherData.hourly_forecast">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
@@ -92,7 +92,7 @@ let lon = ref("");
 // Appel de la méthode pour récupérer les données météorologiques
 const api_call_weather = async () => {
   const request = `http://127.0.0.1:5000/api/complete_weather?lat=${lat.value}&lon=${lon.value}`;
-  console.log(request)
+  console.log(request);
   try {
     const response = await axios.get(request);
     console.log("Contenu de la requête WEATHER:", response.data); // Affichage du contenu de la requête dans la console
@@ -107,32 +107,33 @@ const api_call_weather = async () => {
 
 const api_call_localisation = async () => {
   try {
-    const request = `http://127.0.0.1:5000/api/campus_localisation?campus=${selectedCampus}`
-    
-    const encoded = encodeURI(`http://127.0.0.1:5000/api/campus_localisation?campus=${encodeURI(selectedCampus)}`);;
+    const request = `http://127.0.0.1:5000/api/campus_localisation?campus=${selectedCampus}`;
+
+    const encoded = encodeURI(
+      `http://127.0.0.1:5000/api/campus_localisation?campus=${encodeURI(
+        selectedCampus
+      )}`
+    );
     const response = await axios.get(encoded);
 
-    lat.value = response.data[0].latitude
-    lon.value = response.data[0].longitude
-    console.log(lat.value)
-    console.log(lon.value)
-
+    lat.value = response.data[0].latitude;
+    lon.value = response.data[0].longitude;
+    console.log(lat.value);
+    console.log(lon.value);
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des localisations du campus :",
       error
     );
   }
-}
-
+};
 
 await api_call_localisation();
 
-if(lat.value && lon.value){
-  console.log("CA PASSE ?")
+if (lat.value && lon.value) {
+  console.log("CA PASSE ?");
   api_call_weather();
 }
-
 
 const affichageheure = [
   { heure: "5", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
