@@ -167,7 +167,46 @@ def get_implantations():
             print(f"Error fetching implantations: {e}")
             return jsonify({'error': 'Internal server error'}), 500
 
+@app.route('/api/campus_localisation', methods=['GET'])
+def get_campus_localisation():
+    db = os.getcwd() + '\\back_api\\campus.sqlite'
+    if os.path.exists(db):
+        try:
+            # Extract the etablissement_siege from the request query
+            campus = request.args.get('campus')
 
+            # Check if the etablissement_siege parameter is provided
+            if not campus:
+                return jsonify({'error': 'Campus parameter is missing'}), 400
+
+            
+            # Connect to SQLite database
+            conn = sqlite3.connect(db)
+            cursor = conn.cursor()
+
+            query_get_localisation = f"SELECT latitude,longitude FROM Implantations WHERE nom_implantation=\'{campus}\'"
+
+
+            cursor.execute(query_get_localisation)
+            localisation_campus = cursor.fetchall()
+
+            campus_list = []
+            for campus in localisation_campus:
+                campus_dict = {
+                    'latitude': campus[0],
+                    'longitude': campus[1],
+                }
+                campus_list.append(campus_dict)
+
+            # Close database connection
+            conn.close()
+
+            return jsonify(campus_list)
+
+        except Exception as e:
+            # Handle any errors
+            print(f"Error fetching implantations: {e}")
+            return jsonify({'error': 'Internal server error'}), 500
 
 
 if __name__ == '__main__':
