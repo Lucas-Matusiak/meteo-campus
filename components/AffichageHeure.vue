@@ -7,7 +7,6 @@
         { 'md:w-1/4': !isMobile }, // Utilisation d'une classe conditionnelle pour définir la largeur sur les écrans larges
       ]"
     >
-      <!-- Votre code existant -->
       <div
         :class="{
           // Utilisez des classes dynamiques pour définir le fond en fonction de l'heure
@@ -60,7 +59,7 @@ export default {
   name: "AffichageHeure",
   props: [
     "heure",
-    "imgMeteo",
+    "temps",
     "temperature",
     "pourcentagePluie",
     "vitesseVent",
