@@ -18,14 +18,12 @@
   </template>
   
   <script>
-  export default {
-    name: 'Soleil',
-    data() {
-      return {
-        heureLever: '08:00',
-        heureCoucher: '20:00',
-      }
-    }
+// Définition du composant Vue.js
+export default {
+  // Déclaration des propriétés du composant
+  props: {
+    heureLever: { type: String, default: null },
+    heureCoucher: { type: String, default: null }
   }
-  </script>
-  
+};
+</script>

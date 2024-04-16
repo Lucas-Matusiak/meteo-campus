@@ -1,20 +1,41 @@
 <template>
   <div class="h-auto flex flex-col justify-center items-center">
-    <h1 class="text-3xl font-bold text-center mb-4">Météo Campus</h1>
+    <h1 class="text-1xl font-bold text-center mb-2">
+      {{ route.params.campus }}
+    </h1>
+    <div
+      v-if="weatherData && weatherData.current_weather"
+      class="items-center justify-center pb-5"
+    >
+      <Temperature
+        :temperature="weatherData.current_weather.temperature"
+        :feelsLike="weatherData.current_weather.feels_like_value"
+      />
+    </div>
     <div class=" ">
-      <!-- Météo  -->
-      <p>{{ route.params.campus }}</p>
       <div>
-        <Temperature />
         <weather />
       </div>
-      <div></div>
-      <div>
-        <HumiditeVitesseDuVent />
+      <div
+        v-if="
+          weatherData &&
+          weatherData.current_weather &&
+          weatherData.current_weather.humidity &&
+          weatherData.current_weather.wind_speed
+        "
+      >
+        <HumiditeVitesseDuVent
+          :humidite="weatherData.current_weather.humidity"
+          :vitesseVent="weatherData.current_weather.wind_speed"
+        />
       </div>
-      <div>
-        <Soleil />
+      <div v-if="weatherData && weatherData.current_weather">
+        <Soleil
+          :heureLever="weatherData.current_weather.sun_rise"
+          :heureCoucher="weatherData.current_weather.sun_set"
+        />
       </div>
+
       <div
         class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg" 
       >
@@ -65,8 +86,34 @@
 
 <script setup>
 import { useRoute } from "vue-router";
+import axios from "axios";
 import AffichageHeure from "~/components/AffichageHeure.vue";
+import Temperature from "~/components/Temperature.vue"; // Import du composant Temperature.vue
+import HumiditeVitesseDuVent from "~/components/HumiditeVitesseDuVent.vue";
 
+//meteo aujourd'hui
+let weatherData = ref(""); // Données météorologiques
+
+const lat = "14.499454";
+const lon = "-17.4440600";
+const apiUrl = "http://127.0.0.1:5000/complete_weather";
+
+// Appel de la méthode pour récupérer les données météorologiques
+onMounted(async () => {
+  try {
+    // Appel à l'API pour obtenir les données
+    const response = await axios.get(apiUrl, { params: { lat, lon } });
+    console.log("Contenu de la requête:", response.data); // Affichage du contenu de la requête dans la console
+    weatherData.value = response.data; // Stockage des données météorologiques dans weatherData
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des données météorologiques :",
+      error
+    ); // Gestion des erreurs
+  }
+});
+
+//meteo heure par heure
 const route = useRoute();
 const selectedCampus = route.params.campus;
 
@@ -162,11 +209,13 @@ const affichageheure = [
   { heure: "00", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
 ];
 
-
 const initialiserFenetreAffichage = () => {
   isMobile.value = window.innerWidth < 768;
   const nbHeuresAffichees = isMobile.value ? 4 : 8; // 4 pour mobile, 8 pour PC
-  fenetreAffichage.value = Array.from({ length: nbHeuresAffichees }, (_, i) => i);
+  fenetreAffichage.value = Array.from(
+    { length: nbHeuresAffichees },
+    (_, i) => i
+  );
 };
 
 const ajusterFenetreAffichage = () => {
@@ -187,8 +236,6 @@ const suivant = () => {
     fenetreAffichage.value = fenetreAffichage.value.map((indice) => indice + 1);
   }
 };
-
-
 
 onMounted(() => {
   initialiserFenetreAffichage();
