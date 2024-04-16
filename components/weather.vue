@@ -9,7 +9,9 @@
                 <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
                 <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
             </div> 
-            <div v-else-if="weatherData.current_weather.code.toString().startsWith('5')">
+            <div v-else-if="npm install axios
+
+            ">
                 <img src="../assets/images/ensoleille.png" alt="soleil" class="content-center object-scale-down h-48 w-96">
                 <h1 class="text-1xl text-center mb-4">Ensoleillé</h1>
             </div> 
@@ -38,6 +40,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   props: {
     lieu: { type: String, default: null },

@@ -13,7 +13,7 @@
     </div>
     <!-- Section météo -->
     <div>
-      <weather :lieu = "Dakar" />
+      <weather :lieu = 'Dakar' />
     </div>
       
       <div>
