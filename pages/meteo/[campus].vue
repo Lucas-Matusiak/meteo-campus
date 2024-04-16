@@ -5,7 +5,7 @@
     </h1>
     <div
       v-if="weatherData && weatherData.current_weather"
-      class="items-center justify-center pb-5"
+      class="items-center justify-center pb-5 text-lg text-bold"
     >
       <Temperature
         :temperature="weatherData.current_weather.temperature"
@@ -13,7 +13,7 @@
       />
     </div>
     <div class=" ">
-      <div>
+      <div class="text-center text-lg">
         <weather />
       </div>
       <div
@@ -40,12 +40,11 @@
         class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg" 
       >
         <h1
-          class="text-center text-white font-bold border-b border-white px-4 m-4"
-          style="margin-top: 4px; margin-bottom: 4px"
+          class="p-2 text-center text-white"
         >
           Prévisions Heure par Heure
         </h1>
-        <div class="flex">
+        <div class="m-2 flex">
           <AffichageHeure
             v-for="indice in fenetreAffichage"
             :key="indice"

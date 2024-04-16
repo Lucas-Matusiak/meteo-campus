@@ -21,7 +21,7 @@
           'bg-gradient-to-b from-indigo-500 to-blue-900':
             heure >= 20 && heure < 24, // Nuit
         }"
-        class="w-20 h-40 rounded-3xl flex flex-col items-center justify-center mt-4 mb-4 ml-2 mr-2 shadow-lg"
+        class="w-20 h-40 rounded-3xl flex flex-col items-center justify-center mt-4 mb-4 ml-2 mr-2 "
       >
         <div
           class="text-black text_xs text-center flex flex-col items-center justify-center"
@@ -41,7 +41,7 @@
               alt=""
               class="w-3 h-4 mr-1"
             />
-            <p class="text-xs">{{ pourcentagePluie }}%</p>
+            <p class="text-xs text-white">{{ pourcentagePluie }}%</p>
           </div>
           <div class="hidden md:flex flex-row items-center justify-center m-1">
             <img
