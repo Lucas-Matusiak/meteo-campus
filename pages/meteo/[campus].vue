@@ -94,13 +94,12 @@ let weatherData = ref(""); // Données météorologiques
 
 const lat = "70.9623280";
 const lon ="-37.23116682" ;
-const apiUrl = "http://127.0.0.1:5000/complete_weather";
 
 // Appel de la méthode pour récupérer les données météorologiques
 onMounted(async () => {
   try {
     // Appel à l'API pour obtenir les données
-    const response = await axios.get(apiUrl, { params: { lat, lon } });
+    const response = await axios.get("http://127.0.0.1:5000/api/complete_weather", { params: { lat, lon } });
     console.log("Contenu de la requête:", response.data); // Affichage du contenu de la requête dans la console
     weatherData.value = response.data; // Stockage des données météorologiques dans weatherData
   } catch (error) {
