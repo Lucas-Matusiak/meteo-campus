@@ -12,73 +12,64 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
-      <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.code">
-        <weather :code="weatherData.current_weather.code"/>
-      </div>
-      <div
-        v-if="
-          weatherData &&
-          weatherData.current_weather &&
-          weatherData.current_weather.humidity &&
-          weatherData.current_weather.wind_speed
-        "
+    <div
+      v-if="
+        weatherData &&
+        weatherData.current_weather &&
+        weatherData.current_weather.code
+      "
+    >
+      <weather :code="weatherData.current_weather.code" />
+    </div>
+    <div
+      v-if="
+        weatherData &&
+        weatherData.current_weather &&
+        weatherData.current_weather.humidity &&
+        weatherData.current_weather.wind_speed
+      "
+    >
+      <HumiditeVitesseDuVent
+        :humidite="weatherData.current_weather.humidity"
+        :vitesseVent="weatherData.current_weather.wind_speed"
+      />
+    </div>
+    <div v-if="weatherData && weatherData.current_weather">
+      <Soleil
+        :heureLever="weatherData.current_weather.sun_rise"
+        :heureCoucher="weatherData.current_weather.sun_set"
+      />
+    </div>
+
+    <div
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg"
+    >
+      <h1
+        class="text-center text-white font-bold border-b border-white px-4 m-4"
+        style="margin-top: 4px; margin-bottom: 4px"
       >
-        <HumiditeVitesseDuVent
-          :humidite="weatherData.current_weather.humidity"
-          :vitesseVent="weatherData.current_weather.wind_speed"
+        Prévisions Heure par Heure
+      </h1>
+      <div class="flex" v-if="weatherData && weatherData.hourly_forecast">
+        <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
+        <AffichageHeure
+          v-for="(data, index) in weatherData.hourly_forecast"
+          :key="index"
+          :heure="data.time"
+          :imgMeteo="data.weather_description"
+          :temperature="data.temperature"
+          :pourcentagePluie="data.precipitation_proba"
+          :vitesseVent="data.wind_speed"
         />
       </div>
-      <div v-if="weatherData && weatherData.current_weather">
-        <Soleil
-          :heureLever="weatherData.current_weather.sun_rise"
-          :heureCoucher="weatherData.current_weather.sun_set"
-        />
-      </div>
-
-      <div
-        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg" 
-      >
-        <h1
-          class="text-center text-white font-bold border-b border-white px-4 m-4"
-          style="margin-top: 4px; margin-bottom: 4px"
-        >
-          Prévisions Heure par Heure
-        </h1>
-        <div class="flex">
-          <AffichageHeure
-            v-for="indice in fenetreAffichage"
-            :key="indice"
-            :heure="affichageheure[indice].heure"
-            :imgMeteo="affichageheure[indice].imgMeteo"
-            :temperature="affichageheure[indice].temperature"
-            :pourcentagePluie="affichageheure[indice].pourcentagePluie"
-            :vitesseVent="affichageheure[indice].vitesseVent"
-          />
-        </div>
-      </div>
-
-      <div class="flex justify-between m-4 py-3">
-        <button
-          @click="precedent()"
-          class="pl-5 pr-5  bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
-        >
-          Précédent
-        </button>
-        <button
-          @click="suivant()"
-          class="pl-5 pr-5  bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2"
-        >
-          Suivant
-        </button>
-      </div>
-
-      <!-- Bouton pour revenir à l'accueil -->
-      <nuxt-link
-        :to="`/universities/${selectedCampus}`"
-        class="pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
-      >
-        Retour à l'accueil
-      </nuxt-link>
+    </div>
+    <!-- Bouton pour revenir à l'accueil -->
+    <nuxt-link
+      :to="`/universities/${selectedCampus}`"
+      class="pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
+    >
+      Retour à l'accueil
+    </nuxt-link>
   </div>
 </template>
 
@@ -86,7 +77,7 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
-import Temperature from "~/components/Temperature.vue"; 
+import Temperature from "~/components/temperature.vue";
 import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 
 const route = useRoute();
