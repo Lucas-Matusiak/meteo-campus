@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import RechercheCampus from "~/components/recherche-campus.vue";
+import RechercheCampus from "~/components/Recherche-campus.vue";
 const selectedCampus = ref(null);
 
 const setCampus = (value) => {
