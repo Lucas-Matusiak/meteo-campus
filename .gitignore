@@ -22,6 +22,4 @@ logs
 .env
 .env.*
 !.env.example
-pnpm-lock.yaml
-npm-lock.yaml
 __pycache__
