@@ -1,10 +1,13 @@
 <template>
-  <div class="h-auto flex flex-col justify-center items-center w-full">
+  <div v-if="isLoading">
+     <h1>Chargement...</h1>
+  </div>
+  <div v-else class="h-auto flex flex-col justify-center items-center w-full">
     <h1 class="text-1xl font-bold text-center mb-2">
       {{ route.params.campus }}
     </h1>
     <div
-      v-if="weatherData && weatherData.current_weather"
+      v-if="!isLoading && weatherData.current_weather"
       class="items-center justify-center pb-5"
     >
       <Temperature
@@ -43,6 +46,7 @@
 
     <div
       class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]"
+      v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
         class="text-center text-white font-bold border-b border-white px-4 m-4"
@@ -50,7 +54,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex  overflow-x-scroll" v-if="weatherData && weatherData.hourly_forecast">
+      <div class="flex  overflow-x-scroll" >
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
@@ -87,6 +91,9 @@ let weatherData = ref("");
 let lat = ref("");
 let lon = ref("");
 
+let isLoading = computed(() => {
+  return weatherData.value ? false : true;
+})
 // Appel de la méthode pour récupérer les données météorologiques
 const api_call_weather = async () => {
   const request = `http://127.0.0.1:5000/api/complete_weather?lat=${lat.value}&lon=${lon.value}`;
@@ -131,8 +138,6 @@ await api_call_localisation();
 if (lat.value && lon.value) {
   api_call_weather();
 }
-onMounted(() => {
 
-});
 
 </script>
