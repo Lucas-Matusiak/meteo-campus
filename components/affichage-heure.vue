@@ -26,14 +26,16 @@
         <div
           class="text-black text_xs text-center flex flex-col items-center justify-center"
         >
-          <h1 class="text_xs text-white mt-2">{{ heure }}:00</h1>
+          <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
           <img
             src="~/../assets/images/ensoleille.png"
             alt=""
             class="w-10 h-10 mt-2"
           />
-          <p class="text-xs text-white m-2">{{ temperature }}°</p>
-
+          <p class="text-xs text-white m-2">:temperature=Temperature.temperature°</p>
+<Temperature 
+:temperature=temperature.temperature
+/>
           <!-- Affichage conditionnel pour les écrans larges -->
           <div class="hidden md:flex flex-row items-center justify-center m-1">
             <img
@@ -58,7 +60,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from 'vue'; 
+import Temperature from "~/components/Temperature.vue"; // Import du composant Temperature.vue
+import VitesseVent from "~/components/vitesse-vent.vue";
+import humidite from "~/components/humidite.vue";
+
 
 const isMobile = computed(() => {
   // Vérifie si la largeur de l'écran est inférieure à 768 pixels
