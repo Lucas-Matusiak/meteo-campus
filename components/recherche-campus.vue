@@ -203,9 +203,9 @@ async function updateUniversity() {
 }
 const fetchUniversities = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/universities");
+    const response = await axios.get("http://127.0.0.1:5000/api/universities");
     listUniversities.value = response.data.map(
-      (university) => university.etablissement_siege
+      (university) => university.name
     );
   } catch (error) {
     console.error("Error fetching universities:", error);
@@ -215,11 +215,10 @@ const fetchCampuses = async (university) => {
   try {
     console.log("Fetching campus ....");
     const response = await axios.get(
-      `http://localhost:8080/api/implantations?etablissement_siege=\"${university}\"`
+      `http://127.0.0.1:5000/api/implantations?etablissement_siege=${university}`
     );
     console.log(response);
-    listCampus.value = response.data.map((campus) => campus.nom_implantation);
-    console.log(listCampus);
+    listCampus.value = response.data.map((campus) => campus.nom);
   } catch (error) {
     console.error("Error fetching campuses:", error);
   }

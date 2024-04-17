@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Votre code existant -->
     <div
       :class="[
         'container',
@@ -10,7 +11,7 @@
         :class="{
           'bg-gradient-to-b from-blue-900 to-slate-500':
             heure >= 0 && heure < 5, // Nuit
-          'bg-gradient-to-b from-[#7AC2E9] to-[#C8BA85]':
+          'bg-gradient-to-b from-blue-300 to-indigo-500':
             heure >= 5 && heure < 7, // Lever du soleil
           'bg-gradient-to-t from-blue-300 to-indigo-500':
             heure >= 7 && heure < 11, // Matin
@@ -26,9 +27,10 @@
         <div
           class="text-black text_xs text-center flex flex-col items-center justify-center"
         >
-          <h1 class="text_xs text-white mt-2">{{ heure }}:00</h1>
+          <!-- Utilisez les nouvelles props pour afficher les données -->
+          <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
           <img
-            src="~/../assets/images/ensoleille.png"
+            src="~/../assets/images/neige.png/"
             alt=""
             class="w-10 h-10 mt-2"
           />
@@ -57,21 +59,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "AffichageHeure",
-  props: [
-    "heure",
-    "imgMeteo",
-    "temperature",
-    "pourcentagePluie",
-    "vitesseVent",
-  ],
-  computed: {
-    isMobile() {
-      // Vérifie si la largeur de l'écran est inférieure à 768 pixels
-      return window.innerWidth < 768;
-    },
-  },
-};
+<script setup>
+import { ref, computed } from "vue";
+
+const isMobile = computed(() => {
+  // Vérifie si la largeur de l'écran est inférieure à 768 pixels
+  return window.innerWidth < 768;
+});
+
+// Props
+const props = defineProps({
+  heure: String,
+  imgMeteo: String,
+  temperature: Number,
+  pourcentagePluie: Number,
+  vitesseVent: Number,
+});
 </script>
