@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from weather_api import get_current_weather, get_hourly_forecast, get_daily_forecast, weather_data_model
 from model_api import run_model
 
-#SI ERREUR VOICI LE COMMANDE : pip install scikit-learn==1.2.2 
+#SI ERREUR VOICI LA COMMANDE : py -m pip install scikit-learn==1.2.2 
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
 
 app = Flask(__name__)
