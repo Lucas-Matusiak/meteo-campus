@@ -74,32 +74,7 @@
     </div>
     <!-- Bouton pour revenir à l'accueil -->
   </div>
-  <nuxt-link
-  <div
-    class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]"
-  >
-    <h1
-      class="text-center text-white font-bold border-b border-white px-4 m-4"
-      style="margin-top: 4px; margin-bottom: 4px"
-    >
-      Prévisions Heure par Heure
-    </h1>
-    <div
-      class="flex overflow-x-scroll"
-      v-if="weatherData && weatherData.hourly_forecast"
-    >
-      <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
-      <AffichageHeure
-        v-for="(data, index) in weatherData.hourly_forecast"
-        :key="index"
-        :heure="data.time"
-        :imgMeteo="data.weather_description"
-        :temperature="data.temperature"
-        :pourcentagePluie="data.precipitation_proba"
-        :vitesseVent="data.wind_speed"
-      />
-    </div>
-  </div>
+
   <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[50%]">
     <h1
       class="text-center text-white font-bold border-b border-white px-4 m-4"
@@ -129,7 +104,6 @@
     >
       Retour à l'accueil
     </nuxt-link>
-  </div>
   </div>
 </template>
 
