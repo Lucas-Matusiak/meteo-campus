@@ -48,7 +48,7 @@ def classify_main_description(data, data_categories, data_sous_categories):
                 break
 
     for key, value in data.items():
-        if key is not "pressure":
+        if key != "pressure":
             for element in value:
                 data_classified.append(element)
     return data_classified
