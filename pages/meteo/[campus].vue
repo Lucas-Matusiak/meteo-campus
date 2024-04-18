@@ -1,5 +1,5 @@
 <template>
-  < class="h-auto flex flex-col justify-center items-center w-full">
+  <div class="h-auto flex flex-col justify-center items-center w-full">
   <h1 class="text-1xl font-bold text-center mb-2">
     {{ route.params.campus }}
   </h1>
@@ -66,7 +66,7 @@
       />
     </div>
   </div>
-  <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]">
+  <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[50%]">
     <h1
       class="text-center text-white font-bold border-b border-white px-4 m-4"
       style="margin-top: 4px; margin-bottom: 4px"
@@ -95,6 +95,7 @@
     >
       Retour à l'accueil
     </nuxt-link>
+  </div>
   </div>
 </template>
 
