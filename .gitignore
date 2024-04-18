@@ -1,25 +1,25 @@
-# Fichiers de sauvegarde
-*~
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
 
-# Dossiers de cache
-__pycache__/
+# Node dependencies
+node_modules
 
-# Fichiers de compilation
-*.pyc
-*.pyo
-*.pyd
-.nuxt/
-node_modules/
-
-# Dossiers virtuels Python
-venv/
-env/
-*.env
-
-# Dossiers de logs
-logs/
+# Logs
+logs
 *.log
 
-# Fichiers de configuration spécifiques à l'utilisateur
-*.swp
+# Misc
 .DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+__pycache__
