@@ -3,71 +3,54 @@
     <h1 class="text-1xl font-bold text-center mb-2">
       {{ route.params.campus }}
     </h1>
-    <div
-      v-if="weatherData && weatherData.current_weather"
-      class="items-center justify-center pb-5 text-lg text-bold"
-    >
-      <Temperature
-        :temperature="weatherData.current_weather.temperature"
-        :feelsLike="weatherData.current_weather.feels_like_value"
-      />
-    </div>
-    <div
-      v-if="
-        weatherData &&
+    <div class="flex">
+      <div
+        class="flex flex-col items-center justify-center bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-lg shadow-md w-full max-w-md mx-auto p-4 md:p-6 mr-6 mb-4">
+        <div v-if="weatherData && weatherData.current_weather"
+          class="items-center justify-center pb-5 text-lg text-bold">
+          <Temperature :temperature="weatherData.current_weather.temperature"
+            :feelsLike="weatherData.current_weather.feels_like_value" />
+        </div>
+        <div v-if="weatherData &&
         weatherData.current_weather &&
         weatherData.current_weather.code
-      "
-    >
-      <weather :code="weatherData.current_weather.code" />
+        ">
+          <weather :code="weatherData.current_weather.code" />
+        </div>
+        <div v-if="weatherData && weatherData.current_weather">
+          <Soleil :heureLever="weatherData.current_weather.sun_rise"
+            :heureCoucher="weatherData.current_weather.sun_set" />
+        </div>
+      </div>
     </div>
-    <div
-      v-if="
-        weatherData &&
+
+
+
+    <div v-if="weatherData &&
         weatherData.current_weather &&
         weatherData.current_weather.humidity &&
         weatherData.current_weather.wind_speed
-      "
-    >
-      <HumiditeVitesseDuVent
-        :humidite="weatherData.current_weather.humidity"
-        :vitesseVent="weatherData.current_weather.wind_speed"
-      />
-    </div>
-    <div v-if="weatherData && weatherData.current_weather">
-      <Soleil
-        :heureLever="weatherData.current_weather.sun_rise"
-        :heureCoucher="weatherData.current_weather.sun_set"
-      />
+        ">
+      <HumiditeVitesseDuVent :humidite="weatherData.current_weather.humidity"
+        :vitesseVent="weatherData.current_weather.wind_speed" />
     </div>
 
-    <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]"
-    >
-      <h1
-        class="text-center text-white font-bold border-b border-white px-4 m-4"
-        style="margin-top: 4px; margin-bottom: 4px"
-      >
+
+    <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]">
+      <h1 class="text-center text-white font-bold border-b border-white px-4 m-4"
+        style="margin-top: 4px; margin-bottom: 4px">
         Prévisions Heure par Heure
       </h1>
       <div class="flex  overflow-x-scroll" v-if="weatherData && weatherData.hourly_forecast">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
-        <AffichageHeure
-          v-for="(data, index) in weatherData.hourly_forecast"
-          :key="index"
-          :heure="data.time"
-          :imgMeteo="data.weather_description"
-          :temperature="data.temperature"
-          :pourcentagePluie="data.precipitation_proba"
-          :vitesseVent="data.wind_speed"
-        />
+        <AffichageHeure v-for="(data, index) in weatherData.hourly_forecast" :key="index" :heure="data.time"
+          :imgMeteo="data.weather_description" :temperature="data.temperature"
+          :pourcentagePluie="data.precipitation_proba" :vitesseVent="data.wind_speed" />
       </div>
     </div>
     <!-- Bouton pour revenir à l'accueil -->
-    <nuxt-link
-      :to="`/universities/${selectedCampus}`"
-      class="pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
-    >
+    <nuxt-link :to="`/universities/${selectedCampus}`"
+      class="pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
       Retour à l'accueil
     </nuxt-link>
   </div>
