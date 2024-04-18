@@ -10,14 +10,16 @@ def dynamic_classification():
     Create the dict needed for the classification from the CSV files
     :return: dict
     """
-    with open('model_classif/sous-categories.csv',
+    path_model_1 = os.getcwd() + '\\back_api\\model_classif\\sous-categories.csv'
+    with open(path_model_1,
               newline='') as sous_categories:
         reader1 = csv.reader(sous_categories)
         # Lire les données et stocker dans un dictionnaire
         data_sous_categories = {row[0]: row[1] for row in reader1}
 
     # Ouvrir le deuxième fichier CSV
-    with open('model_classif/categ.csv', newline='') as categories:
+    path_model_2 = os.getcwd() + '\\back_api\\model_classif\\categ.csv'
+    with open(path_model_2, newline='') as categories:
         reader2 = csv.reader(categories)
         # Lire les données et stocker dans un dictionnaire
         data_categories = {row[0]: row[1] for row in reader2}
@@ -60,8 +62,8 @@ def model_train(data_classified):
     """
     num_samples = len(data_classified) // 240
     data_array = np.array(data_classified).reshape(num_samples, -1)
-    path_model_vetements = os.getcwd() + '\\model_classif\\RF_V.pkl'
-    path_model_accessoires = os.getcwd() + '\\model_classif\\RF_A.pkl'
+    path_model_vetements = os.getcwd() + '\\back_api\\model_classif\\RF_V.pkl'
+    path_model_accessoires = os.getcwd() + '\\back_api\\model_classif\\RF_A.pkl'
     with open(path_model_vetements, 'rb') as f:
         model_V = pickle.load(f)
     with open(path_model_accessoires, 'rb') as f:
