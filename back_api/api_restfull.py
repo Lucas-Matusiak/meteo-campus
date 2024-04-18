@@ -180,7 +180,9 @@ def get_campus_localisation():
             conn = sqlite3.connect(db)
             cursor = conn.cursor()
 
-            query_get_localisation = f"SELECT latitude,longitude FROM Implantations WHERE nom_implantation=\'{campus}\'"
+            query_get_localisation = f"SELECT latitude,longitude FROM Implantations WHERE nom_implantation=\"{campus}\""
+
+            print(query_get_localisation)
 
 
             cursor.execute(query_get_localisation)
