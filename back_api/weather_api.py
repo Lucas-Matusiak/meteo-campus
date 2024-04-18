@@ -1,6 +1,6 @@
 import requests
 from lxml import etree as ET
-from datetime import datetime
+import datetime
 
 
 def get_current_weather(lat, lon, api_key):
@@ -18,8 +18,8 @@ def get_current_weather(lat, lon, api_key):
         weather_description = root.find('weather').attrib['value']
         wind_speed = round(3.6 * float(root.find('wind/speed').attrib['value']))
         weather_code = root.find('weather').attrib['number']
-        sun_rise_datetime = datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S')
-        sun_set_datetime = datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S')
+        sun_rise_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S')
+        sun_set_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S')
         sun_rise = str(sun_rise_datetime.strftime('%H:%M'))
         sun_set = str(sun_set_datetime.strftime('%H:%M'))
 
@@ -56,7 +56,7 @@ def get_current_weather(lat, lon, api_key):
         raise Exception(f"Non-success status code: {response.status_code}")
 
 def get_hourly_forecast(lat, lon, api_key):
-    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&mode=xml&cnt={24}&lang=fr"
+    api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&mode=xml&cnt={32}&lang=fr"
     response = requests.get(api_call)
     if response:
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
@@ -65,49 +65,63 @@ def get_hourly_forecast(lat, lon, api_key):
         # Extract elements
         forecast_times = root.findall('.//forecast/time')
         forecast_data = []
-
+        timezone = datetime.timedelta(seconds=float(root.find('.//timezone').text))
+        
         # Extract data for each hour and store in a list of dictionaries
-        for hour in forecast_times:
-            date = datetime.strptime(hour.get('from'), '%Y-%m-%dT%H:%M:%S')
-            time =  str(date.strftime('%H:%M'))
+        count = 0
+        for hours in forecast_times:
+            date = datetime.datetime.strptime(hours.get('from'), '%Y-%m-%dT%H:%M:%S')
+            time =  str(date.strftime('%H H'))
 
-            wind_speed_mps = float(hour.find('.//windSpeed').get('mps'))
+            wind_speed_mps = float(hours.find('.//windSpeed').get('mps'))
             wind_speed_kph = round(wind_speed_mps * 3.6)
 
-            weather_description = hour.find('.//symbol').get('name')
-            precipitation_proba = float(hour.find('.//precipitation').get('probability'))
-            temperature = round(float(hour.find('.//temperature').get('value')))
+            weather_code = hours.find('.//symbol').get('number')
+            weather_description = hours.find('.//symbol').get('name')
+            precipitation_proba = round(float(hours.find('.//precipitation').get('probability'))*100)
+            temperature = round(float(hours.find('.//temperature').get('value')))
             
             # wind_direction = hour.find('.//windDirection').get('name')
             # feels_like = round(float(hour.find('.//feels_like').get('value')))
             # pressure = float(hour.find('.//pressure').get('value'))
-            # humidity = round(float(hour.find('.//humidity').get('value')))            
-
-            data = {
-                'time': time,
-                'weather_description': weather_description,
-                'precipitation_proba': precipitation_proba,
-                'wind_speed': wind_speed_kph,
-                'temperature': temperature,
-            }
-            forecast_data.append(data)
+            # humidity = round(float(hour.find('.//humidity').get('value')))
+            
+            if date >= (datetime.datetime.now(datetime.UTC).replace(tzinfo=None) + timezone):
+                if count >= 24:
+                    print("get_hourly_forecast passed")
+                    count = 0
+                    return forecast_data
+                
+                data = {
+                    'time': time,
+                    "code": weather_code,
+                    'weather_description': weather_description,
+                    'precipitation_proba': precipitation_proba,
+                    'wind_speed': wind_speed_kph,
+                    'temperature': temperature,
+                }
+                forecast_data.append(data)
+                count += 1
         print("get_hourly_forecast passed")
+        count = 0
         return forecast_data
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
 
 def get_daily_forecast(lat, lon, api_key):
-    api_call = f"https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&appid={api_key}&mode=xml&units=metric&lang=fr&cnt={7}"
+    api_call = f"https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&appid={api_key}&mode=xml&units=metric&lang=fr&cnt={8}"
     response = requests.get(api_call)
     if response:
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
         root = ET.fromstring(str(xml_content))
 
         forecast_data = []
-        forecast_times = root.findall(".//time")
+        forecast_times = root.findall(".//time")[1:]
 
         for day in forecast_times:
+            
             date = day.get("day")
+            weather_code = day.find('.//symbol').get('number')
 
             temperature_day = round(float(day.find("temperature").get("day")))
             temperature_max = round(float(day.find("temperature").get("max")))
@@ -115,9 +129,11 @@ def get_daily_forecast(lat, lon, api_key):
             wind_speed_mps = float(day.find("windSpeed").get("mps"))
             wind_speed_kmh = round(wind_speed_mps * 3.6)
             weather_description = day.find("symbol").get("name")
-
+            
+            
             day_data = {
                 "date": date,
+                "code": weather_code,
                 "weather_description": weather_description,
                 "temperature_day": temperature_day,
                 "temperature_max": temperature_max,
@@ -131,6 +147,7 @@ def get_daily_forecast(lat, lon, api_key):
     else:
         raise Exception(f"Non-success status code: {response.status_code}")
 
+# ICI FAIRE LA MODIFICATION POUR LE DATAMODELE AUSSI
 def weather_data_model(lat, lon, api_key):
     api_call = f"https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={api_key}&units=metric&cnt={24}"
     response = requests.get(api_call)
