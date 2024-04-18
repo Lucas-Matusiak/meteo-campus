@@ -2,7 +2,7 @@
   <div v-if="isLoading">
     <SkeletonMeteo />
   </div>
-  <div v-else class="h-auto flex flex-col justify-center items-center w-full">
+  <div v-else class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-1xl font-bold text-center mb-2">
       {{ route.params.campus }}
     </h1>
@@ -23,6 +23,11 @@
       "
     >
       <weather :code="weatherData.current_weather.code" />
+    </div>
+    
+    <div
+    >
+      <AccessoireTenue />
     </div>
     <div
       v-if="
@@ -135,6 +140,9 @@ import AffichageHeure from "~/components/affichage-heure.vue";
 import Temperature from "~/components/temperature.vue";
 import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 import SkeletonMeteo from "~/components/skeleton-meteo.vue";
+import AccessoireTenue from "~/components/accessoire-tenue.vue";
+
+
 
 const route = useRoute();
 const selectedCampus = route.params.campus;
