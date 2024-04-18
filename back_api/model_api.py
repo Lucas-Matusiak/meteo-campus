@@ -1,4 +1,5 @@
 import csv
+import os
 import pickle
 import numpy as np
 import sklearn
@@ -57,14 +58,13 @@ def model_train(data_classified):
     :param data_classified:
     :return: list of the answer of the two model [VETEMENT,ACCESSOIRE]
     """
-    print(data_classified)
-    print(len(data_classified))
     num_samples = len(data_classified) // 240
-    print(num_samples)
     data_array = np.array(data_classified).reshape(num_samples, -1)
-    with open('C:\\Users\\marco\\Desktop\\MeteoCampus\\meteo-campus\\back_api\\model_classif\\RF_V.pkl', 'rb') as f:
+    path_model_vetements = os.getcwd() + '\\model_classif\\RF_V.pkl'
+    path_model_accessoires = os.getcwd() + '\\model_classif\\RF_A.pkl'
+    with open(path_model_vetements, 'rb') as f:
         model_V = pickle.load(f)
-    with open('C:\\Users\\marco\\Desktop\\MeteoCampus\\meteo-campus\\back_api\\model_classif\\RF_A.pkl', 'rb') as f:
+    with open(path_model_accessoires, 'rb') as f:
         model_A = pickle.load(f)
     return (model_V.predict(data_array).tolist() + model_A.predict(data_array).tolist())
 
