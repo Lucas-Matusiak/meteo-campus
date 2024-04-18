@@ -83,8 +83,6 @@ import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 const route = useRoute();
 const selectedCampus = route.params.campus;
 
-const isMobile = ref(true);
-let fenetreAffichage = ref([]);
 let weatherData = ref("");
 let lat = ref("");
 let lon = ref("");
@@ -131,132 +129,10 @@ const api_call_localisation = async () => {
 await api_call_localisation();
 
 if (lat.value && lon.value) {
-  console.log("CA PASSE ?");
   api_call_weather();
 }
-
-const affichageheure = [
-  { heure: "5", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  { heure: "6", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  { heure: "7", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "8",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "9",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "10",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "11",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "12", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "13",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "14",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "15", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "16",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "17",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "18", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  { heure: "19", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "20",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "21", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-  {
-    heure: "22",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  {
-    heure: "23",
-    imgMeteo: "~/../assets/images/lever-soleil.png",
-    temperature: "20",
-    pourcentagePluie: "76",
-    vitesseVent: "12",
-  },
-  { heure: "00", temperature: "20", pourcentagePluie: "76", vitesseVent: "12" },
-];
-
-const initialiserFenetreAffichage = () => {
-  isMobile.value = window.innerWidth < 768;
-  const nbHeuresAffichees = isMobile.value ? 4 : 8; // 4 pour mobile, 8 pour PC
-  fenetreAffichage.value = Array.from(
-    { length: nbHeuresAffichees },
-    (_, i) => i
-  );
-};
-
-const ajusterFenetreAffichage = () => {
-  initialiserFenetreAffichage();
-};
-
-const precedent = () => {
-  if (fenetreAffichage.value[0] > 0) {
-    fenetreAffichage.value = fenetreAffichage.value.map((indice) => indice - 1);
-  }
-};
-
-const suivant = () => {
-  if (
-    fenetreAffichage.value[fenetreAffichage.value.length - 1] <
-    affichageheure.length - 1
-  ) {
-    fenetreAffichage.value = fenetreAffichage.value.map((indice) => indice + 1);
-  }
-};
-
 onMounted(() => {
-  initialiserFenetreAffichage();
-  window.addEventListener("resize", ajusterFenetreAffichage);
+
 });
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", ajusterFenetreAffichage);
-});
+
 </script>
