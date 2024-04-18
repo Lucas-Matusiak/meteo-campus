@@ -15,17 +15,6 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
-
-
-
-    <div
-      class="items-center justify-center pb-5"
-    >
-      <AccessoireTenue />
-    </div>
-
-
-
     <div
       v-if="
         weatherData &&
@@ -34,6 +23,12 @@
       "
     >
       <weather :code="weatherData.current_weather.code" />
+    </div>
+    
+    <div
+      class="items-center justify-center pb-5"
+    >
+      <AccessoireTenue />
     </div>
     <div
       v-if="
