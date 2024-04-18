@@ -50,7 +50,7 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[20%]"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg w-[25%]"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
