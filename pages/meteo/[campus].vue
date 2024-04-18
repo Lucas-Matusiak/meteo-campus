@@ -2,7 +2,7 @@
   <div v-if="isLoading">
     <SkeletonMeteo />
   </div>
-  <div v-else class="h-auto flex flex-col justify-center items-center w-full">
+  <div v-else class="h-auto flex flex-col justify-center items-center">
     <h1 class="text-1xl font-bold text-center mb-2">
       {{ route.params.campus }}
     </h1>
@@ -26,7 +26,6 @@
     </div>
     
     <div
-      class="items-center justify-center pb-5"
     >
       <AccessoireTenue />
     </div>
