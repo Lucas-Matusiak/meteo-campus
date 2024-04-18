@@ -12,6 +12,17 @@
         :feelsLike="weatherData.current_weather.feels_like_value"
       />
     </div>
+
+
+
+    <div
+      class="items-center justify-center pb-5"
+    >
+      <AccessoireTenue />
+    </div>
+
+
+
     <div
       v-if="
         weatherData &&
@@ -79,6 +90,9 @@ import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
 import Temperature from "~/components/temperature.vue";
 import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
+import AccessoireTenue from "~/components/accessoire-tenue.vue";
+
+
 
 const route = useRoute();
 const selectedCampus = route.params.campus;
