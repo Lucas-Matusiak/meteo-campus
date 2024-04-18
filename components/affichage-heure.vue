@@ -25,16 +25,16 @@
         class="w-20 h-40 rounded-3xl flex flex-col items-center justify-center mt-4 mb-4 ml-2 mr-2 "
       >
         <div
-          class="text-black text_xs text-center flex flex-col items-center justify-center"
+          class="text-white text_xs text-center flex flex-col items-center justify-center"
         >
           <!-- Utilisez les nouvelles props pour afficher les données -->
           <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
           <img
             src="~/../assets/images/neige.png/"
             alt=""
-            class="w-10 h-10 mt-2"
+            class="w-10 h-10 mt-2 ml-4"
           />
-          <p class="text-xs text-white m-2">{{ temperature }}°</p>
+          <p class="text-s text-white m-2 font-bold ml-7">{{ temperature }}°</p>
 
           <!-- Affichage conditionnel pour les écrans larges -->
           <div class="hidden md:flex flex-row items-center justify-center m-1">
