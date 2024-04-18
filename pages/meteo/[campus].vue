@@ -68,13 +68,13 @@
       </div>
     </div>
     <!-- Bouton pour revenir à l'accueil -->
-    <nuxt-link
+  </div>
+  <nuxt-link
       :to="`/universities/${selectedCampus}`"
-      class="pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
+      class="mt-7 pl-20 pr-20 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
     >
       Retour à l'accueil
     </nuxt-link>
-  </div>
 </template>
 
 <script setup>
