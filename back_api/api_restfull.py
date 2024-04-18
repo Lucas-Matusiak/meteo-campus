@@ -4,7 +4,9 @@ import sqlite3
 import os
 from urllib.parse import unquote
 from weather_api import get_current_weather, get_hourly_forecast, get_daily_forecast, weather_data_model
+from model_api import run_model
 
+#SI ERREUR VOICI LA COMMANDE : py -m pip install scikit-learn==1.2.2 
 api_key = 'a1b1045de421855d4d44bb2b53d4da8f'
 
 app = Flask(__name__)
@@ -50,17 +52,14 @@ def complete_weather():
     current_weather_data = get_current_weather(lat, lon, api_key)
     hourly_forecast_data = get_hourly_forecast(lat, lon, api_key)
     daily_forecast_data = get_daily_forecast(lat, lon, api_key)
-    model_data = weather_data_model(lat, lon, api_key)
-    # Avoir le dictionnaire complet avec les données de classification dynamic_classification()
-    # Traduire les données du model à l'aide du dictionnaire classify_main_description()
-    # Utiliser les données sur les models (V & A) model_train()
-    # Renvoyer le type de vetement et l'accessoire conseillé pour les heures
+    model_response = run_model(weather_data_model(lat, lon, api_key))
     return jsonify({
         "current_weather": current_weather_data,
         "hourly_forecast": hourly_forecast_data,
         "daily_forecast": daily_forecast_data,
-        "model_data": model_data
+        "model_response": model_response
     })
+
 
 @app.route('/api/universities')
 def get_universities():
@@ -143,7 +142,7 @@ def get_implantations():
 
             cursor.execute(query_get_implantations)
             implantations = cursor.fetchall()
-            
+
             campus_list = []
             for campus in implantations:
                 campus_dict = {
@@ -152,22 +151,16 @@ def get_implantations():
                     'longitude': campus[2],
                     'id_campus': campus[3],
                     'id_universite': campus[4],
-                    # Add other fields as needed
                 }
                 campus_list.append(campus_dict)
             
-
-            # Close database connection
             conn.close()
 
             return jsonify(campus_list)
 
         except Exception as e:
-            # Handle any errors
             print(f"Error fetching implantations: {e}")
             return jsonify({'error': 'Internal server error'}), 500
-    else:
-        return jsonify()
 
 @app.route('/api/campus_localisation', methods=['GET'])
 def get_campus_localisation():
@@ -175,7 +168,7 @@ def get_campus_localisation():
     if os.path.exists(db):
         try:
             # Extract the etablissement_siege from the request query
-            campus = request.args.get("campus")
+            campus = request.args.get('campus')
             campus = unquote(campus)
 
             # Check if the etablissement_siege parameter is provided
@@ -188,6 +181,9 @@ def get_campus_localisation():
             cursor = conn.cursor()
 
             query_get_localisation = f"SELECT latitude,longitude FROM Implantations WHERE nom_implantation=\"{campus}\""
+
+            print(query_get_localisation)
+
 
             cursor.execute(query_get_localisation)
             localisation_campus = cursor.fetchall()

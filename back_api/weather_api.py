@@ -17,6 +17,7 @@ def get_current_weather(lat, lon, api_key):
         
         weather_description = root.find('weather').attrib['value']
         wind_speed = round(3.6 * float(root.find('wind/speed').attrib['value']))
+        weather_code = root.find('weather').attrib['number']
         sun_rise_datetime = datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S')
         sun_set_datetime = datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S')
         sun_rise = str(sun_rise_datetime.strftime('%H:%M'))
@@ -43,6 +44,7 @@ def get_current_weather(lat, lon, api_key):
         return {
             "temperature": temperature_value,
             "feels_like_value": feels_like_value,
+            "code": weather_code,
             "humidity": humidity_value,
             "weather_description": weather_description,
             "wind_speed": wind_speed,
