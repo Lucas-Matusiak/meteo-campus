@@ -7,7 +7,7 @@
       <!--GRID DEBUT -->
 
       <div
-        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-lg shadow-md text-white p-4 col-span-3 row-span-2"
+        class="bg-gradient-to-br from-[#2A8EAD] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-3 row-span-2"
       >
         <!--GRID 1 -->
 
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="bg-green-500 text-white p-4 col-span-1">
+      <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1">
         <!-- GRID 2 HUMIDITE -->
         <div
           v-if="
@@ -54,7 +54,7 @@
           <Humidite :humidite="weatherData.current_weather.humidity" />
         </div>
       </div>
-      <div class="bg-red-500 text-white p-4 col-span-1">
+      <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1">
         <!-- GRID 3 VITESSE VENT -->
         <div
           v-if="
@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <div class="bg-yellow-500 text-white p-4 col-span-2 row-span-2">
+      <div class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md  text-white p-4 col-span-2 row-span-2">
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
         <div>
           <AccessoireTenue />

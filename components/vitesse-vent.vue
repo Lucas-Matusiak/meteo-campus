@@ -1,9 +1,6 @@
 <template>
-  <div class="flex items-center justify-center">
-    <div
-      class="wind-speed flex flex-col items-center justify-center bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-lg shadow-md w-full max-w-md mx-auto p-4 md:p-6 mr-6 mb-4"
-    >
-      <div v-if="vitesseVent !== null">
+  <div v-if="vitesseVent !== null">
+    <div class="flex flex-col items-center">
         <img
           src="~/../assets/images/vent.png"
           alt="Logo Vitesse du vent"
@@ -16,7 +13,7 @@
         <h1 class="text-1xl bg-clip-text text-center">Vitesse du vent</h1>
       </div>
     </div>
-  </div>
+  
 </template>
 <script>
 // Définition du composant Vue.js
