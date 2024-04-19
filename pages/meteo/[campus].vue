@@ -24,9 +24,8 @@
     >
       <weather :code="weatherData.current_weather.code" />
     </div>
-    
-    <div
-    >
+
+    <div>
       <AccessoireTenue />
     </div>
     <div
@@ -50,7 +49,7 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg w-[60%] "
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg l-[100%] w-[85%]"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
@@ -59,27 +58,58 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll max-w-[600px]">
+      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1300px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
           :key="index"
           :heure="data.time"
-          :imgMeteo="data.weather_description"
           :temperature="data.temperature"
           :pourcentagePluie="data.precipitation_proba"
           :vitesseVent="data.wind_speed"
+          :code="data.code"
         />
       </div>
     </div>
     <!-- Bouton pour revenir à l'accueil -->
   </div>
-  <nuxt-link
+
+  <div
+    class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[85%]"
+  >
+    <h1
+      class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
+      style="margin-top: 4px; margin-bottom: 4px"
+    >
+      Prévisions de la semaine
+    </h1>
+    <div
+      class="flex flex-col md:flex-row"
+      v-if="weatherData && weatherData.hourly_forecast"
+    >
+      <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
+      <AffichageJours
+        v-for="(data, index) in weatherData.daily_forecast"
+        :key="index"
+        :date="data.date"
+        :temperature="data.temperature_day"
+        :min="data.temperature_min"
+        :max="data.temperature_max"
+        :vitesseVent="data.wind_speed_kmh"
+        :code="data.code"
+      />
+    </div>
+  </div>
+
+  <div>
+    <!-- Bouton pour revenir à l'accueil -->
+    <nuxt-link
       :to="`/universities/${selectedCampus}`"
       class="mt-7 pl-5 pr-5 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
     >
       Retour à l'accueil
     </nuxt-link>
+  </div>
 </template>
 
 <script setup>
@@ -90,8 +120,6 @@ import Temperature from "~/components/temperature.vue";
 import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 import SkeletonMeteo from "~/components/skeleton-meteo.vue";
 import AccessoireTenue from "~/components/accessoire-tenue.vue";
-
-
 
 const route = useRoute();
 const selectedCampus = route.params.campus;
