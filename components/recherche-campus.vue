@@ -2,7 +2,7 @@
   <div>
     <div id="chooseUniversity" class="w-72">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton université</h1>
-      <Combobox v-model="selectedUniversity" @change="updateCampus()">
+      <Combobox v-model="selectedUniversity">
         <div class="relative mt-1">
           <div
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
@@ -11,6 +11,7 @@
               class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               :displayValue="(selectedUniversity) => selectedUniversity"
               @change="handleChangeInputUniversity($event)"
+              @keyup.enter="updateUniversity()"
               placeholder="Recherchez une université..."
             />
             <ComboboxButton
@@ -30,7 +31,8 @@
           >
             <ComboboxOptions
               class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-50"
-            >
+             
+              >
               <div
                 v-if="!filteredList(listUniversities, queryUniversity).length"
                 class="relative cursor-default select-none px-4 py-2 text-gray-700"
@@ -47,6 +49,7 @@
                 :value="university"
                 v-slot="{ selected, active }"
                 @click="updateUniversity()"
+                @keyup.enter="updateUniversity()"
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -80,7 +83,7 @@
     </div>
     <div id="chooseCampus" class="w-72" v-if="selectedUniversity">
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton campus</h1>
-      <Combobox v-model="selectedCampus" @update="updateCampus()">
+      <Combobox v-model="selectedCampus">
         <div class="relative mt-1">
           <div
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
@@ -89,6 +92,7 @@
               class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               :displayValue="(selectedCampus) => selectedCampus"
               @change="handleChangeInputCampus($event)"
+              @keyup.enter="updateCampus()"
               placeholder="Recherchez une université..."
             />
             <ComboboxButton
@@ -122,6 +126,7 @@
                 :value="campus"
                 v-slot="{ selected, active }"
                 @click="updateCampus()"
+
               >
                 <li
                   class="relative cursor-default select-none py-2 pl-10 pr-4"

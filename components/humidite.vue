@@ -2,11 +2,7 @@
   <div class="flex justify-center">
     <div class="pr-10 pt-4">
       <div v-if="humidite !== null">
-        <img
-          src="~/../assets/images/Humidite.png"
-          alt="Logo Humidité"
-          class="logo"
-        />
+  
         <h1 class="text-2xl font-bold bg-clip-text pt-5 text-center">
           {{ humidite }}%
         </h1>

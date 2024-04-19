@@ -22,5 +22,4 @@ logs
 .env
 .env.*
 !.env.example
-pnpm-lock.yaml
-back_api/__pycache__/weather_api.cpython-310.pyc
+__pycache__
