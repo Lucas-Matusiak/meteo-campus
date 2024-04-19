@@ -3,18 +3,18 @@
     <SkeletonMeteo />
   </div>
   <div v-else class="h-auto flex flex-col justify-center items-center">
-    <div class="grid grid-cols-5 grid-rows-2 gap-4 grid-auto-flow:row">
+    <div class="grid grid-cols-5 gap-4 grid-auto-flow:row">
       <!--GRID DEBUT -->
 
       <div
-        class="bg-gradient-to-br from-[#2A8EAD] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-3 row-span-2"
+        class="bg-gradient-to-br from-[#2A8EAD] to-[#8BC5D6] rounded-2xl shadow-md text-white  col-span-3 row-span-3"
       >
         <!--GRID 1 -->
 
-        <h1 class="text-1xl font-bold mb-2">
+        <h1 class="text-1xl font-bold p-3">
           {{ route.params.campus }}
         </h1>
-        <div class="flex flex-row space-x-4">
+        <div class="flex items-center justify-around flex-row p-5">
           <div v-if="!isLoading && weatherData.current_weather">
             <Temperature
               :temperature="weatherData.current_weather.temperature"
@@ -38,11 +38,12 @@
           >
             <weather :code="weatherData.current_weather.code" />
           </div>
-          
         </div>
       </div>
 
-      <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1">
+      <div
+        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
+      >
         <!-- GRID 2 HUMIDITE -->
         <div
           v-if="
@@ -54,7 +55,9 @@
           <Humidite :humidite="weatherData.current_weather.humidity" />
         </div>
       </div>
-      <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1">
+      <div
+        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
+      >
         <!-- GRID 3 VITESSE VENT -->
         <div
           v-if="
@@ -69,7 +72,9 @@
         </div>
       </div>
 
-      <div class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md  text-white p-4 col-span-2 row-span-2">
+      <div
+        class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md text-white p-4 col-span-2 row-span-2"
+      >
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
         <div>
           <AccessoireTenue />
