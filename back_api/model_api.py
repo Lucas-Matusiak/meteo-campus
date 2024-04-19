@@ -2,7 +2,7 @@ import csv
 import os
 import pickle
 import numpy as np
-import sklearn
+import sklearn # scikit-learn==1.2.2
 
 
 def dynamic_classification():
