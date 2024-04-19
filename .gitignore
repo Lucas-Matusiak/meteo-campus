@@ -26,6 +26,3 @@ __pycache__
 
 #venv
 __venv__
-lib
-Scripts
-pyvenv.cfg
