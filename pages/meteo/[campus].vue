@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoading">
+  <div class="mb-8" v-if="isLoading">
     <SkeletonMeteo />
   </div>
   <div v-else class="h-auto flex flex-col justify-center items-center">
@@ -71,33 +71,31 @@
         />
       </div>
     </div>
-    <!-- Bouton pour revenir à l'accueil -->
-  </div>
-
-  <div
-    class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[85%]"
-  >
-    <h1
-      class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
-      style="margin-top: 4px; margin-bottom: 4px"
-    >
-      Prévisions de la semaine
-    </h1>
     <div
-      class="flex flex-col md:flex-row"
-      v-if="weatherData && weatherData.hourly_forecast"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[85%]"
     >
-      <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
-      <AffichageJours
-        v-for="(data, index) in weatherData.daily_forecast"
-        :key="index"
-        :date="data.date"
-        :temperature="data.temperature_day"
-        :min="data.temperature_min"
-        :max="data.temperature_max"
-        :vitesseVent="data.wind_speed_kmh"
-        :code="data.code"
-      />
+      <h1
+        class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
+        style="margin-top: 4px; margin-bottom: 4px"
+      >
+        Prévisions de la semaine
+      </h1>
+      <div
+        class="flex flex-col md:flex-row"
+        v-if="weatherData && weatherData.hourly_forecast"
+      >
+        <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
+        <AffichageJours
+          v-for="(data, index) in weatherData.daily_forecast"
+          :key="index"
+          :date="data.date"
+          :temperature="data.temperature_day"
+          :min="data.temperature_min"
+          :max="data.temperature_max"
+          :vitesseVent="data.wind_speed_kmh"
+          :code="data.code"
+        />
+      </div>
     </div>
   </div>
 
