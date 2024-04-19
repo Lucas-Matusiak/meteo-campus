@@ -50,7 +50,7 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg w-[50%]"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg w-[60%] "
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
@@ -59,7 +59,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll">
+      <div class="flex overflow-x-scroll max-w-[600px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
