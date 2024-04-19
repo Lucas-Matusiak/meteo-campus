@@ -58,7 +58,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1300px]">
+      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1315px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
@@ -75,7 +75,7 @@
   </div>
 
   <div
-    class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[85%]"
+    class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[70%] "
   >
     <h1
       class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
