@@ -2,33 +2,28 @@
   <div class="mb-8" v-if="isLoading">
     <SkeletonMeteo />
   </div>
-  <div v-else class="h-auto flex flex-col justify-center items-center">
+  <div
+    v-else
+    class="h-auto flex flex-col justify-center items-center w-[1000px]"
+  >
     <div class="grid grid-cols-5 gap-4 grid-auto-flow:row">
       <!--GRID DEBUT -->
 
       <div
-        class="bg-gradient-to-br from-[#2A8EAD] to-[#8BC5D6] rounded-2xl shadow-md text-white  col-span-3 row-span-3"
+        class="bg-gradient-to-br from-[#2A8EAD] to-[#77c1d8] rounded-2xl shadow-md text-white col-span-3 row-span-3"
       >
         <!--GRID 1 -->
 
-        <h1 class="text-1xl font-bold p-3">
+        <h1 class="text-1xl font-bold whitespace-normal p-7">
           {{ route.params.campus }}
         </h1>
-        <div class="flex items-center justify-around flex-row p-5">
+        <div class="flex items-center justify-around p-5">
           <div v-if="!isLoading && weatherData.current_weather">
             <Temperature
               :temperature="weatherData.current_weather.temperature"
               :feelsLike="weatherData.current_weather.feels_like_value"
             />
           </div>
-
-          <div v-if="weatherData && weatherData.current_weather">
-            <Soleil
-              :heureLever="weatherData.current_weather.sun_rise"
-              :heureCoucher="weatherData.current_weather.sun_set"
-            />
-          </div>
-
           <div
             v-if="
               weatherData &&
@@ -37,6 +32,12 @@
             "
           >
             <weather :code="weatherData.current_weather.code" />
+          </div>
+          <div v-if="weatherData && weatherData.current_weather">
+            <Soleil
+              :heureLever="weatherData.current_weather.sun_rise"
+              :heureCoucher="weatherData.current_weather.sun_set"
+            />
           </div>
         </div>
       </div>
@@ -83,7 +84,7 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg l-[100%] w-[85%]"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
@@ -92,7 +93,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1315px]">
+      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1000px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
@@ -106,7 +107,7 @@
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[70%]"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[1000px]"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
@@ -115,7 +116,7 @@
       >
         Prévisions de la semaine
       </h1>
-      <div class="flex flex-col md:flex-row">
+      <div class="flex flex-col md:flex-row md:w-[1000px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageJours
           v-for="(data, index) in weatherData.daily_forecast"
@@ -147,6 +148,7 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
 import AffichageJours from "~/components/affichage-jours.vue";
+import Soleil from "~/components/soleil.vue"
 import Temperature from "~/components/temperature.vue";
 import Humidite from "~/components/humidite.vue";
 import VitesseDuVent from "~/components/vitesse-vent.vue";
