@@ -116,7 +116,7 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
-import Temperature from "~/components/temperature.vue"; // Import du composant Temperature.vue
+import Temperature from "~/components/temperature.vue";
 import VitesseVent from "~/components/vitesse-vent.vue";
 import SkeletonMeteo from "~/components/skeleton-meteo.vue";
 import AccessoireTenue from "~/components/accessoire-tenue.vue";
