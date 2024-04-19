@@ -10,6 +10,8 @@ def get_current_weather(lat, lon, api_key):
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
         root = ET.fromstring(str(xml_content))
 
+        timezone = datetime.timedelta(seconds=float(root.find('.//timezone').text))
+
         # Accessing elements
         temperature_value = round(float(root.find('temperature').attrib['value']))
         feels_like_value =round(float(root.find('feels_like').attrib['value']))
@@ -18,8 +20,8 @@ def get_current_weather(lat, lon, api_key):
         weather_description = root.find('weather').attrib['value']
         wind_speed = round(3.6 * float(root.find('wind/speed').attrib['value']))
         weather_code = root.find('weather').attrib['icon']
-        sun_rise_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S')
-        sun_set_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S')
+        sun_rise_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S') + timezone
+        sun_set_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S') + timezone
         sun_rise = str(sun_rise_datetime.strftime('%H:%M'))
         sun_set = str(sun_set_datetime.strftime('%H:%M'))
 
