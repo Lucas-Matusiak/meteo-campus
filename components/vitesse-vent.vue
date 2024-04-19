@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-      <div class="wind-speed pl-4">
+    <div class="pl-4">
       <div v-if="vitesseVent !== null">
         <img
           src="~/../assets/images/vent.png"
@@ -18,9 +18,7 @@
   </div>
 </template>
 <script>
-// Définition du composant Vue.js
 export default {
-  // Déclaration des propriétés du composant
   props: {
     vitesseVent: { type: Number, default: null },
   },
