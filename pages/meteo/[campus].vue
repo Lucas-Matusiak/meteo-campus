@@ -58,7 +58,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1300px]">
+      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1315px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
@@ -71,31 +71,33 @@
         />
       </div>
     </div>
-    <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[85%]"
+    <!-- Bouton pour revenir à l'accueil -->
+  </div>
+
+  <div
+    class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[70%] "
+  >
+    <h1
+      class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
+      style="margin-top: 4px; margin-bottom: 4px"
     >
-      <h1
-        class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
-        style="margin-top: 4px; margin-bottom: 4px"
-      >
-        Prévisions de la semaine
-      </h1>
-      <div
-        class="flex flex-col md:flex-row"
-        v-if="weatherData && weatherData.hourly_forecast"
-      >
-        <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
-        <AffichageJours
-          v-for="(data, index) in weatherData.daily_forecast"
-          :key="index"
-          :date="data.date"
-          :temperature="data.temperature_day"
-          :min="data.temperature_min"
-          :max="data.temperature_max"
-          :vitesseVent="data.wind_speed_kmh"
-          :code="data.code"
-        />
-      </div>
+      Prévisions de la semaine
+    </h1>
+    <div
+      class="flex flex-col md:flex-row"
+      v-if="weatherData && weatherData.hourly_forecast"
+    >
+      <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
+      <AffichageJours
+        v-for="(data, index) in weatherData.daily_forecast"
+        :key="index"
+        :date="data.date"
+        :temperature="data.temperature_day"
+        :min="data.temperature_min"
+        :max="data.temperature_max"
+        :vitesseVent="data.wind_speed_kmh"
+        :code="data.code"
+      />
     </div>
   </div>
 
@@ -114,10 +116,12 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
+import AffichageJours from "~/components/affichage-jours.vue";
 import Temperature from "~/components/temperature.vue";
 import HumiditeVitesseDuVent from "~/components/humidite-vitesse-vent.vue";
 import SkeletonMeteo from "~/components/skeleton-meteo.vue";
 import AccessoireTenue from "~/components/accessoire-tenue.vue";
+
 
 const route = useRoute();
 const selectedCampus = route.params.campus;

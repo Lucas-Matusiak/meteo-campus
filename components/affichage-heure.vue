@@ -29,11 +29,7 @@
         >
           <!-- Utilisez les nouvelles props pour afficher les données -->
           <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
-          <img
-            src="~/../assets/images/neige.png/"
-            alt=""
-            class="w-10 h-10 mt-2"
-          />
+          <Weather :code="code" :showText=false />
           <p class="text-xs text-white m-2">{{ temperature }}°</p>
 
           <!-- Affichage conditionnel pour les écrans larges -->
@@ -61,6 +57,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import Weather from "./weather.vue";
 
 const isMobile = computed(() => {
   // Vérifie si la largeur de l'écran est inférieure à 768 pixels
@@ -70,7 +67,7 @@ const isMobile = computed(() => {
 // Props
 const props = defineProps({
   heure: String,
-  imgMeteo: String,
+  code: String,
   temperature: Number,
   pourcentagePluie: Number,
   vitesseVent: Number,
