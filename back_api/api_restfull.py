@@ -52,12 +52,12 @@ def complete_weather():
     current_weather_data = get_current_weather(lat, lon, api_key)
     hourly_forecast_data = get_hourly_forecast(lat, lon, api_key)
     daily_forecast_data = get_daily_forecast(lat, lon, api_key)
-    # model_response = run_model(weather_data_model(lat, lon, api_key))
+    model_response = run_model(weather_data_model(lat, lon, api_key))
     return jsonify({
         "current_weather": current_weather_data,
         "hourly_forecast": hourly_forecast_data,
-        "daily_forecast": daily_forecast_data
-        # "model_response": model_response
+        "daily_forecast": daily_forecast_data,
+        "model_response": model_response
     })
 
 

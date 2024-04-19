@@ -23,3 +23,9 @@ logs
 .env.*
 !.env.example
 __pycache__
+
+#venv
+__venv__
+lib
+Scripts
+pyvenv.cfg
