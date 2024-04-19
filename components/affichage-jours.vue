@@ -2,19 +2,19 @@
   <div class="container mx-auto p-4">
     <div class="bg-gradient-to-b from-blue-400 to-blue-300 rounded-3xl flex flex-col items-center justify-center shadow-lg m-2">
       <!-- Contenu visible sur mobile uniquement -->
-      <div class="flex flex-col items-center justify-center text-center text-white p-4 md:hidden">
+      <div class="flex flex-row items-center justify-center text-center text-white p-4 md:hidden">
         <img
           src="~/../assets/images/neige.png"
           alt="Neige"
           class="w-14 h-14 mb-2"
         />
-        <p class="text-lg">{{ temperature }}°C</p>
-        <h1 class="text-sm">{{ jourSemaine }}</h1>
+        <p class="text-lg">{{ temperature }}°C </p>
+        <h1 class="text-sm">{{ jourSemaine }} </h1>
       </div>
 
       <!-- Contenu visible sur tablette et desktop uniquement -->
       <div class="hidden md:flex flex-col items-center justify-center text-center text-white p-4">
-        <h1 class="text-xs mt-2">{{ jourSemaine }}</h1>
+        <h1 class="text-xs mt-2">{{ jourSemaine }} </h1>
         <img
           src="~/../assets/images/neige.png"
           alt="Neige"

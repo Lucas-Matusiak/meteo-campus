@@ -82,7 +82,7 @@
     >
       Prévisions de la semaine
     </h1>
-    <div class="flex" v-if="weatherData && weatherData.hourly_forecast">
+    <div class="flex flex-col md:flex-row " v-if="weatherData && weatherData.hourly_forecast">
       <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
       <AffichageJours
         v-for="(data, index) in weatherData.daily_forecast"
