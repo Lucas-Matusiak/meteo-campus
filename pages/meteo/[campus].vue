@@ -14,7 +14,7 @@
       >
         <!--GRID 1 -->
 
-        <h1 class="text-1xl font-bold whitespace-normal p-7">
+        <h1 class="text-1xl font-bold p-7">
           {{ route.params.campus }}
         </h1>
         <div class="flex items-center justify-around p-5">
