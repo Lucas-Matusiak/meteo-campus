@@ -2,7 +2,7 @@
   <div v-if="vitesseVent !== null">
     <div class="flex flex-col items-center">
         <img
-          src="~/../assets/images/vent.png"
+          src="~/../assets/images/vent.svg"
           alt="Logo Vitesse du vent"
           class="logo"
           style="width: 50px; height: auto"

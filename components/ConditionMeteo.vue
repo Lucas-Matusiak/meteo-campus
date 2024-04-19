@@ -1,7 +1,7 @@
 <template>
 <div id="weather">
     <img 
-      src="~/../assets/images/ensoleille.png"
+      src="~/../assets/images/ensoleille.svg"
       alt="weather"
       class="w-64 h-auto"
     />

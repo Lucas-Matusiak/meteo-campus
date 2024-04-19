@@ -38,7 +38,7 @@
           <!-- Affichage conditionnel pour les écrans larges -->
           <div class="hidden md:flex flex-row items-center justify-center m-1">
             <img
-              src="~/../assets/images/goutteBleue.png"
+              src="~/../assets/images/gouttebleue.svg"
               alt=""
               class="w-3 h-4 mr-1"
             />
@@ -46,7 +46,7 @@
           </div>
           <div class="hidden md:flex flex-row items-center justify-center m-1">
             <img
-              src="~/../assets/images/vent.png"
+              src="~/../assets/images/vent.svg"
               alt=""
               class="w-4 h-4 mr-1"
             />

@@ -30,7 +30,7 @@
           <!-- Utilisez les nouvelles props pour afficher les données -->
           <h1 class="text_xs text-white mt-2">{{ heure }}</h1>
           <img
-            src="~/../assets/images/neige.png/"
+            src="~/../assets/images/Neige.svg/"
             alt=""
             class="w-10 h-10 mt-2 ml-4"
           />
@@ -39,7 +39,7 @@
           <!-- Affichage conditionnel pour les écrans larges -->
           <div class="hidden md:flex flex-row items-center justify-center m-1">
             <img
-              src="~/../assets/images/goutteBleue.png"
+              src="~/../assets/images/goutteBleue.svg"
               alt=""
               class="w-3 h-4 mr-1"
             />
@@ -47,7 +47,7 @@
           </div>
           <div class="hidden md:flex flex-row items-center justify-center m-1">
             <img
-              src="~/../assets/images/vent.png"
+              src="~/../assets/images/vent.svg"
               alt=""
               class="w-4 h-4 mr-1"
             />

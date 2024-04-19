@@ -3,7 +3,7 @@
     <div class="wind-speed pl-4">
       <div v-if="vitesseVent !== null">
         <img
-          src="~/../assets/images/vent.png"
+          src="~/../assets/images/vent.svg"
           alt="Logo Vitesse du vent"
           class="logo"
         />

@@ -20,7 +20,7 @@
         <p class="text-xs m-2">{{ min }}°C / {{ max }}°C</p>
         <p class="text-xs m-2">{{ vitesseVent }} km/h</p>
         <img
-          src="~/../assets/images/vent.png"
+          src="~/../assets/images/vent.svg"
           alt="Vent"
           class="w-4 h-4 mr-1"
         />
