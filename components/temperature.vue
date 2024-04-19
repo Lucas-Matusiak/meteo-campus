@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-lg shadow-md w-full max-w-md mx-auto p-4 md:p-6 mr-6 mb-4">
+  <div class="flex flex-col items-center justify-center">
 
     <div v-if="temperature !== null && feelsLike !== null">
       <p class="text-center text-5xl bg-clip-text text-white font-bold ">{{ temperature }}°C</p>
