@@ -87,7 +87,7 @@
       >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1300px]">
+      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1315px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure
           v-for="(data, index) in weatherData.hourly_forecast"
@@ -101,7 +101,8 @@
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[85%]"
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[70%]"
+      v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
         class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
@@ -109,10 +110,7 @@
       >
         Prévisions de la semaine
       </h1>
-      <div
-        class="flex flex-col md:flex-row"
-        v-if="weatherData && weatherData.hourly_forecast"
-      >
+      <div class="flex flex-col md:flex-row">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageJours
           v-for="(data, index) in weatherData.daily_forecast"
@@ -143,6 +141,7 @@
 import { useRoute } from "vue-router";
 import axios from "axios";
 import AffichageHeure from "~/components/affichage-heure.vue";
+import AffichageJours from "~/components/affichage-jours.vue";
 import Temperature from "~/components/temperature.vue";
 import Humidite from "~/components/humidite.vue";
 import VitesseDuVent from "~/components/vitesse-vent.vue";

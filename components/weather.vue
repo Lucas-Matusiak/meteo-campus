@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-10">
+  <div class="">
     <!-- Affichage conditionnel des images et descriptions basé sur le code météo -->
     <div v-if="code.toString().startsWith('2')"  class="flex">
       <img

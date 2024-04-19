@@ -35,6 +35,8 @@
             class="w-10 h-10 mt-2 ml-4"
           />
           <p class="text-s text-white m-2 font-bold ml-7">{{ temperature }}°</p>
+          <Weather :code="code" :showText=false />
+          <p class="text-xs text-white m-2">{{ temperature }}°</p>
 
           <!-- Affichage conditionnel pour les écrans larges -->
           <div class="hidden md:flex flex-row items-center justify-center m-1">
@@ -61,6 +63,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import Weather from "./weather.vue";
 
 const isMobile = computed(() => {
   // Vérifie si la largeur de l'écran est inférieure à 768 pixels
@@ -70,7 +73,7 @@ const isMobile = computed(() => {
 // Props
 const props = defineProps({
   heure: String,
-  imgMeteo: String,
+  code: String,
   temperature: Number,
   pourcentagePluie: Number,
   vitesseVent: Number,
