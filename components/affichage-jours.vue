@@ -38,7 +38,6 @@ const props = defineProps({
   vitesseVent: Number,
   code: String,
 });
-
 // On utilise directement les classes de Tailwind pour la réactivité donc pas besoin de computed isMobile.
 const jourSemaine = computed(() => {
   const jours = [

@@ -35,7 +35,7 @@ const svgMap = {
   '13n': '/images/13n.svg',
   '50d': '/images/50d.svg',
   '50n': '/images/50n.svg',
-  'default': 'images/01d.svg',
+  'default': '/images/unknow.svg',
 };
 
 const getIconPath = () => {

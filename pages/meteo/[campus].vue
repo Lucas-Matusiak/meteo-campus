@@ -24,7 +24,7 @@
           </div>
 
           <div v-if="weatherData.current_weather.code">
-            <WeatherIcon :code="weatherData.current_weather.code" size="large" />
+            <WeatherIcon :code="weatherData.current_weather.weather_icon" size="large" />
           </div>
 
           <div v-if="weatherData && weatherData.current_weather">
@@ -124,7 +124,6 @@ let isLoading = computed(() => {
 // Appel de la méthode pour récupérer les données météorologiques
 const api_call_weather = async () => {
   const request = `http://127.0.0.1:5000/api/complete_weather?lat=${lat.value}&lon=${lon.value}`;
-  console.log(request);
   try {
     const response = await axios.get(request);
     //console.log("Contenu de la requête WEATHER:", response.data); // Affichage du contenu de la requête dans la console
@@ -150,8 +149,6 @@ const api_call_localisation = async () => {
 
     lat.value = response.data[0].latitude;
     lon.value = response.data[0].longitude;
-    console.log(lat.value);
-    console.log(lon.value);
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des localisations du campus :",
