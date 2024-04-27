@@ -2,18 +2,22 @@
   <div class="mb-8" v-if="isLoading">
     <SkeletonMeteo />
   </div>
-  <div v-else class="h-auto flex flex-col justify-center items-center">
-    <div class="grid grid-cols-5 grid-rows-2 gap-4 grid-auto-flow:row">
+  <div
+    v-else
+    class="h-auto flex flex-col justify-center items-center w-[1000px]"
+  >
+    <div class="grid grid-cols-5 gap-4 grid-auto-flow:row">
       <!--GRID DEBUT -->
 
       <div
-        class="bg-gradient-to-br from-[#2A8EAD] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-3 row-span-2">
+        class="bg-gradient-to-br from-[#2A8EAD] to-[#77c1d8] rounded-2xl shadow-md text-white col-span-3 row-span-3"
+      >
         <!--GRID 1 -->
 
-        <h1 class="text-1xl font-bold mb-2">
+        <h1 class="text-1xl font-bold p-7">
           {{ route.params.campus }}
         </h1>
-        <div class="flex flex-row space-x-4">
+        <div class="flex items-center justify-around p-5">
           <div v-if="!isLoading && weatherData.current_weather">
             <Temperature :temperature="weatherData.current_weather.temperature"
               :feelsLike="weatherData.current_weather.feels_like_value" />
@@ -30,13 +34,17 @@
         </div>
       </div>
 
-      <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1">
+      <div
+        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
+      >
         <!-- GRID 2 HUMIDITE -->
         <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.humidity">
           <Humidite :humidite="weatherData.current_weather.humidity" />
         </div>
       </div>
-      <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1">
+      <div
+        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
+      >
         <!-- GRID 3 VITESSE VENT -->
         <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.wind_speed">
           <VitesseVent :vitesseVent="weatherData.current_weather.wind_speed" />
@@ -44,7 +52,8 @@
       </div>
 
       <div
-        class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md  text-white p-4 col-span-2 row-span-2">
+        class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md text-white p-4 col-span-2 row-span-2"
+      >
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
         <div>
           <AccessoireTenue />
@@ -52,26 +61,34 @@
       </div>
     </div>
 
-    <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg l-[100%] w-[85%]"
-      v-if="weatherData && weatherData.hourly_forecast">
-      <h1 class="text-center text-white font-bold border-b border-white px-4 m-4"
-        style="margin-top: 4px; margin-bottom: 4px">
+    <div
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg"
+      v-if="weatherData && weatherData.hourly_forecast"
+    >
+      <h1
+        class="text-center text-white font-bold border-b border-white px-4 m-4"
+        style="margin-top: 4px; margin-bottom: 4px"
+      >
         Prévisions Heure par Heure
       </h1>
-      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1315px]">
+      <div class="flex overflow-x-scroll max-w-[400px] md:max-w-[1000px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageHeure v-for="(data, index) in weatherData.hourly_forecast" :key="index" :heure="data.time"
           :temperature="data.temperature" :pourcentagePluie="data.precipitation_proba" :vitesseVent="data.wind_speed"
           :code="data.code" />
       </div>
     </div>
-    <div class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[70%]"
-      v-if="weatherData && weatherData.hourly_forecast">
-      <h1 class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
-        style="margin-top: 4px; margin-bottom: 4px">
+    <div
+      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[1000px]"
+      v-if="weatherData && weatherData.hourly_forecast"
+    >
+      <h1
+        class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
+        style="margin-top: 4px; margin-bottom: 4px"
+      >
         Prévisions de la semaine
       </h1>
-      <div class="flex flex-col md:flex-row">
+      <div class="flex flex-col md:flex-row md:w-[1000px]">
         <!-- Utilisez une boucle v-for pour afficher les données de prévisions horaires -->
         <AffichageJours v-for="(data, index) in weatherData.daily_forecast" :key="index" :date="data.date"
           :temperature="data.temperature_day" :min="data.temperature_min" :max="data.temperature_max"
