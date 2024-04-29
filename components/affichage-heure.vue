@@ -55,5 +55,4 @@ const props = defineProps({
   pourcentagePluie: Number,
   vitesseVent: Number,
 });
-console.log(props.code)
 </script>

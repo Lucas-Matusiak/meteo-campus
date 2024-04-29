@@ -1,26 +1,28 @@
 <template>
   <h1 class="text-1xl font-bold text-center">StylAI</h1>
-  <div class="flex justify-center">
-    <div v-if="accessoire" class="flex items-center pr-1 pt-4">
+  <div class="flex justify-center items-end">
+    <div v-if="accessoire && getIconPathAccessoire()" class="flex pr-8 pt-4">
       <div class="flex flex-col items-center">
         <img
-          src="~/../assets/images/Accessoire1W.svg"
-          alt="Logo Accessoire"
+          :src="getIconPathAccessoire()"
           :class="{
             'w-12 h-auto mb-2': size === 'small',
-            'w-20 h-auto mb-2': !size || size === 'default',
+            'w-20 h-15 mb-2': !size || size === 'default',
             'w-100 h-auto mb-2': size === 'large',
           }"
         />
         <h1>Accessoire</h1>
       </div>
     </div>
-    <div v-if="tenue" class="flex items-center pt-4">
+    <div v-if="tenue" class="flex pt-4">
       <div class="flex flex-col items-center">
         <img
-          src="~/../assets/images/Tenue0W.svg"
-          alt="Logo Tenue"
-          class="w-20 h-auto mb-2"
+          :src="getIconPathTenue()"
+          :class="{
+            'w-12 h-auto mb-2': size === 'small',
+            'w-20 h-15 mb-2': !size || size === 'default',
+            'w-100 h-auto mb-2': size === 'large',
+          }"
         />
         <h1>Tenue</h1>
       </div>
@@ -30,8 +32,8 @@
 
 <script setup>
 const props = defineProps({
-  tenue: String,
   accessoire: String,
+  tenue: String,
   size: {
     type: String,
     default: "default",
@@ -50,7 +52,10 @@ const svgMap = {
   "3a": "/images/Accessoire3W.svg",
   default: "/images/unknow.svg",
 };
-const getIconPath = () => {
-  return svgMap[props.code] || svgMap["default"];
+const getIconPathTenue = () => {
+  return svgMap[props.tenue] || svgMap["default"];
+};
+const getIconPathAccessoire = () => {
+  return svgMap[props.accessoire];
 };
 </script>
