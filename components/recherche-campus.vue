@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="chooseUniversity" class="w-72">
+
       <h1 class="m-5 text-2xl font-bold text-center">Choisis ton université</h1>
       <Combobox v-model="selectedUniversity">
         <div class="relative mt-1">
@@ -8,11 +9,14 @@
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
           >
             <ComboboxInput
-              class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+              type="txt"
+              class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0  rounded-full border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-all duration-300 animate-bounce"
               :displayValue="(selectedUniversity) => selectedUniversity"
               @change="handleChangeInputUniversity($event)"
               @keyup.enter="updateUniversity()"
               placeholder="Recherchez une université..."
+              @focus="handleInputFocus"
+              
             />
             <ComboboxButton
               class="absolute inset-y-0 right-0 flex items-center pr-2"
@@ -89,7 +93,7 @@
             class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
           >
             <ComboboxInput
-              class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+              class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 animate-bounce"
               :displayValue="(selectedCampus) => selectedCampus"
               @change="handleChangeInputCampus($event)"
               @keyup.enter="updateCampus()"
@@ -185,6 +189,11 @@ let listUniversities = ref([]);
 let listCampus = ref([]);
 let queryUniversity = ref("");
 let queryCampus = ref("");
+
+function handleInputFocus(event) {
+  // Ajouter une classe lorsque le champ de recherche obtient le focus
+  event.target.classList.add('focus:border-blue-500');
+}
 
 function filteredList(list, input) {
   return list.filter((element) =>
