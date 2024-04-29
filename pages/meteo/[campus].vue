@@ -4,9 +4,9 @@
   </div>
   <div
     v-else
-    class="h-auto flex flex-col justify-center items-center w-[1000px]"
+    class="fade-in h-auto flex flex-col justify-center items-center w-[1000px]"
   >
-    <div class="grid grid-cols-5 gap-4 grid-auto-flow:row">
+    <div class="grid grid-cols-5 gap-4 grid-auto-flow:row transition">
       <!--GRID DEBUT -->
 
       <div
@@ -164,3 +164,22 @@ if (lat.value && lon.value) {
 }
 
 </script>
+
+<style>
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+</style>
