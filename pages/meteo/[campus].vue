@@ -95,10 +95,10 @@
     </div>
   </div>
 
-  <div>
+  <div class="mt-8">
     <!-- Bouton pour revenir à l'accueil -->
     <nuxt-link :to="`/universities/${selectedCampus}`"
-      class="mt-7 pl-5 pr-5 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
+      class="pl-5 pr-5 bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg py-2 px-4 transition duration-300 ease-in-out">
       Retour à l'accueil
     </nuxt-link>
   </div>
