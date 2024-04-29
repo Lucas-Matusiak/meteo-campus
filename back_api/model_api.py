@@ -68,7 +68,7 @@ def model_train(data_classified):
         model_V = pickle.load(f)
     with open(path_model_accessoires, 'rb') as f:
         model_A = pickle.load(f)
-    return (model_V.predict(data_array).tolist() + model_A.predict(data_array).tolist())
+    return ([str(item) + "t" for item in model_V.predict(data_array).tolist()] + [str(item) + "a" for item in model_A.predict(data_array).tolist()])
 
 
 def run_model(data):
