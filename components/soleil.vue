@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col bg-gradient-to-br from-[#469FBB] to-[#8BC5D6]  rounded-lg p-5 m-5"
+    class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white rounded-lg p-5 m-5"
   >
     <div class="flex items-center pb-5">
       <img

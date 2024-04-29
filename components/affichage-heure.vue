@@ -4,7 +4,7 @@
       'container',
       { 'md:w-1/4 ': !isMobile }, 
     ]">
-      <div class="w-40 h-50 rounded-3xl flex flex-col items-center justify-center p-8 mt-4 mb-4 ml-2 mr-2 shadow-lg md:flex bg-gradient-to-b from-[#298DAD] to-[#54aec9]">
+      <div class="w-40 h-50 rounded-3xl flex flex-col items-center justify-center p-8 mt-4 mb-4 ml-2 mr-2 shadow-lg md:flex bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white">
         <div class="text-black text-center flex flex-col items-center justify-center">
 
           <h1 class="text-white text-base mt-2 mb-2">{{ heure }}</h1>

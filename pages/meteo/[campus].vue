@@ -10,7 +10,7 @@
       <!--GRID DEBUT -->
 
       <div
-        class="bg-gradient-to-br from-[#2A8EAD] to-[#77c1d8] rounded-2xl shadow-md text-white col-span-3 row-span-3"
+        class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white col-span-3 row-span-3"
       >
         <!--GRID 1 -->
 
@@ -35,7 +35,7 @@
       </div>
 
       <div
-        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
+        class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white p-4 col-span-1"
       >
         <!-- GRID 2 HUMIDITE -->
         <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.humidity">
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div
-        class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
+        class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white p-4 col-span-1"
       >
         <!-- GRID 3 VITESSE VENT -->
         <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.wind_speed">
@@ -52,7 +52,7 @@
       </div>
 
       <div
-        class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md text-white p-4 col-span-2 row-span-2"
+        class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white p-4 col-span-2 row-span-2"
       >
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
         <div v-if="weatherData.model_response">
@@ -62,7 +62,7 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg"
+      class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white rounded-3xl my-5 shadow-lg"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-[#46a0bb46] to-[#0e5e7635] rounded-3xl mb-4 shadow-lg l-[100%] w-[1000px]"
+      class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white l-[100%] w-[1000px]"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1

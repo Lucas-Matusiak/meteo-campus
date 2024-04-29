@@ -12,7 +12,7 @@
 
       <!-- Contenu visible sur tablette et desktop uniquement -->
       <div
-        class="hidden md:flex bg-gradient-to-b from-[#298DAD] to-[#54aec9] rounded-3xl flex-col items-center justify-center text-center text-white p-6 mb-4 mt-4"
+        class="hidden md:flex bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white flex-col items-center justify-center text-center text-white p-6 mb-4 mt-4"
       >
         <h1 class="text-xs mt-2 mb-2">{{ jourSemaine }}</h1>
         <WeatherIcon :code="code" size="small" />
