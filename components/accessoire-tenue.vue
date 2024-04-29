@@ -1,5 +1,8 @@
 <template>
-  <h1 class="text-1xl font-bold text-center">StylAI</h1>
+  <div class="flex justify-center items-center">
+    <h1 class="text-1xl font-bold text-center">StylAI</h1>
+    <img src="~/../assets/images/SparkleAI.png" class="w-6 h-auto" />
+  </div>
   <div class="flex justify-center items-end">
     <div v-if="accessoire && getIconPathAccessoire()" class="flex pr-8 pt-4">
       <div class="flex flex-col items-center">
@@ -11,7 +14,7 @@
             'w-100 h-auto mb-2': size === 'large',
           }"
         />
-        <h1>Accessoire</h1>
+        <h1 class="text-1xl bg-clip-text pt-2">{{ accessoireType }}</h1>
       </div>
     </div>
     <div v-if="tenue" class="flex pt-4">
@@ -24,7 +27,7 @@
             'w-100 h-auto mb-2': size === 'large',
           }"
         />
-        <h1>Tenue</h1>
+        <h1 class="text-1xl bg-clip-text pt-2">{{ tenuType }}</h1>
       </div>
     </div>
   </div>
@@ -58,4 +61,32 @@ const getIconPathTenue = () => {
 const getIconPathAccessoire = () => {
   return svgMap[props.accessoire];
 };
+const tenuType = computed(() => {
+  // Vérifie si la largeur de l'écran est inférieure à 768 pixels
+  switch (props.tenue) {
+    case "0t":
+      return "Très chaude";
+    case "1t":
+      return "Chaude";
+    case "2t":
+      return "Normale";
+    case "3t":
+      return "Légere";
+    default:
+      return null;
+  }
+});
+const accessoireType = computed(() => {
+  // Vérifie si la largeur de l'écran est inférieure à 768 pixels
+  switch (props.accessoire) {
+    case "1a":
+      return "Parapluie";
+    case "2a":
+      return "Casquette";
+    case "3a":
+      return "Après-ski";
+    default:
+      return null;
+  }
+});
 </script>
