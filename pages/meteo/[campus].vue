@@ -25,8 +25,8 @@
       <weather :code="weatherData.current_weather.code" />
     </div>
 
-    <div>
-      <AccessoireTenue />
+    <div v-if="weatherData.model_response">
+      <AccessoireTenue :tenue="weatherData.model_response" :accessoire="weatherData.model_response" />
     </div>
     <div
       v-if="
