@@ -5,7 +5,7 @@
       <div
         class="flex flex-row items-center justify-center text-center text-white border-t border-white px-4 mx-1 md:hidden"
       >
-        <Weather :code="code" :showText=false />
+        <WeatherIcon :code="code" :showText=false />
         <p class="text-lg px-6">{{ temperature }}°C</p>
         <h1 class="text-sm">{{ jourSemaine }}</h1>
       </div>
