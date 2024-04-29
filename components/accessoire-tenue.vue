@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center">
-    <h1 class="text-1xl font-bold text-center">StylAI</h1>
+    <h1 class="text-xl font-bold text-center">StylAI</h1>
     <img src="~/../assets/images/SparkleAI.png" class="w-6 h-auto" />
   </div>
   <div class="flex justify-center items-end">
