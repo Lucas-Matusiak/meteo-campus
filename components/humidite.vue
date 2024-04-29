@@ -2,7 +2,7 @@
   <div v-if="humidite !== null">
     <div class="flex flex-col items-center">
       <img
-        src="~/../assets/images/Humidite.svg"
+        src="~/../assets/images/humiditeW.svg"
         alt="Logo Humidité"
         class="logo"
         style="width: 50px; height: 49.58px"

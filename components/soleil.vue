@@ -4,7 +4,7 @@
   >
     <div class="flex items-center pb-5">
       <img
-        src="~/../assets/images/lever-soleil.svg"
+        src="~/../assets/images/coucher-soleilW.svg"
         alt="Logo Lever du soleil"
         class="w-10"
       />
@@ -15,7 +15,7 @@
     </div>
     <div class="flex items-center">
       <img
-        src="~/../assets/images/coucher-soleil.svg"
+        src="~/../assets/images/lever-soleilW.svg"
         alt="Logo Coucher du soleil"
         class="w-10"
       />
