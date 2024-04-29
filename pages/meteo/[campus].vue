@@ -18,16 +18,16 @@
           {{ route.params.campus }}
         </h1>
         <div class="flex items-center justify-around p-5">
-          <div v-if="!isLoading && weatherData.current_weather">
+          <div v-if="!isLoading && weatherData.current_weather!=null">
             <Temperature :temperature="weatherData.current_weather.temperature"
               :feelsLike="weatherData.current_weather.feels_like_value" />
           </div>
 
-          <div v-if="weatherData.current_weather.code">
+          <div v-if="weatherData.current_weather.code!=null ">
             <WeatherIcon :code="weatherData.current_weather.weather_icon" size="large" />
           </div>
 
-          <div v-if="weatherData && weatherData.current_weather">
+          <div v-if="weatherData && weatherData.current_weather!=null">
             <Soleil :heureLever="weatherData.current_weather.sun_rise"
               :heureCoucher="weatherData.current_weather.sun_set" />
           </div>
@@ -38,7 +38,7 @@
         class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
       >
         <!-- GRID 2 HUMIDITE -->
-        <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.humidity">
+        <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.humidity!=null">
           <Humidite :humidite="weatherData.current_weather.humidity" />
         </div>
       </div>
@@ -46,7 +46,7 @@
         class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-2xl shadow-md text-white p-4 col-span-1"
       >
         <!-- GRID 3 VITESSE VENT -->
-        <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.wind_speed">
+        <div v-if="weatherData && weatherData.current_weather && weatherData.current_weather.wind_speed!=null">
           <VitesseVent :vitesseVent="weatherData.current_weather.wind_speed" />
         </div>
       </div>
@@ -55,7 +55,7 @@
         class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md text-white p-4 col-span-2 row-span-2"
       >
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
-        <div v-if="weatherData.model_response">
+        <div v-if="weatherData.model_response !=null">
           <AccessoireTenue :tenue="weatherData.model_response[0]" :accessoire="weatherData.model_response[1]" />
         </div>
       </div>
@@ -63,7 +63,7 @@
 
     <div
       class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl my-5 shadow-lg"
-      v-if="weatherData && weatherData.hourly_forecast"
+      v-if="weatherData && weatherData.hourly_forecast!=null"
     >
       <h1
         class="text-center text-white font-bold m-4 px-4"
@@ -79,7 +79,7 @@
     </div>
     <div
       class="bg-gradient-to-br from-[#46a0bb46] to-[#0e5e7635] rounded-3xl mb-4 shadow-lg l-[100%] w-[1000px]"
-      v-if="weatherData && weatherData.hourly_forecast"
+      v-if="weatherData && weatherData.hourly_forecast!=null"
     >
       <h1
         class="text-center text-back font-bold m-4 px-4 "
