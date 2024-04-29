@@ -56,7 +56,7 @@
       >
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
         <div v-if="weatherData.model_response">
-          <AccessoireTenue :tenue="weatherData.model_response" :accessoire="weatherData.model_response" />
+          <AccessoireTenue :tenue="weatherData.model_response[0]" :accessoire="weatherData.model_response[1]" />
         </div>
       </div>
     </div>
