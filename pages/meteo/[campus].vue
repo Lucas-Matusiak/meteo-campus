@@ -66,8 +66,7 @@
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
-        class="text-center text-white font-bold border-b border-white px-4 m-4"
-        style="margin-top: 4px; margin-bottom: 4px"
+        class="text-center text-white font-bold m-4 px-4"
       >
         Prévisions Heure par Heure
       </h1>
