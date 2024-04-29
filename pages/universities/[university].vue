@@ -4,7 +4,7 @@
     <NuxtLink
       v-if="selectedCampus"
       :to="`/meteo/${selectedCampus}`"
-      class="px-6 py-3 bg-blue-500 text-white font-bold rounded-full hover:bg-blue-700 transition duration-300 ease-in-out"
+      class="px-6 py-3  bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
     >
       Voir les infos météo
     </NuxtLink>
