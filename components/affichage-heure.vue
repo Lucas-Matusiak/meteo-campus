@@ -2,7 +2,7 @@
   <div>
     <div :class="[
       'container',
-      { 'md:w-1/4': !isMobile }, 
+      { 'md:w-1/4 ': !isMobile }, 
     ]">
       <div :class="{
       'bg-gradient-to-b from-blue-900 to-slate-500':

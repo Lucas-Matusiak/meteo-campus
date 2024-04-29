@@ -79,12 +79,11 @@
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-[#469FBB] to-[#8BC5D6] rounded-3xl mb-4 shadow-lg l-[100%] w-[1000px]"
+      class="bg-gradient-to-br from-[#46a0bb46] to-[#0e5e7635] rounded-3xl mb-4 shadow-lg l-[100%] w-[1000px]"
       v-if="weatherData && weatherData.hourly_forecast"
     >
       <h1
-        class="text-center text-white font-bold m-4 px-4 border-b-0 md:border-b border-white"
-        style="margin-top: 4px; margin-bottom: 4px"
+        class="text-center text-back font-bold m-4 px-4 "
       >
         Prévisions de la semaine
       </h1>

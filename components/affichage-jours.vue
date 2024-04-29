@@ -12,14 +12,14 @@
 
       <!-- Contenu visible sur tablette et desktop uniquement -->
       <div
-        class="hidden md:flex bg-gradient-to-b from-[#298DAD] to-[#A4D8E8] rounded-3xl flex-col items-center justify-center text-center text-white p-2 mb-4 mt-4"
+        class="hidden md:flex bg-gradient-to-b from-[#298DAD] to-[#54aec9] rounded-3xl flex-col items-center justify-center text-center text-white p-6 mb-4 mt-4"
       >
         <h1 class="text-xs mt-2 mb-2">{{ jourSemaine }}</h1>
         <WeatherIcon :code="code" size="small" />
         <p class="text-xs m-2">{{ temperature }}°C</p>
         <p class="text-xs m-2">{{ min }}°C / {{ max }}°C</p>
         <div class="hidden md:flex flex-row items-center justify-center m-1">
-            <img src="~/../assets/images/vent.svg" alt="" class="w-4 h-4 mr-1" />
+            <img src="~/../assets/images/ventW.svg" alt="" class="w-4 h-4 mr-1" />
             <p class="text-xs">{{ vitesseVent }} km/h</p>
           </div>
       </div>
