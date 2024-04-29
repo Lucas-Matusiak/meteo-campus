@@ -10,7 +10,7 @@
       <!--GRID DEBUT -->
 
       <div
-        class="bg-gradient-to-br from-[#2A8EAD] to-[#77c1d8] rounded-2xl shadow-md text-white col-span-3 row-span-3"
+        class="bg-gradient-to-br from-[#2A8EAD] to-[#77c1d8] rounded-2xl shadow-md text-white col-span-3 row-span-3 "
       >
         <!--GRID 1 -->
 
@@ -95,10 +95,10 @@
     </div>
   </div>
 
-  <div>
+  <div class="mt-8">
     <!-- Bouton pour revenir à l'accueil -->
     <nuxt-link :to="`/universities/${selectedCampus}`"
-      class="mt-7 pl-5 pr-5 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
+      class="pl-5 pr-5 bg-[#469FBB] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
       Retour à l'accueil
     </nuxt-link>
   </div>
