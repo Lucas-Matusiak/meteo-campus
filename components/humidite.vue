@@ -1,13 +1,14 @@
 <template>
-  <div class="flex justify-center">
-    <div class="pr-10 pt-4">
-      <div v-if="humidite !== null">
-  
-        <h1 class="text-2xl font-bold bg-clip-text pt-5 text-center">
-          {{ humidite }}%
-        </h1>
-        <h1 class="text-1xl font-bold bg-clip-text text-center">Humidité</h1>
-      </div>
+  <div v-if="humidite !== null">
+    <div class="flex flex-col items-center">
+      <img
+        src="~/../assets/images/Humidite.svg"
+        alt="Logo Humidité"
+        class="logo"
+        style="width: 50px; height: 49.58px"
+      />
+      <h1 class="text-l font-bold bg-clip-text pt-5 text-center">{{ humidite }}%</h1>
+      <h1 class="text-1xl bg-clip-text text-center">Humidité</h1>
     </div>
   </div>
 </template>
