@@ -4,9 +4,9 @@
   </div>
   <div
     v-else
-    class="fade-in h-auto flex flex-col justify-center items-center w-[1000px]"
+    class="fade-in h-auto flex flex-col justify-center items-center"
   >
-    <div class="grid grid-cols-5 gap-4 grid-auto-flow:row transition">
+    <div class="grid grid-cols-5 gap-4 grid-auto-flow:row transition w-[1000px]">
       <!--GRID DEBUT -->
 
       <div
