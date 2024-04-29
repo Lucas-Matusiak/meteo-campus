@@ -52,7 +52,7 @@
       </div>
 
       <div
-        class="bg-opacity-20 bg-indigo-900 backdrop-blur-xl border-opacity-30 rounded-lg shadow-lg text-white p-4 col-span-2 row-span-2"
+        class="bg-gradient-to-tl from-[#9394F3] to-[#48A1EB] rounded-2xl shadow-md shadow-lg text-white p-4 col-span-2 row-span-2"
       >
         <!-- GRID 4 ACCESSOIRE ET VETEMENT -->
         <div v-if="weatherData.model_response">
