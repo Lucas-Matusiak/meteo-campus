@@ -1,9 +1,11 @@
 <template>
-  <div class="items-center justify-center">
+  <div class="flex flex-col mb-12">
 
     <div v-if="temperature !== null && feelsLike !== null">
-      <p class="text-center text-2xl bg-clip-text text-transparent bg-gradient-to-l from-black to-black">{{ temperature }}°C</p>
-      <p class="text-center text-1xl bg-clip-text text-transparent bg-gradient-to-b from-black to-black">Ressenti {{ feelsLike }}°C</p>
+      <p class="text-7xl bg-clip-text text-white font-bold py-3">{{ temperature }}°C</p>
+      <p class="text-sm bg-clip-text text-white">Ressenti
+        <span class="text-center text-1xl bg-clip-text text-white font-bold"> {{ feelsLike }}°C</span>
+      </p> 
     </div>
    
     <div v-else>

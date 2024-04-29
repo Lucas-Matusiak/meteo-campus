@@ -10,6 +10,8 @@ def get_current_weather(lat, lon, api_key):
         xml_content = response.text.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
         root = ET.fromstring(str(xml_content))
 
+        timezone = datetime.timedelta(seconds=float(root.find('.//timezone').text))
+
         # Accessing elements
         temperature_value = round(float(root.find('temperature').attrib['value']))
         feels_like_value =round(float(root.find('feels_like').attrib['value']))
@@ -17,9 +19,10 @@ def get_current_weather(lat, lon, api_key):
         
         weather_description = root.find('weather').attrib['value']
         wind_speed = round(3.6 * float(root.find('wind/speed').attrib['value']))
-        weather_code = root.find('weather').attrib['icon']
-        sun_rise_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S')
-        sun_set_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S')
+        weather_code = root.find('weather').attrib['number']
+        weather_icon = root.find('weather').attrib['icon']
+        sun_rise_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['rise'], '%Y-%m-%dT%H:%M:%S') + timezone
+        sun_set_datetime = datetime.datetime.strptime(root.find('city/sun').attrib['set'], '%Y-%m-%dT%H:%M:%S') + timezone
         sun_rise = str(sun_rise_datetime.strftime('%H:%M'))
         sun_set = str(sun_set_datetime.strftime('%H:%M'))
 
@@ -45,6 +48,7 @@ def get_current_weather(lat, lon, api_key):
             "temperature": temperature_value,
             "feels_like_value": feels_like_value,
             "code": weather_code,
+            "weather_icon":  weather_icon,
             "humidity": humidity_value,
             "weather_description": weather_description,
             "wind_speed": wind_speed,
@@ -77,6 +81,7 @@ def get_hourly_forecast(lat, lon, api_key):
             wind_speed_kph = round(wind_speed_mps * 3.6)
 
             weather_code = hours.find('.//symbol').get('var')
+            weather_icon = hours.find('.//symbol').get('number')
             weather_description = hours.find('.//symbol').get('name')
             precipitation_proba = round(float(hours.find('.//precipitation').get('probability'))*100)
             temperature = round(float(hours.find('.//temperature').get('value')))
@@ -95,6 +100,7 @@ def get_hourly_forecast(lat, lon, api_key):
                 data = {
                     'time': time,
                     "code": weather_code,
+                    "weather_icon": weather_icon,
                     'weather_description': weather_description,
                     'precipitation_proba': precipitation_proba,
                     'wind_speed': wind_speed_kph,
@@ -122,6 +128,7 @@ def get_daily_forecast(lat, lon, api_key):
             
             date = day.get("day")
             weather_code = day.find('.//symbol').get('var')
+            weather_icon = day.find('.//symbol').get('number')
 
             temperature_day = round(float(day.find("temperature").get("day")))
             temperature_max = round(float(day.find("temperature").get("max")))
@@ -134,6 +141,7 @@ def get_daily_forecast(lat, lon, api_key):
             day_data = {
                 "date": date,
                 "code": weather_code,
+                "weather_icon": weather_icon,
                 "weather_description": weather_description,
                 "temperature_day": temperature_day,
                 "temperature_max": temperature_max,
